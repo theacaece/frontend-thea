@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 well">
+      <div align="center"> 
+        <fieldset>
+          <form #userForm="ngForm" (ngSubmit)="save(userForm.value)">
+            <legend>Login</legend>
+
+              <div class="form-group">
+                <input class="form-control" placeholder="Usuario"
+                       required name="usuario" #usuario />
+              </div>
+
+              <div class="form-group">
+                <input class="form-control" placeholder="Password"
+                       required name="pass" #pass />
+              </div>
+
+              <button class="btn btn-primary" [routerLink]="['/usuarios-list']">Ingresar</button>
+          </form>
+        </fieldset>
+      </div>
+    </div>
+  <div>
+  <div class="row">
+		<div class="col-md-4 col-md-offset-4 text-center">	
+      &iquest;No ten&eacute;s cuenta? Registrate 
+      <button mat-mini-fab [routerLink]="['/registro']">AQU&Iacute;</button>
+    </div>
+  </div>
+</div>
