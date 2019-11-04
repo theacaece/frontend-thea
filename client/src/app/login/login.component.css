@@ -9,7 +9,7 @@
 }
 
 
-.example-card {
+.login-card {
   max-width: 300px;
   margin-top: 200px;
   display: block;
@@ -22,24 +22,23 @@
   text-align: center;
 }
 
-
-
-.example-form {
+.login-form {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
 }
 
-.example-full-width {
+.login-full-width {
   width: 100%;
+  margin-top: 10px;
 }
 
-.example-button {
-  margin-top: 2%;
-  margin-bottom: 2%;
+.login-button {
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
-.example-button button {
+.login-button button {
   width: 100%;
 }
 
