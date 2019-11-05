@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 //import { fakeBackendProvider } from './_helpers/fake-backend';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 const routes: Route[] = [
   {path: '', component: AppComponent},
@@ -29,7 +30,8 @@ const routes: Route[] = [
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    UserListComponent
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
