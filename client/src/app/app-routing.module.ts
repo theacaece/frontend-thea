@@ -18,7 +18,7 @@ import { PersonaListComponent } from './persona/persona-list/persona-list.compon
 import { FotoComponent } from './persona/foto/foto.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/home', pathMatch: 'full' },
+	{ path: '', redirectTo: '/login', pathMatch: 'full' },
 	{ path: '', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'camara', component: CamaraComponent},
