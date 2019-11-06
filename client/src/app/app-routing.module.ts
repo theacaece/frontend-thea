@@ -25,10 +25,10 @@ const routes: Routes = [
     { path: 'fotos', component: FotoComponent},
     { path: 'usuario-add', component: UsuarioAddComponent},
     { path: 'usuario-edit', component: UsuarioEditComponent},
-    { path: 'usuarios-list', component: UsuarioListComponent},
+    { path: 'usuario-list', component: UsuarioListComponent},
     { path: 'persona-add', component: PersonaAddComponent},
     { path: 'persona-edit', component: PersonaEditComponent},
-	{ path: 'personas-list', component: PersonaListComponent},
+	{ path: 'persona-list', component: PersonaListComponent},
     { path: '**', redirectTo: '' } // otherwise redirect to home
 ];
 

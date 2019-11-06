@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
+import { User } from '../_models/user';
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -16,7 +18,7 @@ export class UsuarioService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get(this.API + '/usuarios');
+    return this.http.get<User[]>(`${environment.apiUrl}/users/list`);
   }
   
   get(id: string) {
