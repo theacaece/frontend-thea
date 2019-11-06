@@ -28,7 +28,7 @@ export class UsuarioAddComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/usuarios-list']);
+    this.router.navigate(['/usuario-list']);
   }
 
   save(form: NgForm) {

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonaAddComponent } from './persona/persona-add.component';
+import { PersonaAddComponent } from './persona-add/persona-add.component';
 
 describe('PersonaAddComponent', () => {
   let component: PersonaAddComponent;

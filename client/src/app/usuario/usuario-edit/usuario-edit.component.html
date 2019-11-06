@@ -26,9 +26,10 @@
               </mat-card-content>
               <mat-card-footer>
              <span style="display:inline-block; width: 0.5em;"></span>
-              <button id="submit2" mat-raised-button color="primary" type="submit" [disabled]="!usuarioForm.form.valid">Guardar</button>
+              <button id="submit" mat-raised-button color="primary" type="submit" 
+                      [disabled]="!usuarioForm.form.valid">Guardar</button>
               <span style="display:inline-block; width: 0.5em;"></span>
-              <a mat-raised-button color="primary" routerLink="/usuarios-list">Cancelar</a>
+              <a mat-raised-button color="primary" routerLink="/usuario-list">Cancelar</a>
               </mat-card-footer>  
             </form>
         </fieldset>

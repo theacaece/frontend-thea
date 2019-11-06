@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 
-import { UsuarioService } from '../../_services/usuario.service';
+//import { UsuarioService } from '../../_services/usuario.service';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-usuario-list',
@@ -13,16 +14,11 @@ export class UsuarioListComponent implements OnInit {
 
  usuarios: Array<any>;
 
- constructor(private usuarioService: UsuarioService) { }
+ constructor(private uerService: UserService) { }
 
   ngOnInit() {
-    this.usuarioService.getAll().subscribe(data => {
+    this.uerService.getAll().subscribe(data => {
       this.usuarios = data;
-    }, error => console.error(error));
-  }
-
-  remove(href) {
-    this.usuarioService.remove(href).subscribe(result => {
     }, error => console.error(error));
   }
   

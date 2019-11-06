@@ -38,7 +38,7 @@ export class UsuarioEditComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/usuario/usuarios-list']);
+    this.router.navigate(['/usuario/usuario-list']);
   }
 
   save(form: NgForm) {

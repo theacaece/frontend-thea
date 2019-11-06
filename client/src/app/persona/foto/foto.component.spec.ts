@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FotosComponent } from './persona/foto.component';
+import { FotoComponent } from './foto.component';
 
 describe('FotosComponent', () => {
-  let component: FotosComponent;
-  let fixture: ComponentFixture<FotosComponent>;
+  let component: FotoComponent;
+  let fixture: ComponentFixture<FotoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FotosComponent ]
+      declarations: [ FotoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FotosComponent);
+    fixture = TestBed.createComponent(FotoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
