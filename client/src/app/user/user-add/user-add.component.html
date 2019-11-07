@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<div align="center">
+
+	<br/><br/>
+	
+	<div class="row">
+	
+		<div class="col-md-4 col-md-offset-4">
+
+        <fieldset>
+        	
+        	<br/>
+        	
+            <form #userForm="ngForm" (ngSubmit)="save(userForm.value)">
+
+              <mat-card-content>
+              
+              <mat-card-title>Agregar Usuario</mat-card-title>
+              
+              <input type="hidden" name="href" [(ngModel)]="user.href">
+              <input id="edit-formula" type="hidden" name="href" [(ngModel)]="user.userData">
+                <input type="hidden" name="href" [(ngModel)]="user.href">
+                
+                <mat-form-field>
+                    <input matInput placeholder="Nombre" [(ngModel)]="user.nombre"
+                          required name="nombre" #nombre/>
+                </mat-form-field><br/>
+                
+                <mat-form-field>
+                  <input matInput placeholder="Apellido" [(ngModel)]="user.apellido"
+                         required name="apellido" #apellido />
+                </mat-form-field><br/>
+                
+                <mat-form-field>
+                  <input matInput placeholder="E-mail" [(ngModel)]="user.email"
+                        required name="email" #email />
+                </mat-form-field><br/>
+                
+              </mat-card-content>
+              
+              <mat-card-footer>
+              	<button id="submit" mat-raised-button color="primary" type="submit" [disabled]="!userForm.form.valid">Guardar</button>
+              	<span style="display:inline-block; width: 0.5em;"></span>
+              	<a mat-raised-button color="primary" routerLink="/users-list">Cancelar</a>
+              </mat-card-footer>
+            
+            </form>
+        
+        </fieldset>
+
+		</div>
+    
+ 	</div>
+ 
+ </div>
+ 

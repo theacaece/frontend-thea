@@ -4,14 +4,16 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_helpers/auth.guard';
 
-const routes: Routes = [
-	//{path: '', redirectTo: '/login', pathMatch: 'full' },
-	//{path: 'login', component: LoginComponent},
-	//{path: 'home', component: HomeComponent}
-	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'login', component: LoginComponent },
+import { UserAddComponent } from './user/user-add/user-add.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 
-    // otherwise redirect to home
+const routes: Routes = [
+	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
+	{ path: 'login', component: LoginComponent },
+	{ path: 'user-add', component: UserAddComponent},
+	{ path: 'user-edit', component: UserEditComponent},
+	{ path: 'user-list', component: UserListComponent},
     { path: '**', redirectTo: '' }
 ];
 

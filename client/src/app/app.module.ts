@@ -11,27 +11,33 @@ import { RouterModule, Route } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+
+import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { UserListComponent } from './users/user-list/user-list.component';
-//import { fakeBackendProvider } from './_helpers/fake-backend';
-import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { UserEditComponent } from './users/user-edit/user-edit.component';
+
+import { UserAddComponent } from './user/user-add/user-add.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 const routes: Route[] = [
   {path: '', component: AppComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'user-add', component: UserAddComponent},
+  {path: 'user-edit', component: UserEditComponent},
+  {path: 'user-list', component: UserListComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     LoginComponent,
     HomeComponent,
-    HeaderComponent,
-    UserListComponent,
-    UserEditComponent
+    UserAddComponent,
+    UserEditComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
