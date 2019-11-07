@@ -12,7 +12,6 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    alert(environment.apiUrl);
-      return this.http.get<User[]>('${environment.apiUrl}/users/list');
+    return this.http.get<User[]>('${environment.apiUrl}/users/list');
   }
 }
