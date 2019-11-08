@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { UserService } from '../../_services/user.service';
+import { User } from '../../_models/user';
 
 @Component({
   selector: 'app-user-edit',
@@ -14,7 +15,7 @@ import { UserService } from '../../_services/user.service';
 })
 export class UserEditComponent implements OnInit {
 
-  user: any = {};
+  user: User;
 
   sub: Subscription;
 
@@ -24,35 +25,35 @@ export class UserEditComponent implements OnInit {
   }
 
  ngOnInit() {
-   /* this.sub = this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
-      	this.userService.get(id).subscribe(user => {
-      		if (null) {
-
-          }
+        this.userService.get(id).subscribe(usuario => {
+          if (usuario) {
+            alert("TRAE ALGO");
+          } else {
+            alert("NO TRAE ALGO");
+          } 
           this.gotoList();
-    	}, error => console.error(error));
+      }, error => console.error(error));
       }
-    }, error => console.error(error));*/
+    }, error => console.error(error));
   }
 
   gotoList() {
     this.router.navigate(['/user/user-list']);
   }
-
-  /*save(form: NgForm) {
+  
+  save(form: NgForm) {
     this.userService.save(form).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }
 
   remove(href) {
-    alert("remove form id");
-    alert(this.user.id);
-    this.userService.remove(this.user).subscribe(result => {
+    this.userService.remove(href).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
-  }*/
+  }
   
 }

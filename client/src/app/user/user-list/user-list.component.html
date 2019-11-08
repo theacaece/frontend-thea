@@ -7,16 +7,17 @@
     		<mat-card-header>
   				<mat-card-title><br/>Lista de usuarios<br/></mat-card-title>
   			</mat-card-header>
-  
-  			<form #userForm="ngForm" (ngSubmit)="remove(userForm.value)">
-    		
+
     		<mat-card>
-      
-      		<mat-card-content>
-        		
-        		<button class="btn btn-primary" title ="Agregar nuevo usuario" 
-        		        [routerLink]="['/user-add']">Agregar usuario</button>
-        		
+	
+			<mat-card-content>
+			
+				<button class="btn btn-primary" title ="Agregar Usuario" 
+						[routerLink]="['/user-add']">Agregar persona</button>
+			  
+			
+   
+				<form #userForm="ngForm" (ngSubmit)="remove(userForm.value)">
         		<table class="table table-hover">
            
            			<thead class="sticky-top">
@@ -32,9 +33,8 @@
           			<tbody>
             
             			<tr mdbTableCol *ngFor="let user of users">
-            			
-              				<td>{{user.nombre}}</td>
-              				<td>{{user.apellido}}</td>
+              				<td>{{user.firstName}}</td>
+              				<td>{{user.lastName}}</td>
               				<td>{{user.email}}</td>
               				<td>
                 				<a mat-button [routerLink]="['/user-edit', user.id]">
@@ -42,18 +42,14 @@
                 				</a>
               				</td>
               				<td>
-                				<a mat-button title="Eliminar persona" [routerLink]="['/user-edit', persona.id]">
+                				<a mat-button title="Eliminar usuario" [routerLink]="['/user-edit', user.id]">
                   					<img src="assets/img/iconos/eliminar.png" width="25" height="25">
                 				</a>
               				</td>
             			</tr>
           			</tbody>
         		</table>
-      
+				</form>	
       </mat-card-content>
-    
     </mat-card>
-   
-   </form>
-   
 </div>

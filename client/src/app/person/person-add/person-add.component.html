@@ -12,41 +12,40 @@
 
         	<br/>
         	
-            <form #userForm="ngForm" (ngSubmit)="save(userForm.value)">
+            <form #personForm="ngForm" (ngSubmit)="save(personForm.value)">
               
               <mat-card-content>
               
-              	<mat-card-title>Agregar User</mat-card-title>
+              	<mat-card-title>Agregar Person</mat-card-title>
               
-              	<input type="hidden" name="href" [(ngModel)]="user.href">
-              	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="user.userData">
-                <input type="hidden" name="href" [(ngModel)]="user.href">
+              	<input type="hidden" name="href" [(ngModel)]="person.href">
+              	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="person.personData">
+                <input type="hidden" name="href" [(ngModel)]="person.href">
                 
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" [(ngModel)]="user.nombre"
+                    <input matInput placeholder="Nombre" [(ngModel)]="person.nombre"
                           required name="nombre" #nombre/>
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Apellido" [(ngModel)]="user.apellido"
+                  <input matInput placeholder="Apellido" [(ngModel)]="person.apellido"
                          required name="apellido" #apellido />
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Dni" [(ngModel)]="user.dni"
+                  <input matInput placeholder="Dni" [(ngModel)]="person.dni"
                         required name="dni" #dni />
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Email" [(ngModel)]="user.email"
-                        required name="email" #email />
+                  <input matInput placeholder="Matricula" [(ngModel)]="person.matricula"
+                        required name="matricula" #matricula />
                 </mat-form-field><br/>
 
               	<mat-card-footer><br/>
-                  <button id="submit" mat-raised-button color="primary" type="submit" 
-                          [disabled]="!userForm.form.valid">Guardar</button>
+              		<button id="submit" mat-raised-button color="primary" type="submit" [disabled]="!personForm.form.valid">Guardar</button>
               		<span style="display:inline-block; width: 0.5em;"></span>
-              		<a mat-raised-button color="primary" routerLink="/user-list">Cancelar</a>
+              		<a mat-raised-button color="primary" routerLink="/person-list">Cancelar</a>
               	</mat-card-footer>
               
             	</mat-card-content>

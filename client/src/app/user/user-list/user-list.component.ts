@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { UserService } from '../../_services/user.service';
+import { User } from '../../_models/user';
+
 
 @Component({
   selector: 'app-user-list',
@@ -11,18 +13,14 @@ import { UserService } from '../../_services/user.service';
 })
 export class UserListComponent implements OnInit {
 
- users: Array<any>;
+ users: Array<User>;
 
- constructor(private uerService: UserService) { }
+ constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.uerService.getAll().subscribe(data => {
+    this.userService.getAll().subscribe(data => {
       this.users = data;
-    }, error => console.error(error));
-  }
-  
-  submit() {
-
+    }), error => console.error(error);
   }
 
 }

@@ -21,12 +21,23 @@ import { UserAddComponent } from './user/user-add/user-add.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 
+import { PersonAddComponent } from './person/person-add/person-add.component';
+import { PersonEditComponent } from './person/person-edit/person-edit.component';
+import { PersonListComponent } from './person/person-list/person-list.component';
+import { PhotoComponent } from './person/photo/photo.component';
+
 const routes: Route[] = [
-  {path: '', component: AppComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'user-add', component: UserAddComponent},
-  {path: 'user-edit', component: UserEditComponent},
-  {path: 'user-list', component: UserListComponent}
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+	{ path: 'home', component: HomeComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'user-add', component: UserAddComponent},
+  { path: 'user-edit', component: UserEditComponent},
+  { path: 'user-list', component: UserListComponent},
+  { path: 'person-add', component: PersonAddComponent},
+  { path: 'person-edit', component: PersonEditComponent},
+  { path: 'person-list', component: PersonListComponent},
+  { path: 'photo', component: PhotoComponent},
+  { path: '**', redirectTo: '' } // otherwise redirect to home
 ];
 
 @NgModule({
@@ -37,7 +48,11 @@ const routes: Route[] = [
     HomeComponent,
     UserAddComponent,
     UserEditComponent,
-    UserListComponent
+    UserListComponent,
+    PersonAddComponent,
+    PersonEditComponent,
+    PersonListComponent,
+    PhotoComponent
   ],
   imports: [
     BrowserModule,
