@@ -34,6 +34,7 @@ export class UserService {
   }
 
   remove(href: string) {
+    alert(href);
     return this.http.delete(href);
   }
 }

@@ -31,12 +31,12 @@ const routes: Route[] = [
 	{ path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'user-add', component: UserAddComponent},
-  { path: 'user-edit', component: UserEditComponent},
+  { path: 'user-edit/:id', component: UserEditComponent},
   { path: 'user-list', component: UserListComponent},
   { path: 'person-add', component: PersonAddComponent},
-  { path: 'person-edit', component: PersonEditComponent},
+  { path: 'person-edit/:id', component: PersonEditComponent},
   { path: 'person-list', component: PersonListComponent},
-  { path: 'photo', component: PhotoComponent},
+  { path: 'photo/:id', component: PhotoComponent},
   { path: '**', redirectTo: '' } // otherwise redirect to home
 ];
 

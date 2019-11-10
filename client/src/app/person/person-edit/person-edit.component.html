@@ -31,7 +31,9 @@
               <mat-card-footer>
               	<span style="display:inline-block; width: 0.5em;"></span>
               	<button id="submit2" mat-raised-button color="primary" type="submit" 
-              	        [disabled]="!personaForm.form.valid">Guardar</button>
+                        [disabled]="!personaForm.form.valid">Guardar</button>
+                <button mat-raised-button color="primary" (click)="remove(person.href)"
+                        *ngIf="person.href" type="button">Eliminar</button>
               	<span style="display:inline-block; width: 0.5em;"></span>
               	<a mat-raised-button color="primary" routerLink="/personas-list">Cancelar</a>
               </mat-card-footer>  

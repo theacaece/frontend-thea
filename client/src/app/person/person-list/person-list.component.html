@@ -42,12 +42,12 @@
                 					</a>
               					</td>
              					<td>
-                					<a mat-button title="Eliminar persona" [routerLink]="['/person-edit', person.id]">
+                					<a mat-button title="Eliminar persona" (click)="remove(this.href)">
                   						<img src="assets/img/iconos/eliminar.png" width="25" height="25">
                 					</a>	
               					</td>
               					<td>
-                					<a mat-button title="Ver fotos" [routerLink]="['/photos']">     
+                					<a mat-button title="Ver fotos" [routerLink]="['/photo', person.id]">     
                   						<img src="assets/img/iconos/user.png" tooltip="Ver fotos" width="25" height="25">
                 					</a>
               					</td>
