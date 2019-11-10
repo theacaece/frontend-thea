@@ -24,7 +24,6 @@
               					<th>Nombre</th>
               					<th>Apellido</th>
               					<th>DNI</th>
-              					<!--<th>Funci&oacute;n</th>-->
               					<th>Matr&iacute;cula</th>
             				</tr>
           				</thead>
@@ -33,18 +32,17 @@
             
             				<tr mdbTableCol *ngFor="let person of persons">
               
-              					<td>{{persona.nombre}}</td>
-             					<td>{{persona.apellido}}</td>
-              					<td>{{persona.dni}}</td>
-              					<!--<td>{{persona.funcion}}</td>-->
-              					<td>{{persona.matricula}}</td>
+              					<td>{{person.nombre}}</td>
+             					<td>{{person.apellido}}</td>
+              					<td>{{person.dni}}</td>
+              					<td>{{person.matricula}}</td>
               					<td>
-                					<a mat-button title="Modificar persona" [routerLink]="['/person-edit', persona.id]">
+                					<a mat-button title="Modificar persona" [routerLink]="['/person-edit', person.id]">
                 						<img src="assets/img/iconos/editar.png" width="25" height="25">
                 					</a>
               					</td>
              					<td>
-                					<a mat-button title="Eliminar persona" [routerLink]="['/person-edit', persona.id]">
+                					<a mat-button title="Eliminar persona" [routerLink]="['/person-edit', person.id]">
                   						<img src="assets/img/iconos/eliminar.png" width="25" height="25">
                 					</a>	
               					</td>

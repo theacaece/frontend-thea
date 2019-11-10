@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { Person } from '../_models/person';
+
 @Injectable({providedIn: 'root'})
 
 export class PersonService {
@@ -12,7 +14,7 @@ export class PersonService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get(this.API + '/persons');
+    return this.http.get<Person[]>(this.API + '/persons');
   }
   
   get(id: string) {
