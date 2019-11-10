@@ -11,6 +11,7 @@ import { User } from '../_models/user';
 export class UserService {
 
   public API = '//localhost:8080';
+  public USER_API = this.API + '/users';
 
   constructor(private http: HttpClient) { }
 
@@ -22,12 +23,12 @@ export class UserService {
     return this.http.get(this.API + '/' + id);
   }
 
-  save(usuario: any): Observable<any> {
+  save(user: any): Observable<any> {
     let result: Observable<Object>;
-    if (usuario['href']) {
-      result = this.http.put(usuario.href, usuario);
+    if (user['href']) {
+      result = this.http.put(user.href, user);
     } else {
-      result = this.http.post(this.API + '/save', usuario);
+      result = this.http.post(this.USER_API + '/save', user);
     }
     return result;
   }

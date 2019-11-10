@@ -26,11 +26,10 @@ export class UserAddComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/usuario/usuario-list']);
+    this.router.navigate(['/user-list']);
   }
   
   save(form: NgForm) {
-    alert("save");
     this.userService.save(form).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));

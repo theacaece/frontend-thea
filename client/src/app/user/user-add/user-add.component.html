@@ -20,26 +20,30 @@
               
               	<input type="hidden" name="href" [(ngModel)]="user.href">
               	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="user.userData">
-                <input type="hidden" name="href" [(ngModel)]="user.href">
                 
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" [(ngModel)]="user.nombre"
-                          required name="nombre" #nombre/>
+                    <input matInput placeholder="Nombre" [(ngModel)]="user.firstName"
+                          required name="firstName" #firstName/>
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Apellido" [(ngModel)]="user.apellido"
-                         required name="apellido" #apellido />
+                  <input matInput placeholder="Apellido" [(ngModel)]="user.lastName"
+                         required name="lastName" #lastName />
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Dni" [(ngModel)]="user.dni"
-                        required name="dni" #dni />
+                  <input matInput placeholder="Usuario" [(ngModel)]="user.username"
+                        required name="username" #username />
                 </mat-form-field><br/>
                 
                 <mat-form-field>
                   <input matInput placeholder="Email" [(ngModel)]="user.email"
                         required name="email" #email />
+                </mat-form-field><br/>
+
+                <mat-form-field>
+                  <input matInput placeholder="Password" [(ngModel)]="user.password"
+                        required name="password" #password />
                 </mat-form-field><br/>
 
               	<mat-card-footer><br/>

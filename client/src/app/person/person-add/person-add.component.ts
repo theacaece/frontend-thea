@@ -26,7 +26,7 @@ export class PersonAddComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/person/person-list']);
+    this.router.navigate(['/person-list']);
   }
 
   save(form: NgForm) {

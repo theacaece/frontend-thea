@@ -20,7 +20,6 @@
               
               	<input type="hidden" name="href" [(ngModel)]="person.href">
               	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="person.personData">
-                <input type="hidden" name="href" [(ngModel)]="person.href">
                 
                 <mat-form-field>
                     <input matInput placeholder="Nombre" [(ngModel)]="person.nombre"
@@ -43,7 +42,8 @@
                 </mat-form-field><br/>
 
               	<mat-card-footer><br/>
-              		<button id="submit" mat-raised-button color="primary" type="submit" [disabled]="!personForm.form.valid">Guardar</button>
+                  <button id="submit" mat-raised-button color="primary" type="submit" 
+                          [disabled]="!personForm.form.valid">Guardar</button>
               		<span style="display:inline-block; width: 0.5em;"></span>
               		<a mat-raised-button color="primary" routerLink="/person-list">Cancelar</a>
               	</mat-card-footer>
