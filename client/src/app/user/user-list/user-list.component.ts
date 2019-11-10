@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { UserService } from '../../_services/user.service';
-import { User } from '../../_models/user';
 
 
 @Component({
@@ -13,7 +12,7 @@ import { User } from '../../_models/user';
 })
 export class UserListComponent implements OnInit {
 
- users: Array<User>;
+ users: Array<any>;
 
  constructor(private userService: UserService) { }
 

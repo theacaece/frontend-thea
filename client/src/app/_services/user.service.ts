@@ -19,8 +19,8 @@ export class UserService {
     return this.http.get<User[]>(this.API + '/users');
   }
     
-  get(id: string): Observable<any> {
-    return this.http.get(this.API + '/' + id);
+  get(id: any): Observable<any> {
+    return this.http.get<any>(this.USER_API + '/edit', id);
   }
 
   save(user: any): Observable<any> {
@@ -33,8 +33,9 @@ export class UserService {
     return result;
   }
 
-  remove(href: string) {
+  remove(href: any) {
+    alert('service');
     alert(href);
-    return this.http.delete(href);
+    return this.http.delete(this.USER_API + '/delete', href);
   }
 }

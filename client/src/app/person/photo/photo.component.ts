@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PhotoService } from '../../_services/photo.service';
 
 @Component({
@@ -7,14 +9,29 @@ import { PhotoService } from '../../_services/photo.service';
   styleUrls: ['./photo.component.css']
 })
 export class PhotoComponent implements OnInit {
-  photos: Array<any>;
+  
+  photo: any;
 
-  constructor(private photoService: PhotoService) { }
+  sub: Subscription;
+
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private photoService: PhotoService) { 
+
+   }
 
   ngOnInit() {
-    this.photoService.getAll().subscribe(data => {
-      this.photos = data;
+    this.sub = this.route.params.subscribe(params => {
+      const id = params['id'];
+      alert(id);
+      if (id) {
+        alert('if');
+        this.photoService.get(id).subscribe(data => {
+          this.photo = data;
+        }, error => console.error(error));
+        alert('no entro al service');
+      }
     });
+    alert('salgo de init');
   }
-
 }
