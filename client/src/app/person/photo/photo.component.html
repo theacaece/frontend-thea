@@ -1,22 +1,12 @@
-<div class="div-principal">
-<div class="container mt-3">
-
-<div class="container">
-  <div class="row">
-    <mat-card>
-      <mat-card-content>
-        <table>
-          <tbody>
-          	<div class="carousel-inner">
-           	 <tr mdbTableCol *ngFor="let photo of photos">
-    			<div align="center" class="carousel-item active">
-    				<img id="profileImage" src="data:image/jpg;base64,{{photo.archivo}}">
-    			</div>
-             </tr>
-            </div>
-          </tbody>
-        </table>
-      </mat-card-content>
-    </mat-card>
-</div>
+<app-header></app-header>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+    <table>
+      <tbody>
+        <tr mdbTableCol *ngFor="let photo of photos">
+          <td><img id="profileImage" src="data:image/jpg;base64,{{photo.archivo}}"></td>
+        </tr> 
+      </tbody>
+    </table>
+  </div>
 </div>

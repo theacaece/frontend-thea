@@ -16,7 +16,7 @@
               
               <mat-card-content>
               
-              	<mat-card-title>Agregar Usuario</mat-card-title>
+              	<mat-card-title>Editar Usuario</mat-card-title>
               
               	<input type="hidden" name="href" [(ngModel)]="user.href">
               	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="user.userData">
@@ -47,12 +47,11 @@
                 </mat-form-field><br/>
 
               	<mat-card-footer><br/>
-                  <button mat-raised-button color="primary" type="submit" 
+                  <button id="submit" mat-raised-button color="primary" type="submit" 
                           [disabled]="!userForm.form.valid">Guardar</button>
                   <span style="display:inline-block; width: 0.5em;"></span>
-                  <button mat-raised-button color="primary" (click)="remove(user.href)"
+                  <button mat-raised-button color="secondary" (click)="remove(user.href)"
                           *ngIf="user.href" type="button">Eliminar</button>
-              		<a mat-raised-button color="primary" routerLink="/user-list">Cancelar</a>
               	</mat-card-footer>
               
             	</mat-card-content>

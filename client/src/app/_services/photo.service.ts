@@ -17,20 +17,7 @@ export class PhotoService {
   }
   
   get(id: string) {
-    return this.http.get(this.FOTO_API + '/' + id);
+    return this.http.get(this.FOTO_API + '/photos/edit/' + id);
   }
 
-  save(photo: any): Observable<any> {
-    let result: Observable<Object>;
-    if (photo['href']) {
-      result = this.http.put(photo.href, photo);
-    } else {
-      result = this.http.post(this.FOTO_API + '/save', photo);
-    }
-    return result;
-  }
-
-  remove(href: string) {
-    return this.http.delete(href);
-  }
 }

@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
 
 import { UserService } from '../../_services/user.service';
-import { User } from '../../_models/user';
 
 @Component({
   selector: 'app-user-edit',
@@ -15,7 +12,7 @@ import { User } from '../../_models/user';
 })
 export class UserEditComponent implements OnInit {
 
-  user: User;
+  user: any = {};
 
   sub: Subscription;
 
@@ -24,24 +21,12 @@ export class UserEditComponent implements OnInit {
               private userService: UserService) {
   }
 
- ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      const id = params['id'];
-      if (id) {
-        this.userService.get(id).subscribe(usuario => {
-          if (usuario) {
-            alert("TRAE ALGO");
-          } else {
-            alert("NO TRAE ALGO");
-          } 
-          this.gotoList();
-      }, error => console.error(error));
-      }
-    }, error => console.error(error));
+  ngOnInit() {
+
   }
 
   gotoList() {
-    this.router.navigate(['/user/user-list']);
+    this.router.navigate(['/user-list']);
   }
   
   save(form: NgForm) {
