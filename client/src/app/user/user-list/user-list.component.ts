@@ -22,8 +22,8 @@ export class UserListComponent implements OnInit {
     }), error => console.error(error);
   }
 
-  remove(href) {
-    this.userService.remove(href).subscribe(result => {
+  remove(id) {
+    this.userService.remove(id).subscribe(result => {
       alert("Se elimino correctamente.");
     }, error => console.error(error));
   }

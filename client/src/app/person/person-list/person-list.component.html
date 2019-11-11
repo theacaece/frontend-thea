@@ -42,6 +42,11 @@
                 					<a mat-button title="Modificar persona" [routerLink]="['/person-edit', person.id]">
                 						<img src="assets/img/iconos/editar.png" width="25" height="25">
                 					</a>
+								</td>
+								<td>
+                					<a mat-button title="Eliminar persona" (click)="remove(person)">
+                						<img src="assets/img/iconos/eliminar.png" width="25" height="25">
+                					</a>
               					</td>
               					<td>
                 					<a mat-button title="Ver fotos" [routerLink]="['/photo', person.id]">     

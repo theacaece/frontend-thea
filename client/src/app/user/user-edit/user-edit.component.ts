@@ -35,8 +35,10 @@ export class UserEditComponent implements OnInit {
     }, error => console.error(error));
   }
 
-  remove(href) {
-    this.userService.remove(href).subscribe(result => {
+  remove(id) {
+    alert('remove');
+    alert(id);
+    this.userService.remove(id).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }

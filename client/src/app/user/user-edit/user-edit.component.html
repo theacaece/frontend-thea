@@ -50,8 +50,8 @@
                   <button id="submit" mat-raised-button color="primary" type="submit" 
                           [disabled]="!userForm.form.valid">Guardar</button>
                   <span style="display:inline-block; width: 0.5em;"></span>
-                  <button mat-raised-button color="secondary" (click)="remove(user.href)"
-                          *ngIf="user.href" type="button">Eliminar</button>
+                  <button mat-raised-button color="secondary" (click)="remove(user.id)"
+                          type="button">Eliminar</button>
               	</mat-card-footer>
               
             	</mat-card-content>

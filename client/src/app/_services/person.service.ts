@@ -9,13 +9,13 @@ import { Person } from '../_models/person';
 export class PersonService {
   
   public API = '//localhost:8080';
-  public PERSON_API = this.API + '/persons';
+  public PERSON_API = this.API + '/personas';
 
   constructor(private http: HttpClient) {
   }
 
   getAll(): Observable<any> {
-    return this.http.get<Person[]>(this.API + '/persons');
+    return this.http.get<Person[]>(this.API + '/personas');
   }
   
   get(id: string) {
@@ -32,7 +32,9 @@ export class PersonService {
     return result;
   }
 
-  remove(href: string) {
-    return this.http.delete(href);
+  remove(id) {
+    alert(id);
+    return this.http.delete<Person>(this.PERSON_API + "/"+ id);
   }
+
 }

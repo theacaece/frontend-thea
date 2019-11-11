@@ -12,6 +12,8 @@ import { PersonService } from '../../_services/person.service';
 })
 export class PersonEditComponent implements OnInit {
 
+  id: string;
+
   person: any = {};
 
   sub: Subscription;
@@ -22,7 +24,17 @@ export class PersonEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.id = params['id'];
+      if (this.id) {
+      	this.personService.get(this.id).subscribe(user => {
+      		if (null) {
 
+          }
+          this.gotoList();
+    	}, error => console.error(error));
+      }
+    }, error => console.error(error));
   }
 
   gotoList() {
@@ -35,8 +47,9 @@ export class PersonEditComponent implements OnInit {
     }, error => console.error(error));
   }
 
-  remove(href) {
-    this.personService.remove(this.person).subscribe(result => {
+  remove() {
+    alert(this.id);
+    this.personService.remove(this.id).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }
