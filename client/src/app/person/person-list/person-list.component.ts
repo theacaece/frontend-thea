@@ -16,7 +16,7 @@ export class PersonListComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private personService: PersonService) {
-}
+  }
 
   ngOnInit() {
     this.personService.getAll().subscribe(data => {
@@ -29,10 +29,9 @@ export class PersonListComponent implements OnInit {
   }
 
   remove(person): void {
-    alert(person.id);
     this.personService.remove(person.id).subscribe( data => {
-      alert("Se elmino correctamente");
       this.persons = this.persons.filter(u => u !== person);
+      alert("Se elmino correctamente");
     })
   };
 

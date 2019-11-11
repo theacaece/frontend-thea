@@ -22,23 +22,29 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit() {
-
-  }
-
-  gotoList() {
-    this.router.navigate(['/user-list']);
-  }
-  
-  save(form: NgForm) {
-    this.userService.save(form).subscribe(result => {
-      this.gotoList();
+    this.sub = this.route.params.subscribe(params => {
+      const id = params['id'];
+      if (id) {
+      	this.userService.get(id).subscribe(usuario => {
+      		if (usuario) {
+            this.user.id = usuario.id;
+            this.user.firstname = usuario.firstname;
+            this.user.lastname = usuario.lastname;
+            this.user.email = usuario.email;
+            this.user.username = usuario.username;
+            this.user.password = usuario.password;
+          }
+    	  }, error => console.error(error));
+      }
     }, error => console.error(error));
   }
 
-  remove(id) {
-    alert('remove');
-    alert(id);
-    this.userService.remove(id).subscribe(result => {
+  gotoList() {
+    this.router.navigate(['/person-list']);
+  }
+
+  save(form: NgForm) {
+    this.userService.save(form).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }

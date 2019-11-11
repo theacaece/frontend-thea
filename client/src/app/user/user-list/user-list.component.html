@@ -30,13 +30,18 @@
           			<tbody>
             
             			<tr mdbTableCol *ngFor="let user of users">
-              				<td>{{user.firstName}}</td>
-              				<td>{{user.lastName}}</td>
-							  <td>{{user.email}}</td>
-							  <td>{{user.username}}</td>
+              				<td>{{user.firstname}}</td>
+              				<td>{{user.lastname}}</td>
+							<td>{{user.email}}</td>
+							<td>{{user.username}}</td>
               				<td>	
                 				<a mat-button [routerLink]="['/user-edit', user.id]">
                   					<img src="assets/img/iconos/editar.png" width="25" height="25">
+								</a>
+							</td>
+							<td>
+                				<a mat-button title="Eliminar persona" (click)="remove(user)">
+                					<img src="assets/img/iconos/eliminar.png" width="25" height="25">
                 				</a>
               				</td>
             			</tr>

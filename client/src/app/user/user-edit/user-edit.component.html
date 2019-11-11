@@ -22,36 +22,30 @@
               	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="user.userData">
                 
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" [(ngModel)]="user.firstName"
-                          required name="firstName" #firstName/>
+                    <input matInput placeholder="Nombre" [(ngModel)]="user.firstname"
+                          required name="firstname" #firstName/>
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Apellido" [(ngModel)]="user.lastName"
-                         required name="lastName" #lastName />
-                </mat-form-field><br/>
-                
-                <mat-form-field>
-                  <input matInput placeholder="Usuario" [(ngModel)]="user.username"
-                        required name="username" #username />
+                  <input matInput placeholder="Apellido" [(ngModel)]="user.lastname"
+                         required name="lastname" #lastName />
                 </mat-form-field><br/>
                 
                 <mat-form-field>
                   <input matInput placeholder="Email" [(ngModel)]="user.email"
                         required name="email" #email />
                 </mat-form-field><br/>
-
+                                
                 <mat-form-field>
-                  <input matInput placeholder="Password" [(ngModel)]="user.password"
-                        required name="password" #password />
+                  <input matInput placeholder="Usuario" [(ngModel)]="user.username"
+                        required name="username" #username />
                 </mat-form-field><br/>
 
               	<mat-card-footer><br/>
                   <button id="submit" mat-raised-button color="primary" type="submit" 
                           [disabled]="!userForm.form.valid">Guardar</button>
                   <span style="display:inline-block; width: 0.5em;"></span>
-                  <button mat-raised-button color="secondary" (click)="remove(user.id)"
-                          type="button">Eliminar</button>
+                  <a mat-raised-button color="primary" routerLink="/user-list">Cancelar</a>
               	</mat-card-footer>
               
             	</mat-card-content>

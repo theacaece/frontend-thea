@@ -33,7 +33,6 @@ export class PersonService {
   }
 
   remove(id: any) {
-    alert(id);
     return this.http.delete<Person>(this.PERSON_API + "/" + id);
   }
 
