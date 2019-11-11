@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="mat-elevation-z6 custom-toolbar">
     <span><a [routerLink]="['/home']">THEA</a></span>
     <span class="toolbar-spacer"></span>
-    <span class="toolbar-span">Juan Perez</span>
+    <span class="toolbar-span">{{this.currentUser.userDetails.username}}</span>
     <button mat-button (click)="logout()" mat-icon-button aria-label="Salir">
         <mat-icon>exit_to_app</mat-icon>
     </button>

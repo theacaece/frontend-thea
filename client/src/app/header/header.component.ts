@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    alert(this.currentUser.userDetails.username);
   }
 
   logout() {
