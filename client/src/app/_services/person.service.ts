@@ -18,8 +18,8 @@ export class PersonService {
     return this.http.get<Person[]>(this.API + '/personas');
   }
   
-  get(id: string) {
-    return this.http.get(this.PERSON_API + '/' + id);
+  get(id: any): Observable<any> {
+    return this.http.get<any>(this.PERSON_API + '/edit/' + id);
   }
 
   save(person: any): Observable<any> {
@@ -32,9 +32,9 @@ export class PersonService {
     return result;
   }
 
-  remove(id) {
+  remove(id: any) {
     alert(id);
-    return this.http.delete<Person>(this.PERSON_API + "/"+ id);
+    return this.http.delete<Person>(this.PERSON_API + "/" + id);
   }
 
 }
