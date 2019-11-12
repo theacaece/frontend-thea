@@ -24,7 +24,7 @@ const routes: Routes = [
 	{ path: 'person-add', component: PersonAddComponent},
 	{ path: 'person-edit/:id', component: PersonEditComponent},
 	{ path: 'person-list', component: PersonListComponent},
-	{ path: 'photo/:id', component: PhotoComponent},
+	{ path: 'photo/:dni', component: PhotoComponent},
 	{ path: 'camara', component: CamaraComponent},
     { path: '**', redirectTo: '' }
 ];

@@ -7,17 +7,18 @@ import { Observable } from 'rxjs';
 export class PhotoService {
 
   public API = '//localhost:8080';
-  public FOTO_API = this.API + '/photos';
+  public FOTO_API = this.API + '/fotos';
 
   constructor(private http: HttpClient) {
   }
 
   getAll(): Observable<any> {
-    return this.http.get(this.API + '/photos');
+    return this.http.get(this.API + '/fotos');
   }
   
-  get(id: string) {
-    return this.http.get(this.FOTO_API + '/photos/edit/' + id);
+  get(dni: any): Observable<any> {
+    alert(dni);
+    return this.http.get(this.FOTO_API + '/dni/' + dni);
   }
 
 }

@@ -12,8 +12,10 @@
 	
 			<mat-card-content>
 			
-				<button class="btn btn-primary" title ="Agregar Usuario" 
+				<button mat-raised-button color="primary" title ="Agregar Usuario" 
 						[routerLink]="['/user-add']">Agregar Usuario</button>
+				
+				<br/><br/>
 
         		<table class="table table-hover">
            
@@ -43,7 +45,7 @@
                 				<a mat-button title="Eliminar persona" (click)="remove(user)">
                 					<img src="assets/img/iconos/eliminar.png" width="25" height="25">
                 				</a>
-              				</td>
+							</td>
             			</tr>
           			</tbody>
         		</table>

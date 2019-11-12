@@ -12,8 +12,10 @@
 
 		<mat-card-content>
       	
-      				<button class="btn btn-primary" title ="Agregar Persona" 
-      	        			[routerLink]="['/person-add']">Agregar persona</button>
+					<button mat-raised-button color="primary" title ="Agregar Persona" 
+							[routerLink]="['/person-add']">Agregar Usuario</button>
+	
+					<br/><br/>
 		
 					<form #personForm="ngForm" (ngSubmit)="remove(personForm.value)">
         			<table class="table table-hover">
@@ -49,7 +51,7 @@
                 					</a>
               					</td>
               					<td>
-                					<a mat-button title="Ver fotos" [routerLink]="['/photo', person.id]">     
+                					<a mat-button title="Ver fotos" [routerLink]="['/photo', person.dni]">     
                   						<img src="assets/img/iconos/user.png" tooltip="Ver fotos" width="25" height="25">
                 					</a>
               					</td>

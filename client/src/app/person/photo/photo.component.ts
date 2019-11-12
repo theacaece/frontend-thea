@@ -10,7 +10,7 @@ import { PhotoService } from '../../_services/photo.service';
 })
 export class PhotoComponent implements OnInit {
   
-  photo: any;
+  fotos: any;
 
   sub: Subscription;
 
@@ -22,12 +22,12 @@ export class PhotoComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      const id = params['id'];
-      alert(id);
-      if (id) {
+      const dni = params['dni'];
+      alert(dni);
+      if (dni) {
         alert('if');
-        this.photoService.get(id).subscribe(data => {
-          this.photo = data;
+        this.photoService.get(dni).subscribe(data => {
+          this.fotos = data;
         }, error => console.error(error));
         alert('no entro al service');
       }

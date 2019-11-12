@@ -1,5 +1,6 @@
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatIconModule, MatProgressSpinnerModule, MatGridListModule } from '@angular/material';
@@ -38,7 +39,7 @@ const routes: Route[] = [
   { path: 'person-add', component: PersonAddComponent},
   { path: 'person-edit/:id', component: PersonEditComponent},
   { path: 'person-list', component: PersonListComponent},
-  { path: 'photo/:id', component: PhotoComponent},
+  { path: 'photo/:dni', component: PhotoComponent},
   { path: 'camara', component: CamaraComponent},
   { path: '**', redirectTo: '' } // otherwise redirect to home
 ];
@@ -73,7 +74,8 @@ const routes: Route[] = [
     MatProgressSpinnerModule,
     MatGridListModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
