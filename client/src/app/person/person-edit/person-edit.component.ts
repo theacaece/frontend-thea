@@ -12,6 +12,8 @@ import { PersonService } from '../../_services/person.service';
 })
 export class PersonEditComponent implements OnInit {
 
+  id: any;
+
   persona: any = {};
 
   sub: Subscription;
@@ -23,9 +25,9 @@ export class PersonEditComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      const id = params['id'];
-      if (id) {
-      	this.personService.get(id).subscribe(person => {
+      this.id = params['id'];
+      if (this.id) {
+      	this.personService.get(this.id).subscribe(person => {
       		if (person) {
             this.persona.id = person.id;
             this.persona.nombre = person.nombre;
@@ -43,7 +45,8 @@ export class PersonEditComponent implements OnInit {
   }
 
   update(form: NgForm) {
-    this.personService.update(form).subscribe(result => {
+    alert(this.id);
+    this.personService.update(this.id, form).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }
