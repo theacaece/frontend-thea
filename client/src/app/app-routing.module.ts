@@ -13,6 +13,8 @@ import { PersonEditComponent } from './person/person-edit/person-edit.component'
 import { PersonListComponent } from './person/person-list/person-list.component';
 import { PhotoComponent } from './person/photo/photo.component';
 
+import { CamaraComponent } from './register/camara/camara.component';
+
 const routes: Routes = [
 	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
 	{ path: 'login', component: LoginComponent },
@@ -23,6 +25,7 @@ const routes: Routes = [
 	{ path: 'person-edit/:id', component: PersonEditComponent},
 	{ path: 'person-list', component: PersonListComponent},
 	{ path: 'photo/:id', component: PhotoComponent},
+	{ path: 'camara', component: CamaraComponent},
     { path: '**', redirectTo: '' }
 ];
 

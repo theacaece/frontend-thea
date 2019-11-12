@@ -40,11 +40,17 @@ export class UserEditComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/person-list']);
+    this.router.navigate(['/user-list']);
   }
 
   save(form: NgForm) {
     this.userService.save(form).subscribe(result => {
+      this.gotoList();
+    }, error => console.error(error));
+  }
+
+  update(form: NgForm) {
+    this.userService.update(this.user).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }

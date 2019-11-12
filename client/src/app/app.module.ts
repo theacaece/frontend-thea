@@ -26,6 +26,8 @@ import { PersonEditComponent } from './person/person-edit/person-edit.component'
 import { PersonListComponent } from './person/person-list/person-list.component';
 import { PhotoComponent } from './person/photo/photo.component';
 
+import { CamaraComponent } from './register/camara/camara.component';
+
 const routes: Route[] = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 	{ path: 'home', component: HomeComponent},
@@ -37,6 +39,7 @@ const routes: Route[] = [
   { path: 'person-edit/:id', component: PersonEditComponent},
   { path: 'person-list', component: PersonListComponent},
   { path: 'photo/:id', component: PhotoComponent},
+  { path: 'camara', component: CamaraComponent},
   { path: '**', redirectTo: '' } // otherwise redirect to home
 ];
 
@@ -52,7 +55,8 @@ const routes: Route[] = [
     PersonAddComponent,
     PersonEditComponent,
     PersonListComponent,
-    PhotoComponent
+    PhotoComponent,
+    CamaraComponent
   ],
   imports: [
     BrowserModule,

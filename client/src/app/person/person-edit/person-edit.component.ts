@@ -42,8 +42,8 @@ export class PersonEditComponent implements OnInit {
     this.router.navigate(['/person-list']);
   }
 
-  save(form: NgForm) {
-    this.personService.save(form).subscribe(result => {
+  update(form: NgForm) {
+    this.personService.update(form).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }

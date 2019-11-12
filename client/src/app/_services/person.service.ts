@@ -32,6 +32,10 @@ export class PersonService {
     return result;
   }
 
+  update(person: any) {
+    return this.http.post(this.PERSON_API + "/update/" + person.id, person);
+  }
+
   remove(id: any) {
     return this.http.delete<Person>(this.PERSON_API + "/" + id);
   }
