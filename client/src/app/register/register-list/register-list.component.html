@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+	<div class="row">
+		
+		<div class="col-md-10 col-md-offset-1">
+ 
+		<mat-card-header>
+  			<mat-card-title><br/>Registro de Ingresos<br/></mat-card-title>
+  		</mat-card-header>
+
+     	<mat-card>
+
+		<mat-card-content>
+		
+					<form #registroForm="ngForm" (ngSubmit)="remove(registroForm.value)">
+        			<table class="table table-hover">
+           
+           				<thead class="sticky-top">
+            			
+            				<tr>
+              					<th>Nombre</th>
+              					<th>Apellido</th>
+              					<th>Fecha Ingreso</th>
+            				</tr>
+          				</thead>
+          				
+          				<tbody>
+            
+            				<tr mdbTableCol *ngFor="let registro of registros">
+								
+								<td></td>
+								<td></td>
+              					<td>{{registro.fechaIngreso}}</td>
+
+            				</tr>
+          				</tbody>
+					</table>
+					</form>
+     		</mat-card-content>
+   		 </mat-card>
+	</div>
+</div>	

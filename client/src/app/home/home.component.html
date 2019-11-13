@@ -39,7 +39,7 @@
                         <mat-card-title>Captura de imagenes</mat-card-title>
                     </mat-card-header>
                     <span class="header-icon-card">
-                        <a [routerLink]="['/camara']">
+                        <a (click)="location.reload();" [routerLink]="['/camara']">
                             <mat-icon class="icon-card">videocam</mat-icon>
                         </a>
                     </span>

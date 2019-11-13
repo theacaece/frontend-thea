@@ -28,6 +28,7 @@ import { PersonListComponent } from './person/person-list/person-list.component'
 import { PhotoComponent } from './person/photo/photo.component';
 
 import { CamaraComponent } from './register/camara/camara.component';
+import { RegisterListComponent } from './register/register-list/register-list.component';
 
 const routes: Route[] = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -41,6 +42,7 @@ const routes: Route[] = [
   { path: 'person-list', component: PersonListComponent},
   { path: 'photo/:dni', component: PhotoComponent},
   { path: 'camara', component: CamaraComponent},
+  { path: 'register-list', component: RegisterListComponent},
   { path: '**', redirectTo: '' } // otherwise redirect to home
 ];
 
@@ -57,6 +59,7 @@ const routes: Route[] = [
     PersonEditComponent,
     PersonListComponent,
     PhotoComponent,
+    RegisterListComponent,
     CamaraComponent
   ],
   imports: [
