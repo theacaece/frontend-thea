@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import {PageEvent} from "@angular/material";
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../../_models/user';
+import { AuthenticationService } from '../../_services/authentication.service';
 
 import { NgForm } from '@angular/forms';
 
@@ -15,13 +17,15 @@ import { UserService } from '../../_services/user.service';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit  {
-
+  currentUser: User;
   users: Array<any>;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
+    private authenticationService: AuthenticationService,
     private userService: UserService) {
-  }
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    }
 
   ngOnInit() {
     this.userService.getAll().subscribe(data => {
@@ -34,10 +38,11 @@ export class UserListComponent implements OnInit  {
   }
 
   remove(user): void {
-    this.userService.remove(user.id).subscribe( data => {
+    if (user.username != this.currentUser.userDetails.username) {
+      this.userService.remove(user.id).subscribe( data => {
       this.users = this.users.filter(u => u !== user);
-      alert("Se elmino correctamente");
-    })
-  };
-
-}
+      alert("Se elmino correctamente");});
+    } else {
+      alert("No es posible eliminar el usuario logueado");
+    };
+}}

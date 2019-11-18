@@ -8,13 +8,13 @@ import { User } from '../_models/user';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   public API = '//localhost:8080';
   public USER_API = this.API + '/users';
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {}
   
   getAll(): Observable<any> {
     return this.http.get<User[]>(this.API + '/users');
@@ -29,6 +29,8 @@ export class UserService {
     if (user['href']) {
       result = this.http.put(user.href, user);
     } else {
+      alert("nuevo usuario cargado");
+      alert(user.id);
       result = this.http.post(this.USER_API + '/save', user);
     }
     return result;
