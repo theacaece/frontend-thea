@@ -22,22 +22,26 @@
               	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="persona.personData">
                 
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" [(ngModel)]="persona.nombre"
+                    <input matInput placeholder="Nombre" [(ngModel)]="persona.nombre" minlength="2" maxlength="32"
+                           pattern="[A-Za-z ñÑ]{2,32}"
                            required name="nombre" #nombre/>
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Apellido" [(ngModel)]="persona.apellido"
+                  <input matInput placeholder="Apellido" [(ngModel)]="persona.apellido" minlength="2" maxlength="32"
+                         pattern="[A-Za-z ñÑ]{2,32}"
                          required name="apellido" #apellido />
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Dni" [(ngModel)]="persona.dni"
-                         required name="dni" #dni />
+                  <input matInput placeholder="Dni" [(ngModel)]="persona.dni" minlength="8" maxlength="8"
+                          pattern="-?[0-9]+(\.[0-9][0-9]?)?"
+                          required name="dni" #dni />
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Matricula" [(ngModel)]="persona.matricula"
+                  <input matInput placeholder="Matricula" [(ngModel)]="persona.matricula" minlength="6" maxlength="7"
+                         pattern="-?[0-9]+(\.[0-9][0-9]?)?"
                          required name="matricula" #matricula />
                 </mat-form-field><br/>
 

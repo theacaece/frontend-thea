@@ -22,31 +22,43 @@
               	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="user.userData">
                 
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" [(ngModel)]="user.firstname"
+                    <input matInput placeholder="Nombre" [(ngModel)]="user.firstname" minlength="2" maxlength="32"
+                          pattern="[A-Za-z ñÑ]{2,32}"
                           required name="firstname" #firstName/>
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Apellido" [(ngModel)]="user.lastname"
+                  <input matInput placeholder="Apellido" [(ngModel)]="user.lastname" minlength="2" maxlength="32"
+                         pattern="[A-Za-z ñÑ]{2,32}"
                          required name="lastname" #lastName />
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Usuario" [(ngModel)]="user.username"
-                        required name="username" #username />
-                </mat-form-field><br/>
-                
+                    <input type="email" matInput placeholder="Email" [(ngModel)]="user.email"
+                          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                          [ngClass]="{ 'is-invalid': email.invalid }"
+                          required name="email" #email />
+                  </mat-form-field><br/>
+
                 <mat-form-field>
-                  <input type="email" matInput placeholder="Email" [(ngModel)]="user.email"
-                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                        [ngClass]="{ 'is-invalid': email.invalid }"
-                        required name="email" #email />
+                  <input matInput placeholder="Usuario" [(ngModel)]="user.username" minlength="3" maxlength="15"
+                        pattern="[A-Za-z0-9]{3,15}"
+                        required name="username" #username />
                 </mat-form-field><br/>
 
                 <mat-form-field>
-                  <input matInput placeholder="Password" [(ngModel)]="user.password"
-                        required name="password" #password />
+                  <input type="password" matInput placeholder="Contrase&ntilde;a" [(ngModel)]="user.password" minlength="8" maxlength="24"
+                    required name="password" #password pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,24}"/>
+                    <div *ngIf="password.invalid && password.touched">
+                    </div>
                 </mat-form-field><br/>
+
+                <!--mat-form-field>
+                    <input type="password" matInput placeholder="Confirmar Contrase&ntilde;a"
+                      required name="confirmpassword" #confirmpassword pattern="{{ password.value }}"/>
+                      <div *ngIf=" confirmpassword.invalid && confirmpassword.touched">
+                      </div>
+                </mat-form-field><br/!-->
 
               	<mat-card-footer><br/>
                   <button id="submit" mat-raised-button color="primary" type="submit" 

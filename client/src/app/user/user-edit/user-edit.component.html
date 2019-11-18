@@ -22,22 +22,27 @@
               	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="user.userData">
                 
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" [(ngModel)]="user.firstname"
+                    <input matInput placeholder="Nombre" [(ngModel)]="user.firstname" minlength="2" maxlength="32"
+                          pattern="[A-Za-z ñÑ]{2,32}"
                           required name="firstname" #firstName/>
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Apellido" [(ngModel)]="user.lastname"
+                  <input matInput placeholder="Apellido" [(ngModel)]="user.lastname" minlength="2" maxlength="32"
+                         pattern="[A-Za-z ñÑ]{2,32}"
                          required name="lastname" #lastName />
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Email" [(ngModel)]="user.email"
+                  <input type="email" matInput placeholder="Email" [(ngModel)]="user.email"
+                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                        [ngClass]="{ 'is-invalid': email.invalid }"
                         required name="email" #email />
                 </mat-form-field><br/>
                                 
                 <mat-form-field>
-                  <input matInput placeholder="Usuario" [(ngModel)]="user.username"
+                  <input matInput placeholder="Usuario" [(ngModel)]="user.username" minlength="3" maxlength="15"
+                        pattern="[A-Za-z0-9]{3,15}"
                         required name="username" #username />
                 </mat-form-field><br/>
 

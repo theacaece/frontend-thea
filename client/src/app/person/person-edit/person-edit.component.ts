@@ -45,7 +45,6 @@ export class PersonEditComponent implements OnInit {
   }
 
   update(form: NgForm) {
-    alert(this.id);
     this.personService.update(this.id, form).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
