@@ -39,9 +39,10 @@ export class UserListComponent implements OnInit  {
 
   remove(user): void {
     if (user.username != this.currentUser.userDetails.username) {
+      if(confirm("¿Está seguro que desea eliminar el usuario?")) {
       this.userService.remove(user.id).subscribe( data => {
       this.users = this.users.filter(u => u !== user);
-      alert("Se elmino correctamente");});
+      });}
     } else {
       alert("No es posible eliminar el usuario logueado");
     };

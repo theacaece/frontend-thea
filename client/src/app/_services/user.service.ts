@@ -29,8 +29,6 @@ export class UserService {
     if (user['href']) {
       result = this.http.put(user.href, user);
     } else {
-      alert("nuevo usuario cargado");
-      alert(user.id);
       result = this.http.post(this.USER_API + '/save', user);
     }
     return result;

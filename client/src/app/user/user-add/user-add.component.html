@@ -37,7 +37,9 @@
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Email" [(ngModel)]="user.email"
+                  <input type="email" matInput placeholder="Email" [(ngModel)]="user.email"
+                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                        [ngClass]="{ 'is-invalid': email.invalid }"
                         required name="email" #email />
                 </mat-form-field><br/>
 
