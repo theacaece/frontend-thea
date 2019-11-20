@@ -51,7 +51,9 @@
               		<span style="display:inline-block; width: 0.5em;"></span>
               		<a mat-raised-button color="primary" routerLink="/person-list">Cancelar</a>
               	</mat-card-footer>
-              
+                
+                <mat-error class="alert alert-danger" *ngIf="error">{{error}}</mat-error>
+                
             	</mat-card-content>
             
            	 </form>

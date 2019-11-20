@@ -53,7 +53,9 @@
                   <a mat-raised-button color="primary" routerLink="/user-list">Cancelar</a>
               	</mat-card-footer>
               
-            	</mat-card-content>
+              </mat-card-content>
+              
+              <mat-error class="alert alert-danger" *ngIf="error">{{error}}</mat-error>
             
            	 </form>
             

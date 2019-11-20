@@ -12,13 +12,17 @@ import { AuthenticationService } from '../_services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   loginForm: FormGroup;
+  
   username = new FormControl('', [
     Validators.required
   ]);
+  
   password = new FormControl('', [
     Validators.required
   ]);
+  
   loading = false;
   submitted = false;
   returnUrl: string;

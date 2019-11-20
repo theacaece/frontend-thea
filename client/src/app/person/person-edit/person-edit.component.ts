@@ -18,6 +18,8 @@ export class PersonEditComponent implements OnInit {
 
   sub: Subscription;
 
+  error: string = '';
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private personService: PersonService) {
@@ -35,9 +37,17 @@ export class PersonEditComponent implements OnInit {
             this.persona.dni = person.dni;
             this.persona.matricula = person.matricula;
           }
-    	}, error => console.error(error));
+    	  },
+        error => {
+          this.error = error;
+          console.error(error);
+        });
       }
-    }, error => console.error(error));
+    },
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
 
   gotoList() {
@@ -47,7 +57,11 @@ export class PersonEditComponent implements OnInit {
   update(form: NgForm) {
     this.personService.update(this.id, form).subscribe(result => {
       this.gotoList();
-    }, error => console.error(error));
+    },
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
   
 }

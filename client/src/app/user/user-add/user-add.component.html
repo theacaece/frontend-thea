@@ -65,7 +65,9 @@
                           [disabled]="!userForm.form.valid">Guardar</button>
               		<span style="display:inline-block; width: 0.5em;"></span>
               		<a mat-raised-button color="primary" routerLink="/user-list">Cancelar</a>
-              	</mat-card-footer>
+                </mat-card-footer>
+                
+                <mat-error class="alert alert-danger" *ngIf="error">{{error}}</mat-error>
               
             	</mat-card-content>
             

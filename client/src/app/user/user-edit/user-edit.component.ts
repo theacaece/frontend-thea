@@ -16,6 +16,8 @@ export class UserEditComponent implements OnInit {
 
   sub: Subscription;
 
+  error: string = '';
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private userService: UserService) {
@@ -34,9 +36,17 @@ export class UserEditComponent implements OnInit {
             this.user.username = usuario.username;
             this.user.password = usuario.password;
           }
-    	  }, error => console.error(error));
+        }, 
+        error => {
+          this.error = error;
+          console.error(error);
+        });
       }
-    }, error => console.error(error));
+    },
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
 
   gotoList() {
@@ -46,13 +56,20 @@ export class UserEditComponent implements OnInit {
   save(form: NgForm) {
     this.userService.save(form).subscribe(result => {
       this.gotoList();
-    }, error => console.error(error));
+    },
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
 
   update(form: NgForm) {
     this.userService.update(this.user).subscribe(result => {
       this.gotoList();
-    }, error => console.error(error));
+    },
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
-  
 }

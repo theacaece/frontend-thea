@@ -16,6 +16,8 @@ export class PersonAddComponent implements OnInit {
 
   sub: Subscription;
 
+  error: string = '';
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private personService: PersonService) {
@@ -32,13 +34,21 @@ export class PersonAddComponent implements OnInit {
   save(form: NgForm) {
     this.personService.save(form).subscribe(result => {
       this.gotoList();
-    }, error => console.error(error));
+    }, 
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
 
   remove(href) {
     this.personService.remove(this.person).subscribe(result => {
       this.gotoList();
-    }, error => console.error(error));
+    }, 
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
   
 }

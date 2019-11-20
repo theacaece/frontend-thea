@@ -16,6 +16,8 @@ export class UserAddComponent implements OnInit {
 
   sub: Subscription;
 
+  error: string = '';
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private userService: UserService) {
@@ -32,13 +34,21 @@ export class UserAddComponent implements OnInit {
   save(form: NgForm) {
     this.userService.save(form).subscribe(result => {
       this.gotoList();
-    }, error => console.error(error));
+    },
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
 
   remove(href) {
     this.userService.remove(href).subscribe(result => {
       this.gotoList();
-    }, error => console.error(error));
+    },
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
   
 }
