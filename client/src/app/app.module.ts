@@ -1,42 +1,37 @@
+import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatIconModule, MatProgressSpinnerModule, MatGridListModule } from '@angular/material';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Route } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
-import { RegistroComponent } from './registro/registro.component';
-import { FotosComponent } from './fotos/fotos.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
-import { UsuariosListComponent } from './usuarios-list/usuarios-list.component';
-import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+//import { fakeBackendProvider } from './_helpers/fake-backend';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 const routes: Route[] = [
   {path: '', component: AppComponent},
-  {path: 'inicio', component: InicioComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'registro', component: RegistroComponent},
-  {path: 'fotos', component: FotosComponent},
-  {path: 'usuario-edit', component: UsuarioEditComponent},
-  {path: 'usuarios-list', component: UsuariosListComponent}
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    InicioComponent,
     LoginComponent,
-    RegistroComponent,
-    FotosComponent,
-    UsuariosComponent,
-    UsuariosListComponent,
-    UsuarioEditComponent
+    HomeComponent,
+    HeaderComponent,
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +43,20 @@ const routes: Route[] = [
     MatCardModule,
     MatInputModule,
     MatListModule,
+    MatIconModule,
     MatToolbarModule,
-    FormsModule
+    MatProgressSpinnerModule,
+    MatGridListModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    //fakeBackendProvider
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
