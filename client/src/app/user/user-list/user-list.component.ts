@@ -20,7 +20,12 @@ import { User } from '../../_models/user';
 export class UserListComponent implements OnInit  {
   currentUser: User;
   users: Array<any>;
-  pagina: 1;
+  error: string = '';
+  
+  page: 1;
+  itemsPerPage: number;
+  totalItems: any;
+  previousPage: any;
   
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -30,22 +35,43 @@ export class UserListComponent implements OnInit  {
     }
 
   ngOnInit() {
-    this.userService.getAll().subscribe(data => {
-      this.users = data;
-    }), error => console.error(error);
+    this.loadData();
   }
 
   gotoList() {
     this.router.navigate(['/user-list']);
   }
+  
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.loadData();
+    }
+  }
 
-  remove(user): void {
+  loadData() {
+    this.userService.getAll().subscribe(data => {
+      this.users = data;
+    }, 
+    error => {
+      this.error = error;
+      console.error(error);
+    });
+  }
+
+  remove(user: any): void {
     if (user.username != this.currentUser.userDetails.username) {
       if(confirm("¿Está seguro que desea eliminar el usuario?")) {
-      this.userService.remove(user.id).subscribe( data => {
-      this.users = this.users.filter(u => u !== user);
-      });}
-    } else {
-      alert("No es posible eliminar el usuario logueado");
-    };
-}}
+        this.userService.remove(user.id).subscribe( data => {
+        this.users = this.users.filter(u => u !== user);
+        }, 
+        error => {
+          this.error = error;
+          console.error(error);
+        });
+      } else {
+        alert("No es posible eliminar el usuario logueado");
+      };
+    }
+  }
+}

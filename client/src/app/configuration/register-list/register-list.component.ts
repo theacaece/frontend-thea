@@ -12,9 +12,14 @@ import { RegistroService } from '../../_services/register.service';
 })
 
 export class RegisterListComponent implements OnInit {
-  registros: Array<any>;
 
-  pagina: 1;
+  registros: Array<any>;
+  error: string = '';
+
+  page: 1;
+  itemsPerPage: number;
+  totalItems: any;
+  previousPage: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -22,13 +27,28 @@ export class RegisterListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.registroService.getAll().subscribe(data => {
-      this.registros = data;
-    }), error => console.error(error);
+    this.loadData();
   }
 
   gotoList() {
     this.router.navigate(['/register-list']);
+  }
+     
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.loadData();
+    }
+  }
+
+  loadData() {
+    this.registroService.getAll().subscribe(data => {
+      this.registros = data;
+    },
+    error => {
+      this.error = error;
+      console.error(error);
+    });
   }
 
 }

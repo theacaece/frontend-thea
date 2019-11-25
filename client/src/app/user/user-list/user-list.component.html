@@ -51,11 +51,12 @@
 				</table>
 				<ngb-pagination [collectionSize]="users.length" 
 								[pageSize]="5"
-								[(page)]="pagina"
+								[(page)]="page"
 								[maxSize]="5" 
 								[rotate]="true"
 								[boundaryLinks]="true" 
-								[directionLinks]="false">
+								[directionLinks]="false"
+								(pageChange)="loadPage($event)">
 				</ngb-pagination>
       </mat-card-content>
     </mat-card>

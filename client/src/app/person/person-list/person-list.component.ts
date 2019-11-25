@@ -14,8 +14,12 @@ import { Person } from '../../_models/person';
 export class PersonListComponent implements OnInit {
 
   persons: Array<any>;
+  error: string = '';
 
-  pagina: 1;
+  page: 1;
+  itemsPerPage: number;
+  totalItems: any;
+  previousPage: any;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -23,20 +27,39 @@ export class PersonListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.personService.getAll().subscribe(data => {
-      this.persons = data;
-    }), error => console.error(error);
+    this.loadData();
   }
 
   gotoList() {
     this.router.navigate(['/person-list']);
   }
+   
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.loadData();
+    }
+  }
 
-  remove(person): void {
+  loadData() {
+    this.personService.getAll().subscribe(data => {
+      this.persons = data;
+    },
+    error => {
+      this.error = error;
+      console.error(error);
+    });
+  }
+
+  remove(person: any): void {
     if(confirm("¿Está seguro que desea eliminar el usuario?")) {
       this.personService.remove(person.id).subscribe( data => {
         this.persons = this.persons.filter(u => u !== person);
-      })
+      },
+      error => {
+        this.error = error;
+        console.error(error);
+      });
     }
   };
 
