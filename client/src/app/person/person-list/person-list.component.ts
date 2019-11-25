@@ -30,9 +30,10 @@ export class PersonListComponent implements OnInit {
 
   remove(person): void {
     if(confirm("¿Está seguro que desea eliminar el usuario?")) {
-    this.personService.remove(person.id).subscribe( data => {
-      this.persons = this.persons.filter(u => u !== person);
-    })}
+      this.personService.remove(person.id).subscribe( data => {
+        this.persons = this.persons.filter(u => u !== person);
+      })
+    }
   };
 
 }

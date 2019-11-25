@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import {PageEvent} from "@angular/material";
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../../_models/user';
+
 import { AuthenticationService } from '../../_services/authentication.service';
 
 import { NgForm } from '@angular/forms';
@@ -10,6 +10,7 @@ import { NgForm } from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 
 import { UserService } from '../../_services/user.service';
+import { User } from '../../_models/user';
 
 @Component({
   selector: 'app-user-list',

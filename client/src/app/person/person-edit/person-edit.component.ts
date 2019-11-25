@@ -55,13 +55,15 @@ export class PersonEditComponent implements OnInit {
   }
 
   update(form: NgForm) {
-    this.personService.update(this.id, form).subscribe(result => {
-      this.gotoList();
-    },
-    error => {
-      this.error = error;
-      console.error(error);
-    });
+    if(confirm("¿Está seguro que desea editar el usuario?")) {
+      this.personService.update(this.id, form).subscribe(result => {
+        this.gotoList();
+      },
+      error => {
+        this.error = error;
+        console.error(error);
+      });
+    }  
   }
   
 }

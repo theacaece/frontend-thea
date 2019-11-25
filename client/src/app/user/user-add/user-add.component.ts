@@ -32,23 +32,15 @@ export class UserAddComponent implements OnInit {
   }
   
   save(form: NgForm) {
-    this.userService.save(form).subscribe(result => {
-      this.gotoList();
-    },
-    error => {
-      this.error = error;
-      console.error(error);
-    });
-  }
-
-  remove(href) {
-    this.userService.remove(href).subscribe(result => {
-      this.gotoList();
-    },
-    error => {
-      this.error = error;
-      console.error(error);
-    });
+    if(confirm("¿Está seguro que desea guardar el usuario?")) {
+      this.userService.save(form).subscribe(result => {
+        this.gotoList();
+      },
+      error => {
+        this.error = error;
+        console.error(error);
+      });
+    }  
   }
   
 }

@@ -45,10 +45,22 @@
                         pattern="[A-Za-z0-9]{3,15}"
                         required name="username" #username />
                 </mat-form-field><br/>
+                
+                <mat-form-field>
+                    <input type="password" matInput placeholder="Contrase&ntilde;a" [(ngModel)]="user.password" minlength="8" maxlength="24"
+                      required name="password" #password pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,24}"/>
+                </mat-form-field><br/>
+
+                <mat-form-field>
+                    <input type="password" matInput placeholder="Confirmar Contrase&ntilde;a"
+                      required name="confirmapassword" #confirmapassword pattern="{{password.value}}"/>
+                </mat-form-field><br/>
 
               	<mat-card-footer><br/>
                   <button id="submit" mat-raised-button color="primary" type="submit" 
-                          [disabled]="!userForm.form.valid">Guardar</button>
+                          [disabled]="!userForm.form.valid">
+                          Guardar
+                  </button>
                   <span style="display:inline-block; width: 0.5em;"></span>
                   <a mat-raised-button color="primary" routerLink="/user-list">Cancelar</a>
               	</mat-card-footer>

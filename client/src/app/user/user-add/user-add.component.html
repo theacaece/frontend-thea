@@ -53,12 +53,13 @@
                     </div>
                 </mat-form-field><br/>
 
-                <!--mat-form-field>
-                    <input type="password" matInput placeholder="Confirmar Contrase&ntilde;a"
-                      required name="confirmpassword" #confirmpassword pattern="{{ password.value }}"/>
-                      <div *ngIf=" confirmpassword.invalid && confirmpassword.touched">
-                      </div>
-                </mat-form-field><br/!-->
+                <mat-form-field>
+                  <input type="password" matInput placeholder="Confirmar Contrase&ntilde;a"
+                    required name="confirmapassword" #confirmapassword pattern="{{password.value}}"/>
+                    <div *ngIf=" confirmapassword.invalid && confirmapassword.touched">
+                        Debe coincidir con la password
+                    </div>
+                </mat-form-field><br/>
 
               	<mat-card-footer><br/>
                   <button id="submit" mat-raised-button color="primary" type="submit" 
