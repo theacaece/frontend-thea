@@ -22,38 +22,62 @@
               	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="user.userData">
                 
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" [(ngModel)]="user.firstname" minlength="2" maxlength="32"
+                    <input matInput placeholder="Nombre" [(ngModel)]="user.firstname" 
+                          minlength="2" maxlength="32"
                           pattern="[A-Za-z ñÑ]{2,32}"
-                          required name="firstname" #firstName/>
+                          required [formControl]="firstname" />
+                    <mat-error *ngIf="firstname.hasError('required')">
+                        Debe ingresar nombre
+                    </mat-error>
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                  <input matInput placeholder="Apellido" [(ngModel)]="user.lastname" minlength="2" maxlength="32"
+                  <input matInput placeholder="Apellido" [(ngModel)]="user.lastname" 
+                         minlength="2" maxlength="32"
                          pattern="[A-Za-z ñÑ]{2,32}"
-                         required name="lastname" #lastName />
+                         required [formControl]="lastname" />
+                  <mat-error *ngIf="lastname.hasError('required')">
+                    Debe ingresar apellido
+                  </mat-error>
                 </mat-form-field><br/>
                 
                 <mat-form-field>
                   <input type="email" matInput placeholder="Email" [(ngModel)]="user.email"
                         pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                         [ngClass]="{ 'is-invalid': email.invalid }"
-                        required name="email" #email />
+                        required [formControl]="email" />
+                  <mat-error *ngIf="email.hasError('required')">
+                    Debe ingresar e-mail
+                  </mat-error>
                 </mat-form-field><br/>
                                 
                 <mat-form-field>
-                  <input matInput placeholder="Usuario" [(ngModel)]="user.username" minlength="3" maxlength="15"
+                  <input matInput placeholder="Usuario" [(ngModel)]="user.username" 
+                        minlength="3" maxlength="15"
                         pattern="[A-Za-z0-9]{3,15}"
-                        required name="username" #username />
+                        required [formControl]="username" />
+                  <mat-error *ngIf="username.hasError('required')">
+                    Debe ingresar usuario
+                  </mat-error>
                 </mat-form-field><br/>
                 
                 <mat-form-field>
-                    <input type="password" matInput placeholder="Contrase&ntilde;a" [(ngModel)]="user.password" minlength="8" maxlength="24"
-                      required name="password" #password pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,24}"/>
+                    <input type="password" matInput placeholder="Contrase&ntilde;a" 
+                      [(ngModel)]="user.password" minlength="8" maxlength="24"
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,24}"
+                      required [formControl]="password" />
+                      <mat-error *ngIf="password.hasError('required')">
+                        Debe ingresar contraseña válida
+                      </mat-error>
                 </mat-form-field><br/>
 
                 <mat-form-field>
                     <input type="password" matInput placeholder="Confirmar Contrase&ntilde;a"
-                      required name="confirmapassword" #confirmapassword pattern="{{password.value}}"/>
+                           pattern="{{password.value}}"
+                           required [formControl]="confirmapassword" />
+                    <mat-error *ngIf="password.hasError('required')">
+                      Debe confirmar contraseña
+                    </mat-error>
                 </mat-form-field><br/>
 
               	<mat-card-footer><br/>

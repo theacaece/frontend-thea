@@ -1,5 +1,8 @@
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+
 import { NgModule } from '@angular/core';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -78,7 +81,9 @@ const routes: Route[] = [
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgbPaginationModule, 
+    NgbAlertModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

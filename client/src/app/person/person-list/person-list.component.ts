@@ -10,8 +10,12 @@ import { Person } from '../../_models/person';
   templateUrl: './person-list.component.html',
   styleUrls: ['./person-list.component.css']
 })
+
 export class PersonListComponent implements OnInit {
+
   persons: Array<any>;
+
+  pagina: 1;
 
   constructor(private route: ActivatedRoute,
     private router: Router,

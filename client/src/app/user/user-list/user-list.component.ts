@@ -20,7 +20,8 @@ import { User } from '../../_models/user';
 export class UserListComponent implements OnInit  {
   currentUser: User;
   users: Array<any>;
-
+  pagina: 1;
+  
   constructor(private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,

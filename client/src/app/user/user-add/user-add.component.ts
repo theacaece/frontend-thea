@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { UserService } from '../../_services/user.service';
 
@@ -11,6 +13,32 @@ import { UserService } from '../../_services/user.service';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
+
+  userForm: FormGroup;
+  
+  firstname = new FormControl('', [
+    Validators.required
+  ]);
+  
+  lastname = new FormControl('', [
+    Validators.required
+  ]);
+
+  email = new FormControl('', [
+    Validators.required
+  ]);
+
+  username = new FormControl('', [
+    Validators.required
+  ]);
+
+  password = new FormControl('', [
+    Validators.required
+  ]);
+
+  confirmapassword = new FormControl('', [
+    Validators.required
+  ]);
 
   user: any = {};
 

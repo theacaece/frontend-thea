@@ -48,7 +48,15 @@
 							</td>
             			</tr>
           			</tbody>
-        		</table>
+				</table>
+				<ngb-pagination [collectionSize]="users.length" 
+								[pageSize]="5"
+								[(page)]="pagina"
+								[maxSize]="5" 
+								[rotate]="true"
+								[boundaryLinks]="true" 
+								[directionLinks]="false">
+				</ngb-pagination>
       </mat-card-content>
     </mat-card>
 </div>

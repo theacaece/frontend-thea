@@ -58,7 +58,16 @@
             				</tr>
           				</tbody>
 					</table>
-					</form>
+					<ngb-pagination [collectionSize]="persons.length" 
+									[pageSize]="5"
+									[(page)]="pagina"
+									[maxSize]="5" 
+									[rotate]="true"
+									[boundaryLinks]="true" 
+									[directionLinks]="false">
+					</ngb-pagination>
+					
+				</form>
      		</mat-card-content>
    		 </mat-card>
 	</div>

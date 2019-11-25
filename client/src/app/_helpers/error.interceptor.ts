@@ -26,7 +26,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
 
             const error = err.error.message || err.statusText;
-            return throwError("Error desconocido");
+            return throwError(error);
         }))
     }
 }

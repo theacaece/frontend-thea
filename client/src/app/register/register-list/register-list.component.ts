@@ -14,6 +14,8 @@ import { RegistroService } from '../../_services/register.service';
 export class RegisterListComponent implements OnInit {
   registros: Array<any>;
 
+  pagina: 1;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private registroService: RegistroService) {

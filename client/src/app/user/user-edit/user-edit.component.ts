@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { AuthenticationService } from '../../_services/authentication.service';
 import { UserService } from '../../_services/user.service';
@@ -14,6 +16,32 @@ import { User } from '../../_models/user';
 })
 export class UserEditComponent implements OnInit {
 
+  userForm: FormGroup;
+  
+  firstname = new FormControl('', [
+    Validators.required
+  ]);
+  
+  lastname = new FormControl('', [
+    Validators.required
+  ]);
+
+  email = new FormControl('', [
+    Validators.required
+  ]);
+
+  username = new FormControl('', [
+    Validators.required
+  ]);
+
+  password = new FormControl('', [
+    Validators.required
+  ]);
+
+  confirmapassword = new FormControl('', [
+    Validators.required
+  ]);
+  
   currentUser: User;
 
   user: any = {};
