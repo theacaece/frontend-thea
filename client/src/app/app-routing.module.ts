@@ -17,6 +17,8 @@ import { RegisterListComponent } from './configuration/register-list/register-li
 import { AccessListComponent } from './configuration/access-list/access-list.component';
 import { CamaraComponent } from './register/camara/camara.component';
 
+import { ConfigurationComponent } from './configuration/configuration/configuration.component';
+
 const routes: Routes = [
 	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
 	{ path: 'login', component: LoginComponent },
@@ -30,6 +32,7 @@ const routes: Routes = [
 	{ path: 'camara', component: CamaraComponent},
 	{ path: 'register-list', component: RegisterListComponent},
 	{ path: 'access-list', component: AccessListComponent},
+	{ path: 'configuration', component: ConfigurationComponent},
     { path: '**', redirectTo: '' }
 ];
 

@@ -35,6 +35,8 @@ import { CamaraComponent } from './register/camara/camara.component';
 import { RegisterListComponent } from './configuration/register-list/register-list.component';
 import { AccessListComponent } from './configuration/access-list/access-list.component';
 
+import { ConfigurationComponent } from './configuration/configuration/configuration.component';
+
 const routes: Route[] = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 	{ path: 'home', component: HomeComponent},
@@ -49,6 +51,8 @@ const routes: Route[] = [
   { path: 'camara', component: CamaraComponent},
   { path: 'register-list', component: RegisterListComponent},
   { path: 'access-list', component: AccessListComponent},
+  { path: 'configuration', component: ConfigurationComponent},
+  
   { path: '**', redirectTo: '' } // otherwise redirect to home
 ];
 
@@ -67,6 +71,7 @@ const routes: Route[] = [
     PhotoComponent,
     RegisterListComponent,
     AccessListComponent,
+    ConfigurationComponent,
     CamaraComponent
   ],
   imports: [
