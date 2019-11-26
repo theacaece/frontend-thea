@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { PersonService } from '../../_services/person.service';
 
@@ -11,6 +13,24 @@ import { PersonService } from '../../_services/person.service';
   styleUrls: ['./person-edit.component.css']
 })
 export class PersonEditComponent implements OnInit {
+
+  personForm: FormGroup;
+  
+  nombre = new FormControl('', [
+    Validators.required
+  ]);
+  
+  apellido = new FormControl('', [
+    Validators.required
+  ]);
+
+  dni = new FormControl('', [
+    Validators.required
+  ]);
+
+  matricula = new FormControl('', [
+    Validators.required
+  ]);
 
   id: any;
 

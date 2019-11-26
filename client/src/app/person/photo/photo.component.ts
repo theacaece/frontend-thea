@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+
 import { PhotoService } from '../../_services/photo.service';
 
 @Component({
-  selector: 'photos',
+  selector: 'app-photos',
   templateUrl: './photo.component.html',
   styleUrls: ['./photo.component.css']
 })

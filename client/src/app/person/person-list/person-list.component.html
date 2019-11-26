@@ -1,74 +1,62 @@
 <app-header></app-header>
-
-	<div class="row">
-		
-		<div class="col-md-10 col-md-offset-1">
- 
-		<mat-card-header>
-  			<mat-card-title><br/>Lista de personas<br/></mat-card-title>
-  		</mat-card-header>
-
-     	<mat-card>
-
+<div align="center">
+<br/><br/>
+<div class="row">
+	<div class="col-md-4 col-md-offset-4"><br/>
+	<mat-card-header>
+  		<mat-card-title><br/>Lista de personas<br/></mat-card-title>
+  	</mat-card-header>
+    <mat-card>
 		<mat-card-content>
-      	
-					<button mat-raised-button color="primary" title ="Agregar Persona" 
-							[routerLink]="['/person-add']">Agregar Persona</button>
-	
-					<br/><br/>
-		
-					<form #personForm="ngForm" (ngSubmit)="remove(personForm.value)">
-        			<table class="table table-hover">
-           
-           				<thead class="sticky-top">
-            			
-            				<tr>
-              					<th>Nombre</th>
-              					<th>Apellido</th>
-              					<th>DNI</th>
-								<th>Matr&iacute;cula</th>
-								<th></th>
-								<th></th>
-            				</tr>
-          				</thead>
-          				
-          				<tbody>
-            
-            				<tr mdbTableCol *ngFor="let person of persons">
-              
-              					<td>{{person.nombre}}</td>
-             					<td>{{person.apellido}}</td>
-              					<td>{{person.dni}}</td>
-              					<td>{{person.matricula}}</td>
-              					<td>
-                					<a mat-button title="Modificar persona" [routerLink]="['/person-edit', person.id]">
-                						<img src="assets/img/iconos/editar.png" width="25" height="25">
-                					</a>
-								</td>
-								<td>
-                					<a mat-button title="Eliminar persona" (click)="remove(person)">
-                						<img src="assets/img/iconos/eliminar.png" width="25" height="25">
-                					</a>
-              					</td>
-              					<td>
-                					<a mat-button title="Ver fotos" [routerLink]="['/photo', person.dni]">     
-                  						<img src="assets/img/iconos/user.png" tooltip="Ver fotos" width="25" height="25">
-                					</a>
-              					</td>
-            				</tr>
-          				</tbody>
-					</table>
-					<ngb-pagination [collectionSize]="persons.length" 
-									[pageSize]="5"
-									[(page)]="pagina"
-									[maxSize]="5" 
-									[rotate]="true"
-									[boundaryLinks]="true" 
-									[directionLinks]="false">
-					</ngb-pagination>
-					
-				</form>
-     		</mat-card-content>
-   		 </mat-card>
+			<button mat-raised-button color="primary" title ="Agregar Persona" 
+					[routerLink]="['/person-add']">Agregar Persona</button>
+			<br/><br/>
+			<form #personForm="ngForm" (ngSubmit)="remove(personForm.value)">
+        		<table class="table table-hover">
+					<thead class="sticky-top">
+            			<tr>
+              				<th>Nombre</th>
+              				<th>Apellido</th>
+              				<th>DNI</th>
+							<th>Matr&iacute;cula</th>
+							<th></th>
+							<th></th>
+            			</tr>
+          			</thead>
+          			<tbody>
+            			<tr mdbTableCol *ngFor="let person of persons">
+              				<td>{{person.nombre}}</td>
+             				<td>{{person.apellido}}</td>
+              				<td>{{person.dni}}</td>
+              				<td>{{person.matricula}}</td>
+              				<td>
+                				<a mat-button title="Modificar persona" [routerLink]="['/person-edit', person.id]">
+                					<img src="assets/img/iconos/editar.png" width="25" height="25">
+                				</a>
+							</td>
+							<td>
+                				<a mat-button title="Eliminar persona" (click)="remove(person)">
+                					<img src="assets/img/iconos/eliminar.png" width="25" height="25">
+                				</a>
+              				</td>
+              				<td>
+                				<a mat-button title="Ver fotos" [routerLink]="['/photo', person.dni]">     
+                  					<img src="assets/img/iconos/user.png" tooltip="Ver fotos" width="25" height="25">
+                				</a>
+              				</td>
+            			</tr>
+          			</tbody>
+				</table>
+				<ngb-pagination [collectionSize]="persons.length" 
+								[pageSize]="5"
+								[(page)]="pagina"
+								[maxSize]="5" 
+								[rotate]="true"
+								[boundaryLinks]="true" 
+								[directionLinks]="false">
+				</ngb-pagination>
+			</form>
+     	</mat-card-content>
+   	</mat-card>
 	</div>
 </div>	

@@ -1,12 +1,15 @@
 <app-header></app-header>
-<div class="row">
-	<div class="col-md-10 col-md-offset-1">
-    <table>
-      <tbody>
-        <tr mdbTableCol *ngFor="let foto of fotos">
-          <td><img id="profileImage" src="data:image/jpg;base64,{{foto.archivo}}"></td>
-        </tr> 
-      </tbody>
-    </table>
-  </div>
+<br/><br/>
+<div align="center">
+	<ngb-carousel [showNavigationArrows]="true" 
+                interval="2500"
+                [keyboard]="true"
+                [pauseOnHover]="true"
+                [wrap]="true">
+    <ng-template ngbSlide *ngFor="let foto of fotos">
+      <div>
+        <img id="profileImage" src="data:image/jpg;base64,{{foto.archivo}}" alt="Fotos">
+      </div>
+    </ng-template>
+  </ngb-carousel>
 </div>
