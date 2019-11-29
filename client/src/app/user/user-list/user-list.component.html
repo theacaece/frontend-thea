@@ -25,13 +25,14 @@
               				<th>Apellido</th>
               				<th>Email</th>
               				<th>Usuario</th>
-              				<th></th>
+							<th>&nbsp;</th>
+							<th>&nbsp;</th>
             			</tr>
           			</thead>
           			
           			<tbody>
             
-            			<tr mdbTableCol *ngFor="let user of users">
+            			<tr mdbTableCol *ngFor="let user of users | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
               				<td>{{user.firstname}}</td>
               				<td>{{user.lastname}}</td>
 							<td>{{user.email}}</td>
@@ -49,14 +50,7 @@
             			</tr>
           			</tbody>
 				</table>
-				<ngb-pagination [collectionSize]="users.length" 
-								[pageSize]="5"
-								[(page)]="page"
-								[maxSize]="5" 
-								[rotate]="true"
-								[boundaryLinks]="true" 
-								[directionLinks]="false"
-								(pageChange)="loadPage($event)">
+				<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
 				</ngb-pagination>
       </mat-card-content>
     </mat-card>

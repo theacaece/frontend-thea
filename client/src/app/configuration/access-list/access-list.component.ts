@@ -15,10 +15,9 @@ export class AccessListComponent implements OnInit {
   accesos: Array<any>;
   error: string = '';
 
-  page: 1;
-  itemsPerPage: number;
-  totalItems: any;
-  previousPage: any;
+  page: number = 1;
+  pageSize: number = 5;
+  collectionSize: number = 1;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -26,28 +25,18 @@ export class AccessListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData();
-  }
-
-  gotoList() {
-    this.router.navigate(['/access-list']);
-  }
-     
-  loadPage(page: number) {
-    if (page !== this.previousPage) {
-      this.previousPage = page;
-      this.loadData();
-    }
-  }
-
-  loadData() {
     this.accesoService.getAll().subscribe(data => {
       this.accesos = data;
+      this.collectionSize = this.accesos.length;
     },
     error => {
       this.error = error;
       console.error(error);
     });
+  }
+
+  gotoList() {
+    this.router.navigate(['/access-list']);
   }
 
 }

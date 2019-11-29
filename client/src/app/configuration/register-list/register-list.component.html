@@ -16,7 +16,7 @@
           				</thead>
           				
           				<tbody>
-            				<tr mdbTableCol *ngFor="let registro of registros">
+            				<tr mdbTableCol *ngFor="let registro of registros | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
 								
 								<td></td>
 								<td></td>
@@ -25,13 +25,7 @@
             				</tr>
           				</tbody>
 					</table>
-					<ngb-pagination [collectionSize]="registros.length" 
-									[pageSize]="5"
-									[(page)]="pagina"
-									[maxSize]="5" 
-									[rotate]="true"
-									[boundaryLinks]="true" 
-									[directionLinks]="false">
+					<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
 					</ngb-pagination>
 				</form>
      		</mat-card-content>
