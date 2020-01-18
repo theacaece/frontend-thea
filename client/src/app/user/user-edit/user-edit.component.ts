@@ -89,7 +89,7 @@ export class UserEditComponent implements OnInit {
 
   update(form: NgForm) {
     if (this.user.username != this.currentUser.userDetails.username) {
-      if(confirm("¿Está seguro que desea editar el usuario?")) {
+      if(confirm("¿Está seguro que desea editar los datos del usuario?")) {
         this.userService.update(this.user).subscribe(result => {
           this.gotoList();
         },

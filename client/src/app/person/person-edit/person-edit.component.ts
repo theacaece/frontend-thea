@@ -75,7 +75,7 @@ export class PersonEditComponent implements OnInit {
   }
 
   update(form: NgForm) {
-    if(confirm("¿Está seguro que desea guardar los cambios?")) {
+    if(confirm("¿Está seguro que desea editar los datos de la persona?")) {
       this.personService.update(this.id, form).subscribe(result => {
         this.gotoList();
       },
