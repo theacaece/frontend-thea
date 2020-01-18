@@ -52,3 +52,11 @@
   margin-left: -100px;
   font-size: 100px;
 }
+
+.font-header {
+  text-align: center;
+  font-family: "Verdana", Arial, sans-serif;
+  font-size: 5em;
+  color: #2271b3;
+  width: 50px;
+}
