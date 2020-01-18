@@ -41,7 +41,7 @@ export class PersonListComponent implements OnInit {
   }
  
   remove(person: any): void {
-    if(confirm("¿Está seguro que desea eliminar el usuario?")) {
+    if(confirm("¿Está seguro que desea eliminar a la persona?")) {
       this.personService.remove(person.id).subscribe( data => {
         this.persons = this.persons.filter(u => u !== person);
       },
