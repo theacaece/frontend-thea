@@ -52,7 +52,7 @@ export class PersonAddComponent implements OnInit {
   }
 
   save(form: NgForm) {
-    if(confirm("¿Está seguro que desea guardar el usuario?")) {
+    if(confirm("¿Está seguro que desea agregar a la persona?")) {
       this.personService.save(form).subscribe(result => {
         this.gotoList();
       }, 
