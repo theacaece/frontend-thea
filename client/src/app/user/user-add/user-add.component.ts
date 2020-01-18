@@ -60,7 +60,7 @@ export class UserAddComponent implements OnInit {
   }
   
   save(form: NgForm) {
-    if(confirm("¿Está seguro que desea guardar el usuario?")) {
+    if(confirm("¿Está seguro que desea agregar el usuario?")) {
       this.userService.save(form).subscribe(result => {
         this.gotoList();
       },
