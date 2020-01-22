@@ -1,13 +1,12 @@
 <app-header></app-header>
-<div align="center">
 <br/><br/>
 <div class="row">
-	<div class="col-md-4 col-md-offset-4"><br/>
+	<div class="col-md-10 col-md-offset-1"><br/>
 	<mat-card-header>
   		<mat-card-title><br/>Lista de personas<br/></mat-card-title>
   	</mat-card-header>
     <mat-card>
-		<mat-card-content>
+		<mat-card-content >
 			<button mat-raised-button color="primary" title ="Agregar Persona" 
 					[routerLink]="['/person-add']">Agregar Persona</button>
 			<br/><br/>
@@ -15,18 +14,19 @@
         		<table class="table table-hover">
 					<thead class="sticky-top">
             			<tr>
+							<th>Apellido</th>
               				<th>Nombre</th>
-              				<th>Apellido</th>
               				<th>DNI</th>
 							<th>Matr&iacute;cula</th>
+							<th>&nbsp;</th>
 							<th>&nbsp;</th>
 							<th>&nbsp;</th>
             			</tr>
           			</thead>
           			<tbody>
             			<tr mdbTableCol *ngFor="let person of persons | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-              				<td>{{person.nombre}}</td>
-             				<td>{{person.apellido}}</td>
+							<td>{{person.apellido}}</td>  
+							<td>{{person.nombre}}</td>
               				<td>{{person.dni}}</td>
               				<td>{{person.matricula}}</td>
               				<td>
