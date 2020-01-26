@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { NgForm } from '@angular/forms';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { PersonService } from '../../_services/person.service';
 
@@ -14,29 +12,9 @@ import { PersonService } from '../../_services/person.service';
 })
 export class PersonAddComponent implements OnInit {
 
-  personForm: FormGroup;
-  
-  nombre = new FormControl('', [
-    Validators.required
-  ]);
-  
-  apellido = new FormControl('', [
-    Validators.required
-  ]);
-
-  dni = new FormControl('', [
-    Validators.required
-  ]);
-
-  matricula = new FormControl('', [
-    Validators.required
-  ]);
-
   person: any = {};
 
   sub: Subscription;
-
-  error: string = '';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -52,15 +30,15 @@ export class PersonAddComponent implements OnInit {
   }
 
   save(form: NgForm) {
-    if(confirm("¿Está seguro que desea agregar a la persona?")) {
-      this.personService.save(form).subscribe(result => {
-        this.gotoList();
-      }, 
-      error => {
-        this.error = error;
-        console.error(error);
-      });
-    }  
+    this.personService.save(form).subscribe(result => {
+      this.gotoList();
+    }, error => console.error(error));
+  }
+
+  remove(href) {
+    this.personService.remove(this.person).subscribe(result => {
+      this.gotoList();
+    }, error => console.error(error));
   }
   
 }

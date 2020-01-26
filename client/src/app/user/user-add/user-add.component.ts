@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { NgForm } from '@angular/forms';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { UserService } from '../../_services/user.service';
 
@@ -14,37 +12,9 @@ import { UserService } from '../../_services/user.service';
 })
 export class UserAddComponent implements OnInit {
 
-  userForm: FormGroup;
-  
-  firstname = new FormControl('', [
-    Validators.required
-  ]);
-  
-  lastname = new FormControl('', [
-    Validators.required
-  ]);
-
-  email = new FormControl('', [
-    Validators.required
-  ]);
-
-  username = new FormControl('', [
-    Validators.required
-  ]);
-
-  password = new FormControl('', [
-    Validators.required
-  ]);
-
-  confirmapassword = new FormControl('', [
-    Validators.required
-  ]);
-
   user: any = {};
 
   sub: Subscription;
-
-  error: string = '';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -59,16 +29,10 @@ export class UserAddComponent implements OnInit {
     this.router.navigate(['/user-list']);
   }
   
-  save(form: NgForm) {
-    if(confirm("¿Está seguro que desea agregar el usuario?")) {
-      this.userService.save(form).subscribe(result => {
-        this.gotoList();
-      },
-      error => {
-        this.error = error;
-        console.error(error);
-      });
-    }  
+  save() {
+    this.userService.save(this.user).subscribe(result => {
+      this.gotoList();
+    }, error => console.error(error));
   }
   
 }
