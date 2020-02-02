@@ -30,15 +30,10 @@ export class PersonAddComponent implements OnInit {
   }
 
   save(form: NgForm) {
-    this.personService.save(form).subscribe(result => {
-      this.gotoList();
-    }, error => console.error(error));
+    if(confirm("¿Está seguro que desea guardar los cambios?")) {
+        this.personService.save(form).subscribe(result => {
+        this.gotoList();
+      }, error => console.error(error));
+    }  
   }
-
-  remove(href) {
-    this.personService.remove(this.person).subscribe(result => {
-      this.gotoList();
-    }, error => console.error(error));
-  }
-  
 }

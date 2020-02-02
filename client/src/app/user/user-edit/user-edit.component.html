@@ -42,7 +42,7 @@
                                 
                 <mat-form-field>
                   <input matInput placeholder="Usuario" [(ngModel)]="user.username" minlength="3" maxlength="15"
-                        pattern="[A-Za-z0-9]{3,15}"
+                        pattern="[A-Za-z0-9]{3,15}" [disabled]="usuarioLogueado"
                         required name="username" #username />
                 </mat-form-field><br/>
 

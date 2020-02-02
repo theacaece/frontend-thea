@@ -3,7 +3,10 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
+import { AuthenticationService } from '../../_services/authentication.service';
+
 import { UserService } from '../../_services/user.service';
+import { User } from '../../_models/user';
 
 @Component({
   selector: 'app-user-edit',
@@ -11,14 +14,18 @@ import { UserService } from '../../_services/user.service';
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-
+  currentUser: User;
   user: any = {};
 
   sub: Subscription;
 
+  usuarioLogueado = true;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private authenticationService: AuthenticationService,
               private userService: UserService) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
@@ -33,6 +40,9 @@ export class UserEditComponent implements OnInit {
             this.user.email = usuario.email;
             this.user.username = usuario.username;
             this.user.password = usuario.password;
+            if (this.user.username != this.currentUser.userDetails.username) {
+              this.usuarioLogueado = false;
+            }
           }
     	  }, error => console.error(error));
       }
@@ -43,16 +53,12 @@ export class UserEditComponent implements OnInit {
     this.router.navigate(['/user-list']);
   }
 
-  save(form: NgForm) {
-    this.userService.save(form).subscribe(result => {
-      this.gotoList();
-    }, error => console.error(error));
-  }
-
   update(form: NgForm) {
-    this.userService.update(this.user).subscribe(result => {
-      this.gotoList();
-    }, error => console.error(error));
+    if(confirm("¿Está seguro que desea guardar los cambios?")) {
+      this.userService.update(this.user).subscribe(result => {
+        this.gotoList();
+      }, error => console.error(error));
+    }
   }
   
 }

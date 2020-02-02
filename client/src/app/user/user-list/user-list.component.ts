@@ -58,9 +58,9 @@ export class UserListComponent implements OnInit  {
           this.error = error;
           console.error(error);
         });
-      } else {
-        alert("No es posible eliminar el usuario logueado");
-      };
-    }
+      }
+    } else {
+      alert("No es posible eliminar el usuario logueado");
+    };
   }
 }

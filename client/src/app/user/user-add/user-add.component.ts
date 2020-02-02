@@ -15,6 +15,8 @@ export class UserAddComponent implements OnInit {
   user: any = {};
 
   sub: Subscription;
+  loading = false;
+  error = '';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -30,9 +32,16 @@ export class UserAddComponent implements OnInit {
   }
   
   save() {
-    this.userService.save(this.user).subscribe(result => {
-      this.gotoList();
-    }, error => console.error(error));
+    if(confirm("¿Está seguro que desea guardar los cambios?")) {
+      this.loading = true;
+      this.userService.save(this.user).subscribe(result => {
+        this.gotoList();
+      },
+      error => {
+        this.error = 'Error al guardar el usuario.';
+        this.loading = false;
+      });
+    }
   }
   
 }

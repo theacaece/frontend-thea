@@ -15,7 +15,8 @@
             <form #userForm="ngForm" (ngSubmit)="save()">
               
               <mat-card-content>
-              
+                <mat-error class="alert alert-danger" *ngIf="error">{{error}}</mat-error>
+                
               	<mat-card-title>Agregar Usuario</mat-card-title>
               
               	<input type="hidden" name="href" [(ngModel)]="user.href">
@@ -66,7 +67,6 @@
               		<span style="display:inline-block; width: 0.5em;"></span>
               		<a mat-raised-button color="primary" routerLink="/user-list">Cancelar</a>
               	</mat-card-footer>
-              
             	</mat-card-content>
             
            	 </form>
