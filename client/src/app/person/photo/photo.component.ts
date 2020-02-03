@@ -26,15 +26,11 @@ export class PhotoComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const dni = params['dni'];
-      //alert(dni);
       if (dni) {
-        //alert('if');
         this.photoService.get(dni).subscribe(data => {
           this.fotos = data;
         }, error => console.error(error));
-        //alert('no entro al service');
       }
     });
-    //alert('salgo de init');
   }
 }
