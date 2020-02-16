@@ -18,12 +18,15 @@ import { User } from '../../_models/user';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit  {
+
+  loading: boolean = true;
+
   currentUser: User;
   users: Array<any>;
   error: string = '';
   
   page: number = 1;
-  pageSize: number = 5;
+  pageSize: number = 4;
   collectionSize: number = 1;
   
   constructor(private route: ActivatedRoute,
@@ -37,6 +40,7 @@ export class UserListComponent implements OnInit  {
     this.userService.getAll().subscribe(data => {
       this.users = data;
       this.collectionSize = this.users.length;
+      this.loading = false; 
     }, 
     error => {
       this.error = error;

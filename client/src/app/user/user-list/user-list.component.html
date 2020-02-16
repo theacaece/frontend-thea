@@ -1,6 +1,9 @@
 <app-header></app-header>
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1"><br/>
+<div class="center">
+	<mat-progress-spinner mode="indeterminate" *ngIf="loading"></mat-progress-spinner>
+</div>	
+<div class="row" *ngIf="!loading">
+		<div class="col-md-10 col-md-offset-1">
     		<mat-card-header>
   				<mat-card-title><br/>Lista de usuarios<br/></mat-card-title>
   			</mat-card-header>
@@ -39,7 +42,7 @@
             			</tr>
           			</tbody>
 				</table>
-				<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+				<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" [maxSize]="4" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
 				</ngb-pagination>
       </mat-card-content>
     </mat-card>
