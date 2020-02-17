@@ -1,23 +1,14 @@
 <app-header></app-header>
-
 <div align="center">
-
 	<br/><br/>
-	
 	<div class="row">
-	
 		<div class="col-md-4 col-md-offset-4">
-
         <fieldset>
-
-        	<br/>
-        	
+        	<br/>     	
             <form #userForm="ngForm" (ngSubmit)="update(userForm.value)">
-              
               <mat-card-content>
-              
-              	<mat-card-title>Editar Usuario</mat-card-title>
-              
+                <mat-card-title>Editar Usuario</mat-card-title>
+                
               	<input type="hidden" name="href" [(ngModel)]="user.href">
               	<input id="edit-formula" type="hidden" name="href" [(ngModel)]="user.userData">
                 
@@ -25,12 +16,30 @@
                     <input matInput placeholder="Nombre" [(ngModel)]="user.firstname" minlength="2" maxlength="32"
                           pattern="[A-Za-z ñÑ]{2,32}"
                           required name="firstname" #firstName/>
+                     <!--div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+                          class="alert alert-danger">
+                       <div *ngIf="firstname.errors.required">
+                         Debe ingresar un nombre válido.
+                       </div>
+                       <div *ngIf="firstname.errors.minlength">
+                         Debe ingresar al menos 2 caracteres.
+                       </div>
+                     </div-->
                 </mat-form-field><br/>
                 
                 <mat-form-field>
                   <input matInput placeholder="Apellido" [(ngModel)]="user.lastname" minlength="2" maxlength="32"
                          pattern="[A-Za-z ñÑ]{2,32}"
                          required name="lastname" #lastName />
+                    <!--div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+                         class="alert alert-danger">
+                      <div *ngIf="lastname.errors.required">
+                        Debe ingresar un apellido válido.
+                      </div>
+                      <div *ngIf="lastname.errors.minlength">
+                        Debe ingresar al menos 2 caracteres.
+                      </div>
+                    </div-->
                 </mat-form-field><br/>
                 
                 <mat-form-field>
@@ -38,12 +47,27 @@
                         pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                         [ngClass]="{ 'is-invalid': email.invalid }"
                         required name="email" #email />
+                    <!--div *ngIf="email.invalid && (email.dirty || email.touched)"
+                        class="alert alert-danger">
+                     <div *ngIf="email.errors.required">
+                       Debe ingresar un apellido válido.
+                     </div>
+                     <div *ngIf="email.errors.minlength">
+                       Debe ingresar al menos 2 caracteres.
+                     </div>
+                    </div-->
                 </mat-form-field><br/>
                                 
                 <mat-form-field>
                   <input matInput placeholder="Usuario" [(ngModel)]="user.username" minlength="3" maxlength="15"
                         pattern="[A-Za-z0-9]{3,15}" [disabled]="usuarioLogueado"
                         required name="username" #username />
+                   <!--div *ngIf="username.invalid && (username.dirty || username.touched)"
+                        class="alert alert-danger">
+                    <div *ngIf="username.errors.required">
+                      Debe ingresar un usuario válido.
+                    </div>
+                   </div-->
                 </mat-form-field><br/>
 
               	<mat-card-footer><br/>
@@ -52,15 +76,9 @@
                   <span style="display:inline-block; width: 0.5em;"></span>
                   <a mat-raised-button color="primary" routerLink="/user-list">Cancelar</a>
               	</mat-card-footer>
-              
             	</mat-card-content>
-            
            	 </form>
-            
         	</fieldset>
-
 		</div>
-    
  	</div>
- 
  </div>

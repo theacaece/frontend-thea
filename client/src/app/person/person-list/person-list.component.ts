@@ -21,7 +21,7 @@ export class PersonListComponent implements OnInit {
   error: string = '';
 
   page: number = 1;
-  pageSize: number = 4;
+  pageSize: number = 15;
   collectionSize: number = 1;
 
   constructor(private route: ActivatedRoute,

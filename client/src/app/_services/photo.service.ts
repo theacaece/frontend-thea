@@ -17,7 +17,6 @@ export class PhotoService {
   }
   
   get(dni: any): Observable<any> {
-    alert(dni);
     return this.http.get(this.FOTO_API + '/dni/' + dni);
   }
 
