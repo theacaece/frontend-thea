@@ -1,9 +1,11 @@
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { RegistroService } from '../../_services/register.service';
-//import { Registro } from '../../_models/registro';
+import { Register } from '../../_models/register';
 
 @Component({
   selector: 'app-register-list',
@@ -13,7 +15,9 @@ import { RegistroService } from '../../_services/register.service';
 
 export class RegisterListComponent implements OnInit {
 
-  registros: Array<any>;
+  loading: boolean = true;
+
+  registers: Array<any>;
   error: string = '';
 
   page: number = 1;
@@ -27,8 +31,9 @@ export class RegisterListComponent implements OnInit {
 
   ngOnInit() {
     this.registroService.getAll().subscribe(data => {
-      this.registros = data;
-      this.collectionSize = this.registros.length;
+      this.registers = data;
+      this.collectionSize = this.registers.length;
+      alert(this.collectionSize);
     },
     error => {
       this.error = error;

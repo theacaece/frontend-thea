@@ -8,30 +8,24 @@
         			<table class="table table-hover">
            				<thead class="sticky-top">
             				<tr>
-              					<th>Nombre</th>
-              					<th>Apellido</th>
-              					<th>Fecha Ingreso</th>
+								<th>Apellido</th>
+								<th>Nombre</th>
+								<th>Dni</th>
+								<th>Matricula</th>
             				</tr>
           				</thead>
           				
           				<tbody>
-							<!--form-- #registroForm="ngForm" (ngSubmit)="remove(registroForm.value)">
-            				<tr mdbTableCol *ngFor="let registro of registros | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-								<td>lala</td>
-								<td>lala</td>
-              					<td></td>
+            				<tr mdbTableCol *ngFor="let register of registers | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+								<td>{{register.apellido}}</td>  
+								<td>{{register.nombre}}</td>
+              					<td>{{register.dni}}</td>
+              					<td>{{register.matricula}}</td>
 							</tr>
-							</!--form-->
           				</tbody>
 					</table>
-					<!--ngb-pagination [collectionSize]="collectionSize" 
-									[(page)]="page" 
-									[pageSize]="pageSize" 
-									[maxSize]="5" 
-									rotate]="true" 
-									[ellipses]="false" 
-									[boundaryLinks]="true">
-					</!--ngb-pagination-->
+					<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" [maxSize]="4" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+					</ngb-pagination>
      		</mat-card-content>
    		 </mat-card>
 	</div>

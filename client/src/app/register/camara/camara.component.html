@@ -9,6 +9,8 @@
 			Verificar Identidad
 		</button>
 	</div>
+	<button mat-raised-button color="primary" (click)="reconocerPersona()">Reconocer Persona</button>
+	<br/><br/>
 	<div>
 	  <video id="webcam-stream">Visor de cámara web</video>
 	  <div id="webcam-snapshots"></div>
@@ -20,7 +22,17 @@
 	</div>
   </div>
 </div>
-<button mat-mini-fab routerLink="/register-list">
-		OK
-</button>
+<div class="center">
+	<mat-progress-spinner mode="indeterminate" 
+						  diameter="30" 
+						  *ngIf="loading">
+	</mat-progress-spinner>
+	<div *ngIf="resultado">
+		<div *ngIf="reconoce" class="alert alert-success">
+			Reconocido
+		</div>
+		<div *ngIf="!reconoce" class="alert alert-danger">
+			No Reconocido
+		</div>
+	</div>
 </div>
