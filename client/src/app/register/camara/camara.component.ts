@@ -12,6 +12,7 @@ export class CamaraComponent implements OnInit {
   loading: boolean = false;
   reconoce: boolean = false;
   resultado: boolean = false;
+  dni: string = "37090520";
   error: string = "";
 
   constructor(private registroService: RegistroService) { }
@@ -23,14 +24,10 @@ export class CamaraComponent implements OnInit {
   reconocerPersona() {
     this.loading = true;
     this.reconoce = false;
-    this.registroService.save("33333333").subscribe( data => {
+    this.registroService.save(this.dni).subscribe(data => {
       this.loading = false;
       this.resultado = true;
       this.reconoce = true;
-    },
-    error => {
-      this.error = error;
-      console.error(error);
-    });
+    }, error => console.error(error));
   }
 }

@@ -10,8 +10,8 @@
             				<tr>
 								<th>Apellido</th>
 								<th>Nombre</th>
-								<th>Dni</th>
-								<th>Matricula</th>
+								<th>DNI</th>
+								<th>Fecha Ingreso</th>
             				</tr>
           				</thead>
           				
@@ -20,7 +20,7 @@
 								<td>{{register.apellido}}</td>  
 								<td>{{register.nombre}}</td>
               					<td>{{register.dni}}</td>
-              					<td>{{register.matricula}}</td>
+								<td>{{register.fechaIngreso | date : "dd/MM/yyyy HH:mm:ss" }}</td>
 							</tr>
           				</tbody>
 					</table>

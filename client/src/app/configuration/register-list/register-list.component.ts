@@ -33,7 +33,6 @@ export class RegisterListComponent implements OnInit {
     this.registroService.getAll().subscribe(data => {
       this.registers = data;
       this.collectionSize = this.registers.length;
-      alert(this.collectionSize);
     },
     error => {
       this.error = error;

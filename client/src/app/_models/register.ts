@@ -3,6 +3,6 @@ export class Register {
     nombre: string;
     apellido: string;
     dni: string;
-    matricula: string;
+    fechaIngreso: Date;
 }
 
