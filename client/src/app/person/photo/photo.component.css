@@ -1,0 +1,9 @@
+.no-indicators .carousel-indicators {
+    display: none;
+}
+.first .carousel-control-prev {
+    display:none;
+}
+.last .carousel-control-next {
+    display: none;
+}

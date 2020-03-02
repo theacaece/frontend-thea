@@ -14,6 +14,7 @@ import { PhotoService } from '../../_services/photo.service';
 export class PhotoComponent implements OnInit {
   
   fotos: any;
+  imagen: boolean = false;
 
   sub: Subscription;
 
@@ -29,8 +30,18 @@ export class PhotoComponent implements OnInit {
       if (dni) {
         this.photoService.get(dni).subscribe(data => {
           this.fotos = data;
+          if (this.fotos.length == 0) {
+            this.imagen = false;
+          } else {
+            this.imagen = true;
+          }
         }, error => console.error(error));
       }
     });
   }
+
+  gotoList() {
+    this.router.navigate(['/person-list']);
+  }
+  
 }
