@@ -36,6 +36,7 @@ import { RegisterListComponent } from './configuration/register-list/register-li
 import { AccessListComponent } from './configuration/access-list/access-list.component';
 
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
+import { EntrenamientoComponent } from './configuration/entrenamiento/entrenamiento.component';
 
 const routes: Route[] = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -52,6 +53,7 @@ const routes: Route[] = [
   { path: 'register-list', component: RegisterListComponent},
   { path: 'access-list', component: AccessListComponent},
   { path: 'configuration', component: ConfigurationComponent},
+  { path: 'entrenamiento', component: EntrenamientoComponent},
   
   { path: '**', redirectTo: '' } // otherwise redirect to home
 ];
@@ -72,6 +74,7 @@ const routes: Route[] = [
     RegisterListComponent,
     AccessListComponent,
     ConfigurationComponent,
+    EntrenamientoComponent,
     CamaraComponent
   ],
   imports: [

@@ -18,6 +18,7 @@ import { AccessListComponent } from './configuration/access-list/access-list.com
 import { CamaraComponent } from './register/camara/camara.component';
 
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
+import { EntrenamientoComponent } from './configuration/entrenamiento/entrenamiento.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -33,6 +34,7 @@ const routes: Routes = [
 	{ path: 'register-list', component: RegisterListComponent},
 	{ path: 'access-list', component: AccessListComponent},
 	{ path: 'configuration', component: ConfigurationComponent},
+	{ path: 'entrenamiento', component: EntrenamientoComponent},
     { path: '**', redirectTo: '' }
 ];
 
