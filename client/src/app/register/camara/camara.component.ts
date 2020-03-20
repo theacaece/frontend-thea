@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ViewChild, ElementRef } from '@angular/core';
 import { RegistroService } from '../../_services/register.service';
 
 @Component({
@@ -9,16 +9,41 @@ import { RegistroService } from '../../_services/register.service';
 })
 
 export class CamaraComponent implements OnInit {
+
+  @ViewChild("video", {static: false})
+  public video: ElementRef;
+
+  @ViewChild("canvas", {static: false})
+  public canvas: ElementRef;
+
+  public captures: Array<any>;
+  
   loading: boolean = false;
   reconoce: boolean = false;
   resultado: boolean = false;
   dni: string = "37090520";
   error: string = "";
 
-  constructor(private registroService: RegistroService) { }
+  constructor(private registroService: RegistroService) { 
+    
+  }
 
   ngOnInit() {
   
+  }
+
+  public ngAfterViewInit() {
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+            this.video.nativeElement.srcObject = stream;
+            this.video.nativeElement.play();
+        });
+    }
+  }
+
+  public capture() {
+      var context = this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, 640, 480);
+      this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
   }
 
   reconocerPersona() {
@@ -30,4 +55,5 @@ export class CamaraComponent implements OnInit {
       this.reconoce = true;
     }, error => console.error(error));
   }
+
 }

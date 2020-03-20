@@ -1,26 +1,6 @@
 
 <app-header></app-header>
-<br/><br/>
-<div align="center">
-<div data-include-widget="webcam_tester">
-  <div class="box box-middle">
-	<button mat-raised-button color="primary" (click)="reconocerPersona()">Reconocer Persona</button>
-	<br/><br/>
-	<div>
-	  <video id="webcam-stream">Visor de cámara web</video>
-	  <div id="webcam-snapshots"></div>
-	  <div id='webcam-actions'>
-		<button data-action='takePhoto'>Tomar foto</button>
-		<button data-action='fullscreen'>Pantalla completa</button>
-	  </div>
-	</div>
-  </div>
-</div>
 <div class="center">
-	<mat-progress-spinner mode="indeterminate" 
-						  diameter="30" 
-						  *ngIf="loading">
-	</mat-progress-spinner>
 	<div *ngIf="resultado">
 		<div *ngIf="reconoce" class="alert alert-success">
 			Reconocido
@@ -29,4 +9,19 @@
 			No Reconocido
 		</div>
 	</div>
+</div>
+	<div width="640" id="app">
+	<button mat-raised-button color="primary" (click)="reconocerPersona()">Reconocer Persona</button>
+	<div><video #video id="video" width="640" height="480" autoplay></video></div>
+	<!--div><button id="snap" (click)="capture()">Snap Photo</button></div-->
+	<canvas #canvas id="canvas" width="640" height="480"></canvas>
+	<ul>
+		<li *ngFor="let c of captures">
+			<img src="{{ c }}" height="50" />
+		</li>
+	</ul>
+	<mat-progress-spinner mode="indeterminate" 
+						  diameter="30" 
+						  *ngIf="loading">
+	</mat-progress-spinner>
 </div>
