@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { RegistroService } from '../../_services/register.service';
+import { ReconocerService } from '../../_services/reconocer.service';
 
 @Component({
   selector: 'app-camara',
@@ -24,9 +25,9 @@ export class CamaraComponent implements OnInit {
   dni: string = "33016244";
   error: string = "";
 
-  constructor(private registroService: RegistroService) { 
-    
-  }
+  serverData: JSON;
+
+  constructor(private registroService: RegistroService, private reconocerService: ReconocerService) {}
 
   ngOnInit() {
   
@@ -46,14 +47,30 @@ export class CamaraComponent implements OnInit {
       this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
   }
 
+  // reconocerPersona() {
+  //   this.loading = true;
+  //   this.reconoce = false;
+  //   this.registroService.save(this.dni).subscribe(data => {
+  //     this.loading = false;
+  //     this.resultado = true;
+  //     this.reconoce = true;
+  //   }, error => console.error(error));
+  // }
+
   reconocerPersona() {
     this.loading = true;
-    this.reconoce = false;
-    this.registroService.save(this.dni).subscribe(data => {
-      this.loading = false;
-      this.resultado = true;
-      this.reconoce = true;
-    }, error => console.error(error));
+    this.reconocerService;
+    this.reconocerService.post().subscribe(
+      data => {
+        this.serverData = data as JSON
+        console.log(this.serverData);
+        alert("Envio de imagen OK");
+      },
+      error => {
+        alert("Error de Conexion");
+        this.error = error;
+        this.loading = false;
+      });
   }
 
 }
