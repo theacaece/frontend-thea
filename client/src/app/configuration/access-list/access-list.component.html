@@ -5,6 +5,9 @@
 		  </mat-card-header>
      	<mat-card>
 			<mat-card-content>
+				<button mat-raised-button color="primary" title ="Ver Registro de Ingresos" 
+					[routerLink]="['/register-list']">Ver Registro de Ingresos</button>
+				<br/><br/>
 				<form #accesoForm="ngForm" (ngSubmit)="remove(accesoForm.value)">
         			<table class="table table-hover">
            				<thead class="sticky-top">

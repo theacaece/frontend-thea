@@ -21,7 +21,7 @@ export class CamaraComponent implements OnInit {
   loading: boolean = false;
   reconoce: boolean = false;
   resultado: boolean = false;
-  dni: string = "37090520";
+  dni: string = "33016244";
   error: string = "";
 
   constructor(private registroService: RegistroService) { 

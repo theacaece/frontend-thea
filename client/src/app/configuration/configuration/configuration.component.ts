@@ -32,17 +32,17 @@ export class ConfigurationComponent implements OnInit {
 
   }
 
-  onClick() {
-
+ entrenar() {
     this.loading = true;
     this.entrenamientoService;
-
     this.entrenamientoService.post().subscribe(
       data => {
         this.serverData = data as JSON
         console.log(this.serverData);
+        alert("Entrenamiento finalizado correctamente.");
       },
       error => {
+        alert("Error de Conexion");
         this.error = error;
         this.loading = false;
       });
