@@ -12,17 +12,14 @@
         			<table class="table table-hover">
            				<thead class="sticky-top">
             				<tr>
-              					<th>Nombre</th>
-              					<th>Apellido</th>
+              					<th>Usuario</th>
               					<th>Fecha Ingreso</th>
             				</tr>
           				</thead>
           				<tbody>
             				<tr mdbTableCol *ngFor="let acceso of accesos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-								<td></td>
-								<td></td>
-              					<td></td>
-
+								<td>{{acceso.usuario}}</td>
+								<td>{{acceso.fechaAcceso}}</td>
             				</tr>
           				</tbody>
 					</table>
