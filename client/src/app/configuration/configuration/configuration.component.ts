@@ -19,9 +19,9 @@ export interface Tile {
 export class ConfigurationComponent implements OnInit {
 
   loading = false;
-  resultado: boolean = false;
-  enviado: boolean = true;
   error = '';
+
+  serverData: JSON;
   
 
   constructor(private entrenamientoService: EntrenamientoService) { 
@@ -39,9 +39,8 @@ export class ConfigurationComponent implements OnInit {
 
     this.entrenamientoService.post().subscribe(
       data => {
-        this.loading = false;
-        this.resultado = true;
-        this.enviado = true;
+        this.serverData = data as JSON
+        console.log(this.serverData);
       },
       error => {
         this.error = error;
