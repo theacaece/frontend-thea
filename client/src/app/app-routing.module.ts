@@ -14,11 +14,9 @@ import { PersonListComponent } from './person/person-list/person-list.component'
 import { PhotoComponent } from './person/photo/photo.component';
 
 import { RegisterListComponent } from './configuration/register-list/register-list.component';
-import { AccessListComponent } from './configuration/access-list/access-list.component';
 import { CamaraComponent } from './register/camara/camara.component';
 
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
-import { EntrenamientoComponent } from './configuration/entrenamiento/entrenamiento.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -32,9 +30,7 @@ const routes: Routes = [
 	{ path: 'photo/:dni', component: PhotoComponent},
 	{ path: 'camara', component: CamaraComponent},
 	{ path: 'register-list', component: RegisterListComponent},
-	{ path: 'access-list', component: AccessListComponent},
 	{ path: 'configuration', component: ConfigurationComponent},
-	{ path: 'entrenamiento', component: EntrenamientoComponent},
     { path: '**', redirectTo: '' }
 ];
 

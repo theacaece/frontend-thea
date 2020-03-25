@@ -1,64 +1,10 @@
 <app-header></app-header>
-
-<section class="container">
-    <div class="row">
-        <div class="col-md-6 mt-5">
-            <mat-card>
-                <mat-card-content>
-                    <mat-card-header>
-                        <mat-card-title> Entrenamiento de Red Neuronal</mat-card-title>
-                    </mat-card-header>
-                    <span class="header-icon-card">
-                        <a (click)="entrenar()">
-                            <mat-icon class="icon-card">share</mat-icon>
-                        </a>
-                    </span>
-                </mat-card-content>
-            </mat-card>
-        </div>
-        <div class="col-md-6 mt-5">
-            <mat-card>
-                <mat-card-content>
-                    <mat-card-header>
-                        <mat-card-title>Registros de Ingresos</mat-card-title>
-                    </mat-card-header>
-                    <span class="header-icon-card">
-                        <a [routerLink]="['/register-list']">
-                            <mat-icon class="icon-card">group</mat-icon>
-                        </a>
-                    </span>
-                </mat-card-content>
-            </mat-card>
-        </div>
+<br>
+<div class="row">
+    <div class="col-md-10 col-md-offset-9">
+        <button mat-raised-button color="primary" title ="Entrenamiento de Red Neuronal" 
+                (click)="entrenar()">Entrenamiento de Red Neuronal
+        </button>
     </div>
-    <div class="row">
-        <div class="col-md-6 mt-5">
-            <mat-card>
-                <mat-card-content>
-                    <mat-card-header>
-                        <mat-card-title>Accesos a Aplicacion</mat-card-title>
-                    </mat-card-header>
-                    <span class="header-icon-card">
-                        <a [routerLink]="['/access-list']">
-                            <mat-icon class="icon-card">verified_user</mat-icon>
-                        </a>
-                    </span>
-                </mat-card-content>
-            </mat-card>
-        </div>
-        <div class="col-md-6 mt-5">
-            <mat-card>
-                <mat-card-content>
-                    <mat-card-header>
-                        <mat-card-title>Seguridad Log</mat-card-title>
-                    </mat-card-header>
-                    <span class="header-icon-card">
-                        <a [routerLink]="['/configuration']">
-                            <mat-icon class="icon-card">security</mat-icon>
-                        </a>
-                    </span>
-                </mat-card-content>
-            </mat-card>
-        </div>
-    </div>
-</section>
+</div>   
+<app-register-list></app-register-list> 
