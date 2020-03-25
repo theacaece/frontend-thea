@@ -18,7 +18,6 @@ export class ErrorInterceptor implements HttpInterceptor {
             switch (err.status) {
                 case 401:
                     this.authenticationService.logout();
-                    location.reload(true);
                     break;
                 case 403:
                     this.router.navigate(['/httpError/403']);
