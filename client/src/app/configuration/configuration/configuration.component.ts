@@ -32,7 +32,7 @@ export class ConfigurationComponent implements OnInit {
 
   }
 
- entrenar() {
+  entrenar() {
     this.loading = true;
     this.entrenamientoService;
     this.entrenamientoService.post().subscribe(

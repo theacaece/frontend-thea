@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Route } from '@angular/router';
+import { MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { CamaraComponent } from './register/camara/camara.component';
 import { RegisterListComponent } from './configuration/register-list/register-list.component';
 
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
+import { ModalComponent } from './modal/modal.component';
 
 const routes: Route[] = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -50,7 +52,7 @@ const routes: Route[] = [
   { path: 'camara', component: CamaraComponent},
   { path: 'register-list', component: RegisterListComponent},
   { path: 'configuration', component: ConfigurationComponent},
-  
+  { path: 'modal', component: ModalComponent},
   { path: '**', redirectTo: '' } // otherwise redirect to home
 ];
 
@@ -68,8 +70,9 @@ const routes: Route[] = [
     PersonListComponent,
     PhotoComponent,
     RegisterListComponent,
+    CamaraComponent,
     ConfigurationComponent,
-    CamaraComponent
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -89,12 +92,14 @@ const routes: Route[] = [
     ReactiveFormsModule,
     NgbModule,
     NgbPaginationModule, 
-    NgbAlertModule
+    NgbAlertModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
 })
 export class AppModule { }

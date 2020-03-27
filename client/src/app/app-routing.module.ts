@@ -17,6 +17,7 @@ import { RegisterListComponent } from './configuration/register-list/register-li
 import { CamaraComponent } from './register/camara/camara.component';
 
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
+import { ModalComponent } from './modal/modal.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -31,6 +32,7 @@ const routes: Routes = [
 	{ path: 'camara', component: CamaraComponent},
 	{ path: 'register-list', component: RegisterListComponent},
 	{ path: 'configuration', component: ConfigurationComponent},
+	{ path: 'modal', component: ModalComponent},
     { path: '**', redirectTo: '' }
 ];
 
