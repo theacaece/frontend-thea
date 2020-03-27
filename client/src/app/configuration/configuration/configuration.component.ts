@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalComponent } from '../../modal/modal.component';
 import { first } from 'rxjs/operators';
 
 import { EntrenamientoService } from '../../_services/entrenamiento.service';
@@ -24,7 +26,8 @@ export class ConfigurationComponent implements OnInit {
   serverData: JSON;
   
 
-  constructor(private entrenamientoService: EntrenamientoService) { 
+  constructor(private entrenamientoService: EntrenamientoService,
+              public matDialog: MatDialog) { 
     
   }
 
@@ -39,7 +42,7 @@ export class ConfigurationComponent implements OnInit {
       data => {
         this.serverData = data as JSON
         console.log(this.serverData);
-        alert("Entrenamiento finalizado correctamente.");
+        this.openModal();
       },
       error => {
         alert("Error de Conexion");
@@ -47,5 +50,15 @@ export class ConfigurationComponent implements OnInit {
         this.loading = false;
       });
   }
+  
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "225px";
+    dialogConfig.width = "380px";
+    const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
+  }
+
 
 }

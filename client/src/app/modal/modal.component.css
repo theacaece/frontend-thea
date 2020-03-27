@@ -6,8 +6,14 @@
 }
 
 #modal-header {
-  height: 68%;
+  height: 90%;
+  background: rgb(63, 81, 181) !important;
+  background: linear-gradient(147deg, rgba(63, 81, 181, 1) 0%, rgba(63, 81, 181, 1) 35%, rgba(119, 188, 201, 1) 100%) !important;
+  font-family: "Verdana", Arial, sans-serif;
+  font-size: 1.5em;
   text-align: left;
+  color: #dde5f4;
+  padding-left: 15px;
 }
 
 #modal-title {
@@ -16,12 +22,13 @@
 }
 
 #modal-body {
-  font-size: 16px;
+  vertical-align: center;
+  padding: 15px;
   align-self: left;
-  padding-left: 5px;
+  font-size: 16px;
 }
 
-.modal-footer {
+.footer {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -29,9 +36,6 @@
   -webkit-box-pack: end;
   justify-content: flex-end;
   padding: 1rem;
-}
-
-.modal-footer {
   padding: 15px;
   text-align: right;
 }
