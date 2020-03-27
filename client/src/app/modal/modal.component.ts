@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
-import { MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'app-modal',
@@ -10,9 +10,12 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 export class ModalComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ModalComponent>) { }
+  constructor(public dialogRef: MatDialogRef<ModalComponent>,
+              @Inject(MAT_DIALOG_DATA) data) { 
+      this.mensaje = data.mensaje;
+  }
 
-  mensaje: String = "Entrenamiento finalizado correctamente.";
+  mensaje: String = "";
 
   ngOnInit() {
   }

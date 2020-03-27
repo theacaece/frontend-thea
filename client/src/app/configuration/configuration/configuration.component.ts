@@ -40,9 +40,10 @@ export class ConfigurationComponent implements OnInit {
     this.entrenamientoService;
     this.entrenamientoService.post().subscribe(
       data => {
+        this.loading = false;
         this.serverData = data as JSON
         console.log(this.serverData);
-        this.openModal();
+        this.abrirAlerta("Entrenamiento finalizado correctamente.");
       },
       error => {
         alert("Error de Conexion");
@@ -51,12 +52,13 @@ export class ConfigurationComponent implements OnInit {
       });
   }
   
-  openModal() {
+  abrirAlerta(texto: String) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "225px";
     dialogConfig.width = "380px";
+    dialogConfig.data = { mensaje: texto};
     const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
   }
 
