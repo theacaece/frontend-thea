@@ -11,10 +11,10 @@ import { ReconocerService } from '../../_services/reconocer.service';
 
 export class CamaraComponent implements OnInit {
 
-  @ViewChild("video")
+  @ViewChild("video", {static: false})
   public video: ElementRef;
 
-  @ViewChild("canvas")
+  @ViewChild("canvas", {static: false})
   public canvas: ElementRef;
 
   public captures: Array<any>;
