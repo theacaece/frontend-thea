@@ -33,7 +33,7 @@ import { PhotoComponent } from './person/photo/photo.component';
 
 import { CamaraComponent } from './register/camara/camara.component';
 
-import { RegisterListComponent } from './configuration/register-list/register-list.component';
+import { IngresoListComponent } from './configuration/ingreso-list/ingreso-list.component';
 
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
 import { ModalComponent } from './modal/modal.component';
@@ -50,7 +50,7 @@ const routes: Route[] = [
   { path: 'person-list', component: PersonListComponent},
   { path: 'photo/:dni', component: PhotoComponent},
   { path: 'camara', component: CamaraComponent},
-  { path: 'register-list', component: RegisterListComponent},
+  { path: 'ingreso-list', component: IngresoListComponent},
   { path: 'configuration', component: ConfigurationComponent},
   { path: 'modal', component: ModalComponent},
   { path: '**', redirectTo: '' } // otherwise redirect to home
@@ -69,7 +69,7 @@ const routes: Route[] = [
     PersonEditComponent,
     PersonListComponent,
     PhotoComponent,
-    RegisterListComponent,
+    IngresoListComponent,
     CamaraComponent,
     ConfigurationComponent,
     ModalComponent

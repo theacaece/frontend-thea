@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
-import { RegistroService } from '../../_services/register.service';
+import { IngresoService } from '../../_services/ingreso.service';
 import { ReconocerService } from '../../_services/reconocer.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class CamaraComponent implements OnInit {
 
   serverData: JSON;
 
-  constructor(private registroService: RegistroService, private reconocerService: ReconocerService) {}
+  constructor(private registroService: IngresoService, private reconocerService: ReconocerService) {}
 
   ngOnInit() {
   

@@ -4,20 +4,20 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { RegistroService } from '../../_services/register.service';
+import { IngresoService } from '../../_services/ingreso.service';
 import { Register } from '../../_models/register';
 
 @Component({
-  selector: 'app-register-list',
-  templateUrl: './register-list.component.html',
-  styleUrls: ['./register-list.component.css']
+  selector: 'app-ingreso-list',
+  templateUrl: './ingreso-list.component.html',
+  styleUrls: ['./ingreso-list.component.css']
 })
 
-export class RegisterListComponent implements OnInit {
+export class IngresoListComponent implements OnInit {
 
   loading: boolean = true;
 
-  registers: Array<any>;
+  ingresos: Array<any>;
   error: string = '';
 
   page: number = 1;
@@ -26,13 +26,13 @@ export class RegisterListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private registroService: RegistroService) {
+              private ingresoService: IngresoService) {
   }
 
   ngOnInit() {
-    this.registroService.getAll().subscribe(data => {
-      this.registers = data;
-      this.collectionSize = this.registers.length;
+    this.ingresoService.getAll().subscribe(data => {
+      this.ingresos = data;
+      this.collectionSize = this.ingresos.length;
     },
     error => {
       this.error = error;
@@ -41,7 +41,7 @@ export class RegisterListComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/register-list']);
+    this.router.navigate(['/ingreso-list']);
   }
 
 }

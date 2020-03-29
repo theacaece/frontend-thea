@@ -16,7 +16,7 @@
           				</thead>
           				
           				<tbody>
-            				<tr mdbTableCol *ngFor="let register of registers | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+            				<tr mdbTableCol *ngFor="let ingreso of ingresos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
 								<td>{{register.apellido}}</td>  
 								<td>{{register.nombre}}</td>
               					<td>{{register.dni}}</td>
