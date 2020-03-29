@@ -25,3 +25,6 @@ li {
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
 }
+button {
+    margin-right: 0.5em;
+}
