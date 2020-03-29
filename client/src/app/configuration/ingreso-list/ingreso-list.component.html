@@ -17,10 +17,10 @@
           				
           				<tbody>
             				<tr mdbTableCol *ngFor="let ingreso of ingresos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-								<td>{{register.apellido}}</td>  
-								<td>{{register.nombre}}</td>
-              					<td>{{register.dni}}</td>
-								<td>{{register.fechaIngreso | date : "dd/MM/yyyy HH:mm:ss" }}</td>
+								<td>{{ingreso.persona.apellido}}</td>  
+								<td>{{ingreso.persona.nombre}}</td>
+              					<td>{{ingreso.persona.dni}}</td>
+								<td>{{ingreso.timestamp | date : "dd/MM/yyyy HH:mm:ss" }}</td>
 							</tr>
           				</tbody>
 					</table>

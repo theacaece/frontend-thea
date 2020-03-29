@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { IngresoService } from '../../_services/ingreso.service';
-import { Register } from '../../_models/register';
+import { Ingreso } from '../../_models/ingreso';
 
 @Component({
   selector: 'app-ingreso-list',
