@@ -10,6 +10,8 @@ import { NgForm } from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 
 import { UserService } from '../../_services/user.service';
+import { CommonService } from '../../_services/common.service';
+
 import { User } from '../../_models/user';
 
 @Component({
@@ -18,6 +20,9 @@ import { User } from '../../_models/user';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit  {
+
+  MSJ_ERROR = "Ha ocurrido un error.";
+  MSJ_USUARIO_DELETE: "No es posible eliminar el usuario logueado";
 
   loading: boolean = true;
 
@@ -32,7 +37,8 @@ export class UserListComponent implements OnInit  {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private userService: UserService) {
+    private userService: UserService,
+    private commonService: CommonService) {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 
@@ -43,7 +49,7 @@ export class UserListComponent implements OnInit  {
       this.loading = false; 
     }, 
     error => {
-      this.error = error;
+      this.commonService.alertar(this.MSJ_ERROR);
       console.error(error);
     });
   }
@@ -59,12 +65,12 @@ export class UserListComponent implements OnInit  {
         this.users = this.users.filter(u => u !== user);
         }, 
         error => {
-          this.error = error;
+          this.commonService.alertar(this.MSJ_ERROR);
           console.error(error);
         });
       }
     } else {
-      alert("No es posible eliminar el usuario logueado");
+      this.commonService.alertar(this.MSJ_USUARIO_DELETE);
     };
   }
 }

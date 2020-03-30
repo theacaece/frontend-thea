@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PersonService } from '../../_services/person.service';
+import { CommonService } from '../../_services/common.service';
+
 import { Person } from '../../_models/person';
 
 @Component({
@@ -15,6 +17,8 @@ import { Person } from '../../_models/person';
 
 export class PersonListComponent implements OnInit {
 
+  MSJ_ERROR = "Ha ocurrido un error.";
+  
   loading: boolean = true;
 
   persons: Array<any>;
@@ -26,7 +30,8 @@ export class PersonListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private personService: PersonService) {
+    private personService: PersonService,
+    private commonService: CommonService) {
   }
 
   ngOnInit() {
@@ -36,7 +41,7 @@ export class PersonListComponent implements OnInit {
       this.loading = false;
     },
     error => {
-      this.error = error;
+      this.commonService.alertar(this.MSJ_ERROR);
       console.error(error);
     });
   }
@@ -51,7 +56,7 @@ export class PersonListComponent implements OnInit {
         this.persons = this.persons.filter(u => u !== person);
       },
       error => {
-        this.error = error;
+        this.commonService.alertar(this.MSJ_ERROR);
         console.error(error);
       });
     }

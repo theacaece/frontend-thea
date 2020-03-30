@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { IngresoService } from '../../_services/ingreso.service';
+import { CommonService } from '../../_services/common.service';
+
 import { Ingreso } from '../../_models/ingreso';
 
 @Component({
@@ -14,6 +16,8 @@ import { Ingreso } from '../../_models/ingreso';
 })
 
 export class IngresoListComponent implements OnInit {
+
+  MSJ_ERROR = "Ha ocurrido un error.";
 
   loading: boolean = true;
 
@@ -26,7 +30,8 @@ export class IngresoListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private ingresoService: IngresoService) {
+              private ingresoService: IngresoService,
+              private commonService: CommonService) {
   }
 
   ngOnInit() {
@@ -35,7 +40,7 @@ export class IngresoListComponent implements OnInit {
       this.collectionSize = this.ingresos.length;
     },
     error => {
-      this.error = error;
+      this.commonService.alertar(this.MSJ_ERROR);
       console.error(error);
     });
   }

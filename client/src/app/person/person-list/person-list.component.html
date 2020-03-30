@@ -1,18 +1,19 @@
 <app-header></app-header>
-<br/><br/>
 <div class="center">
 	<mat-progress-spinner mode="indeterminate" diameter="30" *ngIf="loading"></mat-progress-spinner>
 </div>	
 <div class="row" *ngIf="!loading">
+	<p class="alerta">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<mat-icon class="icon-card">person_add</mat-icon>&nbsp;
+		<span class="aligned-with-icon" >Para permitir el ingreso de una persona a la universidad, debe ser registrado previamente en Secretaría Acádemica.</span>
+	</p>
 	<div class="col-md-10 col-md-offset-1">
 	<mat-card-header>
   		<mat-card-title>Lista de personas<br/></mat-card-title>
   	</mat-card-header>
     <mat-card>
 		<mat-card-content >
-			<button mat-raised-button color="primary" title ="Agregar Persona" 
-					[routerLink]="['/person-add']">Agregar Persona</button>
-			<br/><br/>
 			<form #personForm="ngForm" (ngSubmit)="remove(personForm.value)">
         		<table class="table table-hover">
 					<thead class="sticky-top">
@@ -21,9 +22,6 @@
               				<th>Nombre</th>
               				<th>DNI</th>
 							<th>Matr&iacute;cula</th>
-							<th>&nbsp;</th>
-							<th>&nbsp;</th>
-							<th>&nbsp;</th>
             			</tr>
           			</thead>
           			<tbody>
@@ -32,21 +30,6 @@
 							<td>{{person.nombre}}</td>
               				<td>{{person.dni}}</td>
               				<td>{{person.matricula}}</td>
-              				<td>
-                				<a mat-button title="Modificar persona" [routerLink]="['/person-edit', person.id]">
-                					<img src="assets/img/iconos/editar.png" width="25" height="25">
-                				</a>
-							</td>
-							<td>
-                				<a mat-button title="Eliminar persona" (click)="remove(person)">
-                					<img src="assets/img/iconos/eliminar.png" width="25" height="25">
-                				</a>
-              				</td>
-              				<td>
-                				<a mat-button title="Ver fotos" [routerLink]="['/photo', person.dni]">     
-                  					<img src="assets/img/iconos/user.png" tooltip="Ver fotos" width="25" height="25">
-                				</a>
-              				</td>
             			</tr>
           			</tbody>
 				</table>
