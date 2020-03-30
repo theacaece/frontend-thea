@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModalComponent } from '../../modal/modal.component';
 import { first } from 'rxjs/operators';
 
 import { EntrenamientoService } from '../../_services/entrenamiento.service';
+import { CommonService } from '../../_services/common.service';
 
 export interface Tile {
   color: string;
@@ -20,19 +19,20 @@ export interface Tile {
 })
 export class ConfigurationComponent implements OnInit {
 
-  loading = false;
-  error = '';
+  MSJ_OK = "Entrenamiento finalizado correctamente.";
+  MSJ_ERROR = "Ha ocurrido un error.";
+  
+  loading: boolean = false;
+  error: string = '';
 
   serverData: JSON;
   
 
   constructor(private entrenamientoService: EntrenamientoService,
-              public matDialog: MatDialog) { 
-    
+              private commonService: CommonService) {
   }
 
   ngOnInit() {
-
   }
 
   entrenar() {
@@ -43,24 +43,13 @@ export class ConfigurationComponent implements OnInit {
         this.loading = false;
         this.serverData = data as JSON
         console.log(this.serverData);
-        this.abrirAlerta("Entrenamiento finalizado correctamente.");
+        this.commonService.alertar(this.MSJ_OK);
       },
       error => {
-        alert("Error de Conexion");
+        this.commonService.alertar(this.MSJ_ERROR);
         this.error = error;
         this.loading = false;
       });
   }
-  
-  abrirAlerta(texto: String) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.id = "modal-component";
-    dialogConfig.height = "225px";
-    dialogConfig.width = "380px";
-    dialogConfig.data = { mensaje: texto};
-    const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
-  }
-
-
+ 
 }

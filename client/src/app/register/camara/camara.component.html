@@ -1,16 +1,6 @@
 
 <app-header></app-header>
-<div class="center">
-	<div *ngIf="resultado">
-		<div *ngIf="reconoce" class="alert alert-success">
-			Reconocido
-		</div>
-		<div *ngIf="!reconoce" class="alert alert-danger">
-			No Reconocido
-		</div>
-	</div>
-</div>
-	<div width="640" id="app">
+<div width="640" id="app">
 	<button mat-raised-button color="primary" (click)="reconocerPersona()">Reconocer Persona</button>
 	<button mat-raised-button color="accent" [routerLink]="['/configuration']">Ver Registro de Ingresos</button>
 	<div><video #video id="video" width="640" height="480" autoplay></video></div>
@@ -20,8 +10,4 @@
 			<img src="{{ c }}" height="50" />
 		</li>
 	</ul>
-	<mat-progress-spinner mode="indeterminate" 
-						  diameter="30" 
-						  *ngIf="loading">
-	</mat-progress-spinner>
 </div>

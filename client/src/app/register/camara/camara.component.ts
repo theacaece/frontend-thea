@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
+
 import { IngresoService } from '../../_services/ingreso.service';
 import { ReconocerService } from '../../_services/reconocer.service';
+import { CommonService } from '../../_services/common.service';
 
 @Component({
   selector: 'app-camara',
@@ -10,6 +12,9 @@ import { ReconocerService } from '../../_services/reconocer.service';
 })
 
 export class CamaraComponent implements OnInit {
+
+  MSJ_OK = "Ingreso habilitado.";
+  MSJ_ERROR = "Ha ocurrido un error.";
 
   @ViewChild("video", {static: false})
   public video: ElementRef;
@@ -27,7 +32,9 @@ export class CamaraComponent implements OnInit {
 
   serverData: JSON;
 
-  constructor(private registroService: IngresoService, private reconocerService: ReconocerService) {}
+  constructor(private registroService: IngresoService, 
+              private reconocerService: ReconocerService,
+              private commonService: CommonService) {}
 
   ngOnInit() {
   
@@ -47,16 +54,6 @@ export class CamaraComponent implements OnInit {
       this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
   }
 
-  // reconocerPersona() {
-  //   this.loading = true;
-  //   this.reconoce = false;
-  //   this.registroService.save(this.dni).subscribe(data => {
-  //     this.loading = false;
-  //     this.resultado = true;
-  //     this.reconoce = true;
-  //   }, error => console.error(error));
-  // }
-
   reconocerPersona() {
     this.loading = true;
     this.reconocerService;
@@ -64,10 +61,10 @@ export class CamaraComponent implements OnInit {
       data => {
         this.serverData = data as JSON
         console.log(this.serverData);
-        alert("Envio de imagen OK");
+        this.commonService.alertar(this.MSJ_OK);
       },
       error => {
-        alert("Error de Conexion");
+        this.commonService.alertar(this.MSJ_ERROR);
         this.error = error;
         this.loading = false;
       });
