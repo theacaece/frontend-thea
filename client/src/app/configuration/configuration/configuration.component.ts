@@ -13,7 +13,7 @@ export interface Tile {
 }
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-registro-ingresos',
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.css'],
 })

@@ -21,15 +21,10 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-
 import { UserListComponent } from './user/user-list/user-list.component';
-
 import { PersonListComponent } from './person/person-list/person-list.component';
-
 import { CamaraComponent } from './register/camara/camara.component';
-
 import { IngresoListComponent } from './configuration/ingreso-list/ingreso-list.component';
-
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
 import { ModalComponent } from './modal/modal.component';
 
@@ -41,7 +36,7 @@ const routes: Route[] = [
   { path: 'person-list', component: PersonListComponent},
   { path: 'camara', component: CamaraComponent},
   { path: 'ingreso-list', component: IngresoListComponent},
-  { path: 'configuration', component: ConfigurationComponent},
+  { path: 'registro-ingresos', component: ConfigurationComponent},
   { path: 'modal', component: ModalComponent},
   { path: '**', redirectTo: '' } // otherwise redirect to home
 ];

@@ -21,7 +21,7 @@ const routes: Routes = [
 	{ path: 'person-list', component: PersonListComponent},
 	{ path: 'camara', component: CamaraComponent},
 	{ path: 'ingreso-list', component: IngresoListComponent},
-	{ path: 'configuration', component: ConfigurationComponent},
+	{ path: 'registro-ingresos', component: ConfigurationComponent},
 	{ path: 'modal', component: ModalComponent},
     { path: '**', redirectTo: '' }
 ];
