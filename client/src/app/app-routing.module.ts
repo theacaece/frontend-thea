@@ -17,7 +17,8 @@ import { ModalComponent } from './modal/modal.component';
 import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
-	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
+	{ path: '', component: LoginComponent, canActivate: [AuthGuard] },
+	{ path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
 	{ path: 'person-list', component: PersonListComponent, canActivate: [AuthGuard] },

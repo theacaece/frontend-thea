@@ -62,6 +62,7 @@ export class CamaraComponent implements OnInit {
         this.serverData = data as JSON
         console.log(this.serverData);
         this.commonService.alertar(this.MSJ_OK);
+        this.loading = false;
       },
       error => {
         this.commonService.alertar(this.MSJ_ERROR);
