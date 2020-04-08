@@ -13,8 +13,8 @@ import { CommonService } from '../../_services/common.service';
 
 export class CamaraComponent implements OnInit {
 
-  MSJ_OK = "Ingreso habilitado.";
-  MSJ_ERROR = "Ha ocurrido un error.";
+  MSJ_OK = "Imagen enviada para reconocimiento";
+  MSJ_ERROR = "Ha ocurrido un error";
 
   @ViewChild("video", {static: false})
   public video: ElementRef;
