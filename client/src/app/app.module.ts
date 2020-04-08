@@ -27,6 +27,7 @@ import { CamaraComponent } from './register/camara/camara.component';
 import { IngresoListComponent } from './configuration/ingreso-list/ingreso-list.component';
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
 import { ModalComponent } from './modal/modal.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Route[] = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -52,7 +53,8 @@ const routes: Route[] = [
     IngresoListComponent,
     CamaraComponent,
     ConfigurationComponent,
-    ModalComponent
+    ModalComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

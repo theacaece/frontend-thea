@@ -12,18 +12,20 @@ import { IngresoListComponent } from './configuration/ingreso-list/ingreso-list.
 import { CamaraComponent } from './register/camara/camara.component';
 
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
+
 import { ModalComponent } from './modal/modal.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
 	{ path: 'login', component: LoginComponent },
-	{ path: 'user-list', component: UserListComponent},
-	{ path: 'person-list', component: PersonListComponent},
-	{ path: 'camara', component: CamaraComponent},
-	{ path: 'ingreso-list', component: IngresoListComponent},
-	{ path: 'registro-ingresos', component: ConfigurationComponent},
-	{ path: 'modal', component: ModalComponent},
-    { path: '**', redirectTo: '' }
+	{ path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
+	{ path: 'person-list', component: PersonListComponent, canActivate: [AuthGuard] },
+	{ path: 'camara', component: CamaraComponent, canActivate: [AuthGuard] },
+	{ path: 'ingreso-list', component: IngresoListComponent, canActivate: [AuthGuard] },
+	{ path: 'registro-ingresos', component: ConfigurationComponent, canActivate: [AuthGuard] },
+	{ path: 'modal', component: ModalComponent, canActivate: [AuthGuard] },
+    { path: '**', component: ErrorComponent }
 ];
 
 @NgModule({
