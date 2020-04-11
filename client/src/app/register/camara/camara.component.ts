@@ -4,6 +4,9 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { IngresoService } from '../../_services/ingreso.service';
 import { ReconocerService } from '../../_services/reconocer.service';
 import { CommonService } from '../../_services/common.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { IngresoListComponent } from '../../configuration/ingreso-list/ingreso-list.component';
 
 @Component({
   selector: 'app-camara',
@@ -15,6 +18,8 @@ export class CamaraComponent implements OnInit {
 
   MSJ_OK = "Imagen enviada para reconocimiento";
   MSJ_ERROR = "Ha ocurrido un error";
+
+  @ViewChild(IngresoListComponent) ingresoListComponent: IngresoListComponent;
 
   @ViewChild("video", {static: false})
   public video: ElementRef;
@@ -32,7 +37,9 @@ export class CamaraComponent implements OnInit {
 
   serverData: JSON;
 
-  constructor(private registroService: IngresoService, 
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private registroService: IngresoService, 
               private reconocerService: ReconocerService,
               private commonService: CommonService) {}
 
@@ -61,14 +68,19 @@ export class CamaraComponent implements OnInit {
       data => {
         this.serverData = data as JSON
         console.log(this.serverData);
-        this.commonService.alertar(this.MSJ_OK);
         this.loading = false;
+        this.commonService.alertar(this.MSJ_OK);
+        this.ingresoListComponent.ngOnInit();
       },
       error => {
         this.commonService.alertar(this.MSJ_ERROR);
         this.error = error;
         this.loading = false;
       });
+  }
+
+  onReload() {
+    this.router.navigate(['/camara'],{relativeTo:this.route})
   }
 
 }

@@ -61,7 +61,7 @@ const routes: Route[] = [
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),    
     MatButtonModule,
     MatCardModule,
     MatInputModule,
