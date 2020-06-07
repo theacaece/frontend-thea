@@ -17,17 +17,7 @@ export interface Tile {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  constructor() {}
 
-  loading = false;
-  users: any;
-
-  constructor(private userService: UserService) { }
-
-  ngOnInit() {
-      this.loading = true;
-      this.userService.getAll().pipe(first()).subscribe(users => {
-          this.loading = false;
-          this.users = users;
-      });
-  }
+  ngOnInit() {}
 }
