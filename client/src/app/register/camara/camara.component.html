@@ -1,0 +1,18 @@
+
+<app-header></app-header>
+<div id="app" class="row">
+	<div id="app" class="col-md-3 col-md-offset-1">
+		<button mat-raised-button color="primary" disabled="{{loading}}" 
+				(click)="reconocerPersona()">Reconocer Persona</button>
+		<div><video #video id="video" width="350" height="380" autoplay></video></div>
+		<canvas #canvas id="canvas" width="350" height="380"></canvas>
+		<ul>
+			<li *ngFor="let c of captures">
+				<img src="{{ c }}" height="50" />
+			</li>
+		</ul>
+	</div>
+	<div id="app" class="col-md-8 col-md-offset-0">
+	<app-ingreso-list></app-ingreso-list>
+	</div>
+</div>

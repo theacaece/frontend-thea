@@ -12,13 +12,17 @@ import { AuthenticationService } from '../_services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   loginForm: FormGroup;
+  
   username = new FormControl('', [
     Validators.required
   ]);
+  
   password = new FormControl('', [
     Validators.required
   ]);
+  
   loading = false;
   submitted = false;
   returnUrl: string;
@@ -30,9 +34,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-    // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate(['home']);
     }
   }
 

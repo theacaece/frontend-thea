@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<br><br>
 <section class="container">
     <div class="row">
         <div class="col-md-6 mt-5">
@@ -9,7 +9,7 @@
                         <mat-card-title> Administración de usuarios</mat-card-title>
                     </mat-card-header>
                     <span class="header-icon-card">
-                        <a href="#">
+                        <a [routerLink]="['/user-list']">
                             <mat-icon class="icon-card">account_box</mat-icon>
                         </a>
                     </span>
@@ -23,7 +23,7 @@
                         <mat-card-title>Administración de personas</mat-card-title>
                     </mat-card-header>
                     <span class="header-icon-card">
-                        <a href="#">
+                        <a [routerLink]="['/person-list']">
                             <mat-icon class="icon-card">accessibility</mat-icon>
                         </a>
                     </span>
@@ -31,6 +31,7 @@
             </mat-card>
         </div>
     </div>
+    <br><br>
     <div class="row">
         <div class="col-md-6 mt-5">
             <mat-card>
@@ -39,7 +40,7 @@
                         <mat-card-title>Captura de imagenes</mat-card-title>
                     </mat-card-header>
                     <span class="header-icon-card">
-                        <a href="#">
+                        <a [routerLink]="['/camara']">
                             <mat-icon class="icon-card">videocam</mat-icon>
                         </a>
                     </span>
@@ -50,11 +51,11 @@
             <mat-card>
                 <mat-card-content>
                     <mat-card-header>
-                        <mat-card-title>Configuración</mat-card-title>
+                        <mat-card-title>Registro de Ingresos</mat-card-title>
                     </mat-card-header>
                     <span class="header-icon-card">
-                        <a href="#">
-                            <mat-icon class="icon-card">build</mat-icon>
+                        <a [routerLink]="['/registro-ingresos']">
+                            <mat-icon class="icon-card">how_to_reg</mat-icon>
                         </a>
                     </span>
                 </mat-card-content>

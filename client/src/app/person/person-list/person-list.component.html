@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="center">
+	<mat-progress-spinner mode="indeterminate" diameter="30" *ngIf="loading"></mat-progress-spinner>
+</div>	
+<div class="row" *ngIf="!loading">
+	<p class="alerta">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<mat-icon class="icon-card">person_add</mat-icon>&nbsp;
+		<span class="aligned-with-icon">Para habilitar el ingreso de una persona a la universidad, la misma debe pasar previamente por Secretaría Acádemica.</span>
+	</p>
+	<div class="col-md-10 col-md-offset-1">
+	<mat-card-header>
+  		<mat-card-title>Lista de personas<br/></mat-card-title>
+  	</mat-card-header>
+    <mat-card>
+		<mat-card-content >
+			<form #personForm="ngForm" (ngSubmit)="remove(personForm.value)">
+        		<table class="table table-hover">
+					<thead>
+            			<tr>
+							<th>Apellido</th>
+              				<th>Nombre</th>
+              				<th>DNI</th>
+							<th>Matr&iacute;cula</th>
+							<th colspan="2">Estado</th>
+            			</tr>
+          			</thead>
+          			<tbody>
+            			<tr mdbTableCol *ngFor="let person of persons | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+							<td>{{person.apellido}}</td>  
+							<td>{{person.nombre}}</td>
+              				<td>{{person.dni}}</td>
+							<td>{{person.matricula}}</td>
+							<td colspan="2">
+								<div *ngIf="person.habilitado">
+									<p class="habilitado">HABILITADO</p>
+								</div>
+								<div *ngIf="!person.habilitado">
+									<p class="deshabilitado">DESHABILITADO</p>
+								</div>
+							</td>
+							  
+            			</tr>
+          			</tbody>
+				</table>
+				<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" [maxSize]="4" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+				</ngb-pagination>
+			</form>
+     	</mat-card-content>
+   	</mat-card>
+	</div>
+</div>

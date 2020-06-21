@@ -9,22 +9,36 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     
-    constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute,
-        private router: Router) {
+    msj_error: string = "Error desconocido";
+
+    constructor(private authenticationService: AuthenticationService, 
+                private route: ActivatedRoute,
+                private router: Router) {
      }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
+            
+            if (err.statusText) {
+                this.msj_error = err.statusText;
+            }
+
+            if (err.error.message) {
+                this.msj_error = err.error.message; 
+            }  
+
+            if (err.status === 0) {
+                this.msj_error = "Error de conexión";
+            }
+
             if (err.status === 401) {
-                // auto logout if 401 response returned from api
                 if(location.pathname != "/login"){
                     this.authenticationService.logout();
                     location.reload(true);
                 }
             }
 
-            const error = err.error.message || err.statusText;
-            return throwError(error);
+            return throwError(this.msj_error);
         }))
     }
 }

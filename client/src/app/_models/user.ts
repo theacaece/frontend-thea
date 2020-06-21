@@ -4,4 +4,3 @@ export class User {
     userDetails: UserDetail;
     jwttoken?: string;
 }
-
