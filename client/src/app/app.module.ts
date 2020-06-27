@@ -90,7 +90,8 @@ const routes: Route[] = [
     NgbModule,
     NgbPaginationModule, 
     NgbAlertModule,
-    MatDialogModule
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

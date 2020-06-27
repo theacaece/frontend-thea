@@ -78,6 +78,8 @@
                   </mat-error>
                 </mat-form-field><br/>
 
+                <input type="checkbox" [(ngModel)]="admin"/> Admin<br/>
+
               	<mat-card-footer><br/>
                   <button id="submit" mat-raised-button color="primary" type="submit" 
                           [disabled]="!userForm.form.valid">Guardar</button>

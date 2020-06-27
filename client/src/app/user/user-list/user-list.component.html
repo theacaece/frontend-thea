@@ -25,7 +25,8 @@
 						<th>Apellido</th>
               			<th>Nombre</th>
               			<th>Email</th>
-              			<th>Usuario</th>
+						<th>Usuario</th>
+						<th>Rol</th>
 						<th></th>
               			<th></th>
             		</tr>
@@ -36,6 +37,14 @@
 						<td>{{user.firstname}}</td>
 						<td>{{user.email}}</td>
 						<td>{{user.username}}</td>
+						<td>
+							<div *ngIf="user.admin">
+								<p>Admin</p>
+							</div>
+							<div *ngIf="!user.admin">
+								<p>Usuario</p>
+							</div>
+						</td>
 						<td>	
 							<a mat-button [routerLink]="['/user-edit', user.id]">
 								<img src="assets/img/iconos/editar.png" width="25" height="25">

@@ -42,6 +42,8 @@ export class UserAddComponent implements OnInit {
 
   user: any = {};
 
+  admin: boolean = true ;
+
   sub: Subscription;
 
   error: string = '';
@@ -61,7 +63,13 @@ export class UserAddComponent implements OnInit {
   
   save(form: NgForm) {
     if(confirm("¿Está seguro que desea guardar el usuario?")) {
-      this.userService.save(form).subscribe(result => {
+      if(this.admin){ 
+        this.user.admin = true;
+      }
+      else{
+        this.user.admin = false;
+      }}
+      this.userService.save(this.user).subscribe(result => {
         this.gotoList();
       },
       error => {
@@ -70,5 +78,4 @@ export class UserAddComponent implements OnInit {
       });
     }  
   }
-  
-}
+
