@@ -9,6 +9,11 @@
 		<span class="aligned-with-icon">Para registrarse como usuario de la aplicación, debe pasar por Secretaría Acádemica.</span>
 	</p>
 <div class="col-md-10 col-md-offset-1">
+	<button mat-raised-button color="primary" title ="Agregar Usuario" 
+			[routerLink]="['/user-add']">Agregar Usuario</button>
+				
+	<br/><br/>
+				
     <mat-card-header>
   		<mat-card-title><br/>Lista de usuarios<br/></mat-card-title>
   	</mat-card-header>
@@ -21,6 +26,8 @@
               			<th>Nombre</th>
               			<th>Email</th>
               			<th>Usuario</th>
+						<th></th>
+              			<th></th>
             		</tr>
           		</thead>
           		<tbody>
@@ -29,6 +36,16 @@
 						<td>{{user.firstname}}</td>
 						<td>{{user.email}}</td>
 						<td>{{user.username}}</td>
+						<td>	
+							<a mat-button [routerLink]="['/user-edit', user.id]">
+								<img src="assets/img/iconos/editar.png" width="25" height="25">
+							</a>
+						</td>
+						<td>
+							<a mat-button title="Eliminar persona" (click)="remove(user)">
+								<img src="assets/img/iconos/eliminar.png" width="25" height="25">
+							</a>
+						</td>
             		</tr>
           		</tbody>
 			</table>

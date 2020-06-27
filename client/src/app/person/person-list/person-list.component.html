@@ -14,6 +14,11 @@
   	</mat-card-header>
     <mat-card>
 		<mat-card-content >
+			<button mat-raised-button color="primary" title ="Agregar Persona" 
+					[routerLink]="['/user-add']">Agregar Persona</button>
+				
+			<br/><br/>
+			
 			<form #personForm="ngForm" (ngSubmit)="remove(personForm.value)">
         		<table class="table table-hover">
 					<thead>
@@ -23,6 +28,8 @@
               				<th>DNI</th>
 							<th>Matr&iacute;cula</th>
 							<th colspan="2">Estado</th>
+							<th></th>
+							<th></th>
             			</tr>
           			</thead>
           			<tbody>
@@ -39,7 +46,16 @@
 									<p class="deshabilitado">DESHABILITADO</p>
 								</div>
 							</td>
-							  
+							<td>	
+                				<a mat-button [routerLink]="['/person-edit', person.id]">
+                  					<img src="assets/img/iconos/editar.png" width="25" height="25">
+								</a>
+							</td>
+							<td>
+                				<a mat-button title="Eliminar persona" (click)="remove(person)">
+                					<img src="assets/img/iconos/eliminar.png" width="25" height="25">
+                				</a>
+							</td>
             			</tr>
           			</tbody>
 				</table>
