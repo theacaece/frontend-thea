@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
+
 import { NgForm } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { PersonService } from '../../_services/person.service';
+import { CommonService } from '../../_services/common.service';
 
 @Component({
   selector: 'app-person-edit',
@@ -15,7 +18,7 @@ import { PersonService } from '../../_services/person.service';
 export class PersonEditComponent implements OnInit {
 
   personForm: FormGroup;
-  
+
   nombre = new FormControl('', [
     Validators.required
   ]);
@@ -40,9 +43,12 @@ export class PersonEditComponent implements OnInit {
 
   error: string = '';
 
+  MSJ_ERROR = "Ya existe una Persona con este DNI y/o Matricula"
+
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private personService: PersonService) {
+              private personService: PersonService,
+              private commonService: CommonService) {
   }
 
   ngOnInit() {
@@ -69,18 +75,19 @@ export class PersonEditComponent implements OnInit {
       console.error(error);
     });
   }
-
+  
   gotoList() {
     this.router.navigate(['/person-list']);
   }
 
-  update(form: NgForm) {
+  update(Form: NgForm) {
+
     if(confirm("¿Está seguro que desea editar el usuario?")) {
-      this.personService.update(this.id, form).subscribe(result => {
+      this.personService.update(this.id, Form).subscribe(result => {
         this.gotoList();
       },
       error => {
-        this.error = error;
+        this.commonService.alertar(this.MSJ_ERROR);
         console.error(error);
       });
     }  

@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { PersonService } from '../../_services/person.service';
+import { CommonService } from '../../_services/common.service';
 
 @Component({
   selector: 'app-person-add',
@@ -38,9 +39,12 @@ export class PersonAddComponent implements OnInit {
 
   error: string = '';
 
+  MSJ_ERROR = "Ya existe una Persona con este DNI y/o Matricula";
+  
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private personService: PersonService) {
+              private personService: PersonService,
+              private commonService: CommonService) {
   }
 
   ngOnInit() {
@@ -57,7 +61,7 @@ export class PersonAddComponent implements OnInit {
         this.gotoList();
       }, 
       error => {
-        this.error = error;
+        this.commonService.alertar(this.MSJ_ERROR);
         console.error(error);
       });
     }  
