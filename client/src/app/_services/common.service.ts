@@ -25,4 +25,15 @@ export class CommonService {
         const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
     }
 
+    //TO DO customizar confirmar
+    public confirmar(texto: String) {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.id = "modal-component";
+        dialogConfig.height = "170px";
+        dialogConfig.width = "380px";
+        dialogConfig.data = { mensaje: texto};
+        const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
+    }
+
 }

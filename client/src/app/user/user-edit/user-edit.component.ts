@@ -48,6 +48,8 @@ export class UserEditComponent implements OnInit {
 
   sub: Subscription;
 
+  usuarioLogueado = true;
+
   error: string = '';
 
   constructor(private route: ActivatedRoute,
@@ -69,6 +71,9 @@ export class UserEditComponent implements OnInit {
             this.user.email = usuario.email;
             this.user.username = usuario.username;
             this.user.password = usuario.password;
+            if (this.user.username != this.currentUser.userDetails.username) {
+              this.usuarioLogueado = false;
+            }
           }
         }, 
         error => {

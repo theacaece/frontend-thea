@@ -36,13 +36,13 @@ export class UserAddComponent implements OnInit {
     Validators.required
   ]);
 
-  confirmapassword = new FormControl('', [
+  confirmpassword = new FormControl('', [
     Validators.required
   ]);
 
   user: any = {};
-
-  admin: boolean = true ;
+  
+  admin: boolean;
 
   sub: Subscription;
 
@@ -61,14 +61,8 @@ export class UserAddComponent implements OnInit {
     this.router.navigate(['/user-list']);
   }
   
-  save(form: NgForm) {
+  save() {
     if(confirm("¿Está seguro que desea guardar el usuario?")) {
-      if(this.admin){ 
-        this.user.admin = true;
-      }
-      else{
-        this.user.admin = false;
-      }}
       this.userService.save(this.user).subscribe(result => {
         this.gotoList();
       },
@@ -78,4 +72,4 @@ export class UserAddComponent implements OnInit {
       });
     }  
   }
-
+}
