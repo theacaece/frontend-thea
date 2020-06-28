@@ -22,8 +22,7 @@ import { User } from '../../_models/user';
 })
 export class UserListComponent implements OnInit  {
 
-  MSJ_ERROR = "Ha ocurrido un error.";
-  MSJ_USUARIO_DELETE: "No es posible eliminar el usuario logueado";
+  MSJ_ERROR = 'Ha ocurrido un error.';
 
   loading: boolean = true;
 
@@ -61,9 +60,10 @@ export class UserListComponent implements OnInit  {
   }
 
   confirmDelete(user: any){
+    if (user.username != this.currentUser.userDetails.username) {
     this.dialog.openDialog({
         title: 'Confirmar operación',
-        subject: `¿Está seguro que desea eliminar el usuario?`
+        subject: '¿Está seguro que desea eliminar el usuario?'
       }).subscribe(resultOk =>
         {
         if (resultOk)
@@ -74,21 +74,17 @@ export class UserListComponent implements OnInit  {
         this.error = error;
         console.error(error);
       });
+    } else {
+      this.commonService.alertar('No es posible eliminar el usuario logueado');
+    };
     }
 
   remove(user: any): void {
-    if (user.username != this.currentUser.userDetails.username) {
-      {
         this.userService.remove(user.id).subscribe( data => {
         this.users = this.users.filter(u => u !== user);
-        }, 
-        error => {
+        }, error => {
           this.commonService.alertar(this.MSJ_ERROR);
           console.error(error);
         });
-      }
-    } else {
-      this.commonService.alertar(this.MSJ_USUARIO_DELETE);
-    };
   }
 }

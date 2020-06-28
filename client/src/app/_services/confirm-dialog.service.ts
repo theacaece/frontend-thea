@@ -17,7 +17,7 @@ interface ConfirmDialogData {
 @Injectable()
 export class ConfirmDialogService {
     
-    defaultWidth: string = '250px';
+    defaultWidth: string = '300px';
 
     constructor( private matDialog:MatDialog ) {
 
