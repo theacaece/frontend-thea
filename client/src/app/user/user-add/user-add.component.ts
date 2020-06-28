@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { UserService } from '../../_services/user.service';
+import { ConfirmDialogService } from 'src/app/_services/confirm-dialog.service';
 
 @Component({
   selector: 'app-user-add',
@@ -50,7 +51,8 @@ export class UserAddComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              private dialog: ConfirmDialogService) {
   }
 
   ngOnInit() {
@@ -60,16 +62,30 @@ export class UserAddComponent implements OnInit {
   gotoList() {
     this.router.navigate(['/user-list']);
   }
+
+  confirmSave(){
+  this.dialog.openDialog({
+      title: 'Confirmar operación',
+      subject: `¿Está seguro que desea guardar el usuario?`
+    }).subscribe(resultOk =>
+      {
+      if (resultOk)
+      {
+          this.save();
+      }
+      }, error => {
+      this.error = error;
+      console.error(error);
+    });
+  }
   
   save() {
-    if(confirm("¿Está seguro que desea guardar el usuario?")) {
       this.userService.save(this.user).subscribe(result => {
         this.gotoList();
-      },
-      error => {
+      }, error => {
         this.error = error;
         console.error(error);
       });
     }  
   }
-}
+

@@ -6,11 +6,13 @@ import { MatDialogModule} from '@angular/material/dialog';
 import {MAT_DIALOG_DATA, MatDialogConfig, MatDialog, MatDialogRef} from "@angular/material";
 
 import { ModalComponent } from '../modal/modal.component';
+import { Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 
 export class CommonService {
 
+    defaultWidth: string = '250px';
     constructor(public matDialog: MatDialog) {
     
     }
@@ -24,16 +26,4 @@ export class CommonService {
         dialogConfig.data = { mensaje: texto};
         const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
     }
-
-    //TO DO customizar confirmar
-    public confirmar(texto: String) {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.disableClose = true;
-        dialogConfig.id = "modal-component";
-        dialogConfig.height = "170px";
-        dialogConfig.width = "380px";
-        dialogConfig.data = { mensaje: texto};
-        const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
-    }
-
 }

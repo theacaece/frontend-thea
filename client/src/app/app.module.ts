@@ -35,6 +35,8 @@ import { IngresoListComponent } from './configuration/ingreso-list/ingreso-list.
 import { ConfigurationComponent } from './configuration/configuration/configuration.component';
 import { ModalComponent } from './modal/modal.component';
 import { ErrorComponent } from './error/error.component';
+import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
+import { ConfirmDialogService } from 'src/app/_services/confirm-dialog.service';
 
 const routes: Route[] = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -69,7 +71,8 @@ const routes: Route[] = [
     CamaraComponent,
     ConfigurationComponent,
     ModalComponent,
-    ErrorComponent
+    ErrorComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +99,7 @@ const routes: Route[] = [
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    ConfirmDialogService,
 ],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]

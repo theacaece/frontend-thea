@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../_models/user';
 import { first } from 'rxjs/operators';
+import { AuthenticationService } from '../_services/authentication.service';
+
 
 export interface Tile {
   color: string;
@@ -20,8 +22,12 @@ export class HomeComponent implements OnInit {
 
   loading = false;
   users: any;
+  currentUser: User;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private authenticationService: AuthenticationService,) { 
+      this.authenticationService.currentUser.subscribe((x: User) => this.currentUser = x);
+  }
 
   ngOnInit() {
       this.loading = true;

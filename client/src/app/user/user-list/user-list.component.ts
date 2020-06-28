@@ -11,6 +11,7 @@ import {MatPaginator} from '@angular/material/paginator';
 
 import { UserService } from '../../_services/user.service';
 import { CommonService } from '../../_services/common.service';
+import { ConfirmDialogService } from 'src/app/_services/confirm-dialog.service';
 
 import { User } from '../../_models/user';
 
@@ -38,7 +39,8 @@ export class UserListComponent implements OnInit  {
     private router: Router,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private commonService: CommonService) {
+    private commonService: CommonService,
+    private dialog: ConfirmDialogService) {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 
@@ -58,9 +60,25 @@ export class UserListComponent implements OnInit  {
     this.router.navigate(['/user-list']);
   }
 
+  confirmDelete(user: any){
+    this.dialog.openDialog({
+        title: 'Confirmar operación',
+        subject: `¿Está seguro que desea eliminar el usuario?`
+      }).subscribe(resultOk =>
+        {
+        if (resultOk)
+        {
+            this.remove(user);
+        }
+        }, error => {
+        this.error = error;
+        console.error(error);
+      });
+    }
+
   remove(user: any): void {
     if (user.username != this.currentUser.userDetails.username) {
-      if(confirm("¿Está seguro que desea eliminar el usuario?")) {
+      {
         this.userService.remove(user.id).subscribe( data => {
         this.users = this.users.filter(u => u !== user);
         }, 

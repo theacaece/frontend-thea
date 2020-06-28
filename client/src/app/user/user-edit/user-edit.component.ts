@@ -8,6 +8,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { AuthenticationService } from '../../_services/authentication.service';
 import { UserService } from '../../_services/user.service';
 import { User } from '../../_models/user';
+import { ConfirmDialogService } from 'src/app/_services/confirm-dialog.service';
+import { CommonService } from 'src/app/_services/common.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -55,7 +57,9 @@ export class UserEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private authenticationService: AuthenticationService,
-              private userService: UserService) {
+              private userService: UserService,
+              private dialog: ConfirmDialogService,
+              private commonservice: CommonService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
@@ -92,9 +96,26 @@ export class UserEditComponent implements OnInit {
     this.router.navigate(['/user-list']);
   }
 
-  update(form: NgForm) {
+  confirmEdit(){
+    this.dialog.openDialog({
+        title: 'Confirmar operación',
+        subject: `¿Está seguro que desea editar el usuario?`
+      }).subscribe(resultOk =>
+        {
+        if (resultOk)
+        {
+            this.update();
+        }
+        }, error => {
+        this.error = error;
+        console.error(error);
+      });
+    }
+    
+
+  update() {
     if (this.user.username != this.currentUser.userDetails.username) {
-      if(confirm("¿Está seguro que desea editar el usuario?")) {
+       {
         this.userService.update(this.user).subscribe(result => {
           this.gotoList();
         },
@@ -104,7 +125,7 @@ export class UserEditComponent implements OnInit {
         });  
       }    
     } else {
-      alert("No es posible editar el usuario logueado");
+      this.commonservice.alertar("No es posible editar el usuario logueado");
     };
   }
 }
