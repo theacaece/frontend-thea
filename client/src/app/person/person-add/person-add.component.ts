@@ -6,7 +6,11 @@ import { NgForm } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { PersonService } from '../../_services/person.service';
+
+import { ConfirmDialogService } from 'src/app/_services/confirm-dialog.service';
 import { CommonService } from '../../_services/common.service';
+
+
 
 @Component({
   selector: 'app-person-add',
@@ -38,12 +42,13 @@ export class PersonAddComponent implements OnInit {
   sub: Subscription;
 
   error: string = '';
-
   MSJ_ERROR = "Ya existe una Persona con este DNI y/o Matricula";
+
   
   constructor(private route: ActivatedRoute,
               private router: Router,
               private personService: PersonService,
+              private dialog: ConfirmDialogService,
               private commonService: CommonService) {
   }
 
@@ -55,16 +60,30 @@ export class PersonAddComponent implements OnInit {
     this.router.navigate(['/person-list']);
   }
 
-  save(form: NgForm) {
-    if(confirm("¿Está seguro que desea guardar el usuario?")) {
-      this.personService.save(form).subscribe(result => {
-        this.gotoList();
-      }, 
-      error => {
-        this.commonService.alertar(this.MSJ_ERROR);
+  confirmSave(){
+    this.dialog.openDialog({
+        title: 'Confirmar operación',
+        subject: `¿Está seguro que desea guardar la persona?`
+      }).subscribe(resultOk =>
+        {
+        if (resultOk)
+        {
+            this.save();
+        }
+        }, error => {
+        this.error = error;
         console.error(error);
       });
-    }  
-  }
+    }
+
+  save() {
+    this.personService.save(this.person).subscribe(result => {
+      this.gotoList();
+    }, error => {
+      this.error = error;
+      this.commonService.alertar(this.MSJ_ERROR);
+      console.error(error);
+    });
+  }  
   
 }

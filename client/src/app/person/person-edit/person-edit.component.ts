@@ -9,6 +9,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 
 import { PersonService } from '../../_services/person.service';
 import { CommonService } from '../../_services/common.service';
+import { ConfirmDialogService } from 'src/app/_services/confirm-dialog.service';
+
 
 @Component({
   selector: 'app-person-edit',
@@ -48,6 +50,7 @@ export class PersonEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private personService: PersonService,
+              private dialog: ConfirmDialogService,
               private commonService: CommonService) {
   }
 
@@ -80,17 +83,30 @@ export class PersonEditComponent implements OnInit {
     this.router.navigate(['/person-list']);
   }
 
-  update(Form: NgForm) {
-
-    if(confirm("¿Está seguro que desea editar el usuario?")) {
-      this.personService.update(this.id, Form).subscribe(result => {
-        this.gotoList();
-      },
-      error => {
-        this.commonService.alertar(this.MSJ_ERROR);
+  confirmUpdate(){
+    this.dialog.openDialog({
+        title: 'Confirmar operación',
+        subject: `¿Está seguro que desea guardar la persona?`
+      }).subscribe(resultOk =>
+        {
+        if (resultOk)
+        {
+            this.update();
+        }
+        }, error => {
+        this.error = error;
         console.error(error);
       });
-    }  
-  }
+    }
+
+  update() {
+    this.personService.update(this.id, this.persona).subscribe(result => {
+      this.gotoList();
+    }, error => {
+      this.error = error;
+      this.commonService.alertar(this.MSJ_ERROR);
+      console.error(error);
+    });
+  }  
   
 }

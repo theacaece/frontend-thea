@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { PersonService } from '../../_services/person.service';
 import { CommonService } from '../../_services/common.service';
+import { ConfirmDialogService } from 'src/app/_services/confirm-dialog.service';
+
 
 import { Person } from '../../_models/person';
 
@@ -31,7 +33,8 @@ export class PersonListComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private personService: PersonService,
-    private commonService: CommonService) {
+    private commonService: CommonService,
+    private dialog: ConfirmDialogService) {
   }
 
   ngOnInit() {
@@ -50,16 +53,29 @@ export class PersonListComponent implements OnInit {
     this.router.navigate(['/person-list']);
   }
  
-  remove(person: any): void {
-    if(confirm("¿Está seguro que desea eliminar a la persona?")) {
-      this.personService.remove(person.id).subscribe( data => {
-        this.persons = this.persons.filter(u => u !== person);
-      },
-      error => {
-        this.commonService.alertar(this.MSJ_ERROR);
+  confirmDelete(person: any){
+    this.dialog.openDialog({
+        title: 'Confirmar operación',
+        subject: '¿Está seguro que desea eliminar el usuario?'
+      }).subscribe(resultOk =>
+        {
+        if (resultOk)
+        {
+            this.remove(person);
+        }
+        }, error => {
+        this.error = error;
         console.error(error);
       });
     }
-  };
+
+  remove(person: any): void {
+        this.personService.remove(person.id).subscribe( data => {
+        this.persons = this.persons.filter(u => u !== person);
+        }, error => {
+          this.commonService.alertar(this.MSJ_ERROR);
+          console.error(error);
+        });
+  }
 
 }
