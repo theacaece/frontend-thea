@@ -11,6 +11,9 @@ import { PersonService } from '../../_services/person.service';
 import { CommonService } from '../../_services/common.service';
 import { ConfirmDialogService } from 'src/app/_services/confirm-dialog.service';
 
+import { AuthenticationService } from '../../_services/authentication.service';
+import { User } from '../../_models/user';
+
 
 @Component({
   selector: 'app-person-edit',
@@ -41,6 +44,8 @@ export class PersonEditComponent implements OnInit {
 
   persona: any = {};
 
+  currentUser: User;
+
   sub: Subscription;
 
   error: string = '';
@@ -50,8 +55,11 @@ export class PersonEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private personService: PersonService,
+              private authenticationService: AuthenticationService,
               private dialog: ConfirmDialogService,
               private commonService: CommonService) {
+            this.authenticationService.currentUser.subscribe(x => this.currentUser = x)
+
   }
 
   ngOnInit() {
@@ -100,6 +108,7 @@ export class PersonEditComponent implements OnInit {
     }
 
   update() {
+    if (this.currentUser.admin) {
     this.personService.update(this.id, this.persona).subscribe(result => {
       this.gotoList();
     }, error => {
@@ -107,6 +116,9 @@ export class PersonEditComponent implements OnInit {
       this.commonService.alertar(this.MSJ_ERROR);
       console.error(error);
     });
+    } else {
+      this.commonService.alertar("El usuario logueado no tiene suficientes permisos como para completar la operacion");
+    };
   }  
   
 }
