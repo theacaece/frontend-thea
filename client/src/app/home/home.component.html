@@ -1,6 +1,7 @@
 <app-header></app-header>
 <br><br>
 <section class="container">
+    <div *ngIf="!loading && admin">
     <div class="row">
         <div class="col-md-6 mt-5">
             <mat-card>
@@ -30,6 +31,7 @@
                 </mat-card-content>
             </mat-card>
         </div>
+    </div>
     </div>
     <br><br>
     <div class="row">

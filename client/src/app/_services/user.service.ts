@@ -24,6 +24,10 @@ export class UserService {
     return this.http.get<any>(this.USER_API + '/edit/' + id);
   }
 
+  isAdmin(username: any): Observable<any> {
+    return this.http.get<any>(this.USER_API + '/role/' + username);
+  }
+
   save(user: any): Observable<any> {
     let result: Observable<Object>;
     if (user['href']) {

@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   loading = false;
   users: any;
   currentUser: User;
+  admin:boolean = false;
 
   constructor(private userService: UserService,
               private authenticationService: AuthenticationService,) { 
@@ -31,9 +32,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
       this.loading = true;
-      this.userService.getAll().pipe(first()).subscribe(users => {
+      this.userService.isAdmin(this.currentUser.userDetails.username).subscribe(isAdmin => {
           this.loading = false;
-          this.users = users;
+          this.admin = isAdmin;
       });
   }
 }
