@@ -4,11 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { User } from '../../_models/user';
-
-
-import { AuthenticationService } from '../../_services/authentication.service';
-
 import { PersonService } from '../../_services/person.service';
 import { CommonService } from '../../_services/common.service';
 import { ConfirmDialogService } from 'src/app/_services/confirm-dialog.service';
@@ -31,8 +26,6 @@ export class PersonListComponent implements OnInit {
   persons: Array<any>;
   error: string = '';
 
-  currentUser: User;
-
   page: number = 1;
   pageSize: number = 15;
   collectionSize: number = 1;
@@ -40,10 +33,8 @@ export class PersonListComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private personService: PersonService,
-    private authenticationService: AuthenticationService,
     private commonService: CommonService,
     private dialog: ConfirmDialogService) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x)
   }
 
   ngOnInit() {
@@ -80,16 +71,12 @@ export class PersonListComponent implements OnInit {
     }
 
   remove(person: any): void {
-    if (this.currentUser.admin) {
         this.personService.remove(person.id).subscribe( data => {
         this.persons = this.persons.filter(u => u !== person);
         }, error => {
           this.commonService.alertar(this.MSJ_ERROR);
           console.error(error);
         });
-    } else {
-      this.commonService.alertar("El usuario logueado no tiene suficientes permisos como para completar la operacion");
-    };
   }
 
 }
