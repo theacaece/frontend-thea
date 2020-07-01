@@ -48,6 +48,8 @@ export class UserEditComponent implements OnInit {
 
   user: any = {};
 
+  admin: boolean;
+
   sub: Subscription;
 
   usuarioLogueado = true;
@@ -75,6 +77,7 @@ export class UserEditComponent implements OnInit {
             this.user.email = usuario.email;
             this.user.username = usuario.username;
             this.user.password = usuario.password;
+            this.user.admin = usuario.admin;
             if (this.user.username != this.currentUser.userDetails.username) {
               this.usuarioLogueado = false;
             }
@@ -115,7 +118,6 @@ export class UserEditComponent implements OnInit {
 
   update() {
     if (this.user.username != this.currentUser.userDetails.username) {
-       {
         this.userService.update(this.user).subscribe(result => {
           this.gotoList();
         },
@@ -123,7 +125,6 @@ export class UserEditComponent implements OnInit {
           this.error = error;
           console.error(error);
         });  
-      }    
     } else {
       this.commonservice.alertar("No es posible editar el usuario logueado");
     };
