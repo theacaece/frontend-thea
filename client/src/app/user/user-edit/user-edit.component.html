@@ -37,7 +37,7 @@
                         required name="username" #username />
                 </mat-form-field><br/>
 
-                <mat-form-field>
+              <!--mat-form-field>
                   <input type="password" matInput placeholder="Contrase&ntilde;a"
                     [(ngModel)]="user.password" minlength="8" maxlength="24"
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,24}"
@@ -48,7 +48,7 @@
                   <input type="password" matInput placeholder="Confirmar Contrase&ntilde;a"
                          pattern="{{password.value}}" pattern="{{password.value}}"
                          required/>
-              </mat-form-field><br/>
+              </mat-form-field><br/-->
 
               <input type="checkbox" name=admin #admin [(ngModel)]="user.admin"/> Admin<br/>
 

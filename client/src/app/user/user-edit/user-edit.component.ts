@@ -76,7 +76,7 @@ export class UserEditComponent implements OnInit {
             this.user.lastname = usuario.lastname;
             this.user.email = usuario.email;
             this.user.username = usuario.username;
-            this.user.password = usuario.password;
+            //this.user.password = usuario.password;
             this.user.admin = usuario.admin;
             if (this.user.username != this.currentUser.userDetails.username) {
               this.usuarioLogueado = false;
