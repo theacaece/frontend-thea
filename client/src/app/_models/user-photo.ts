@@ -1,5 +1,5 @@
-import { UserPhotoPk } from './user-photo-pk';
-export class UserPhoto {
-    id: UserPhotoPk;
+
+export class Photo {
+    id: number;
     photo: any;
 }

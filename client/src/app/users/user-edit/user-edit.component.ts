@@ -6,7 +6,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserData } from 'src/app/_models/user-data';
 import { first } from 'rxjs/operators';
-import { UserPhoto } from 'src/app/_models/user-photo';
+import { Photo } from 'src/app/_models/user-photo';
 
 
 @Component({
@@ -152,7 +152,7 @@ export class UserEditComponent {
   private buildUser(): UserData {
     let user = new UserData();
     let roles = new Array<Role>();
-    let photos = new Array<UserPhoto>();
+    let photos = new Array<Photo>();
 
     user.id = this.userEditForm.controls['id'].value.value;
     user.firstName = this.userEditForm.controls['firstName'].value;
@@ -160,7 +160,8 @@ export class UserEditComponent {
     user.username = this.userEditForm.controls['username'].value;
     user.email = this.userEditForm.controls['email'].value;
     roles.push({ id: this.rolSelected.value, name: "" });
-    photos.push({ id: { userId: 1, photoId: null }, photo: this.convertDataURIToBinary(this.imgBase64) });
+    if(this.imgBase64 != undefined)
+      photos.push({ id: user.id, photo: this.convertDataURIToBinary(this.imgBase64) });
     user.roles = roles;
     user.photos = photos;
     return user;
