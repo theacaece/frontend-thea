@@ -6,7 +6,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserData } from 'src/app/_models/user-data';
 import { first } from 'rxjs/operators';
-import { UserPhoto } from 'src/app/_models/user-photo';
+import { Photo } from 'src/app/_models/user-photo';
 
 
 @Component({
@@ -64,7 +64,7 @@ export class UserEditComponent {
       this.userEditForm.controls['email'].setValue(this.userData.email);
       this.userEditForm.controls['username'].setValue(this.userData.username);
       this.rolSelected.setValue(this.userData.roles[0].id);
-      this.image.src = this.userData.photo == null ? "../../../assets/img/no-img-perfil.png" : (this.userData.photo.photo == null ? "../../../assets/img/no-img-perfil.png" : `data:image/jpeg;base64,${this.userData.photo.photo}`);
+      this.image.src = this.userData.photos == null ? "../../../assets/img/no-img-perfil.png" : (this.userData.photos == null ? "../../../assets/img/no-img-perfil.png" : `data:image/jpeg;base64,${this.userData.photos[0].photo}`);
     });
 
     this.userEditForm = new FormGroup({
@@ -169,7 +169,7 @@ export class UserEditComponent {
   private buildUser(): UserData {
     let user = new UserData();
     let roles = new Array<Role>();
-    let photos = new Array<UserPhoto>();
+    let photos = new Array<Photo>();
 
     user.id = this.userEditForm.controls['id'].value;
     user.firstName = this.userEditForm.controls['firstName'].value;
@@ -178,7 +178,7 @@ export class UserEditComponent {
     user.email = this.userEditForm.controls['email'].value;
     roles.push({ id: this.rolSelected.value, name: "" });
     user.roles = roles;
-    user.photo = { userId: user.id, photo: this.convertDataURIToBinary(this.canvasHidden.nativeElement.toDataURL()) };
+    user.photos.push({ id: user.id, photo: this.convertDataURIToBinary(this.canvasHidden.nativeElement.toDataURL()) });
     return user;
   }
 

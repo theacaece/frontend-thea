@@ -1,4 +1,5 @@
-export class UserPhoto {
-    userId: number;
+
+export class Photo {
+    id: number;
     photo: any;
 }

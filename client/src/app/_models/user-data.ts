@@ -1,6 +1,5 @@
 import { Role } from './role';
-import { UserPhoto } from './user-photo';
-
+import { Photo } from './user-photo';
 export class UserData {
     id: number;
     firstName: string;
@@ -9,5 +8,5 @@ export class UserData {
     email: string;
     password: string;
     roles: Array<Role>;
-    photo: UserPhoto;
+    photos: Array<Photo>;
 }
