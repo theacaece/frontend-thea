@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/_services/user.service';
 import { first } from 'rxjs/operators';
 import { Role } from 'src/app/_models/role';
-import { UserPhoto } from 'src/app/_models/user-photo';
+import { Photo } from 'src/app/_models/user-photo';
 
 @Component({
   selector: 'app-user-show',
@@ -20,7 +20,7 @@ export class UserShowComponent {
     private userService: UserService,
   ) {
     this.userService.get(id).pipe(first()).subscribe(response => {
-      this.data = response.result;
+      this.data = response;
     });
   }
 
@@ -41,7 +41,14 @@ export class UserShowComponent {
     return rolesView;
   }
 
-  showPhoto(photo: UserPhoto): string{
-    return photo == null ? "../../../assets/img/no-img-perfil.png" : (photo.photo == null ? "../../../assets/img/no-img-perfil.png" : `data:image/jpeg;base64,${photo.photo}`);
+  showPhoto(): string{
+    let NO_PERFIL_IMG = "../../../assets/img/no-img-perfil.png";
+    if (this.data != undefined && this.data.photos == null || this.data.photos == undefined)
+      return NO_PERFIL_IMG;
+    else
+      if (this.data.photos.length <= 0)
+        return NO_PERFIL_IMG;
+      else
+        return `data:image/jpeg;base64,${this.data.photos[0].photo}`;
   }
 }

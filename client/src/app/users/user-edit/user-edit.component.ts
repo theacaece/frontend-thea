@@ -33,6 +33,7 @@ export class UserEditComponent {
   successMessage: string;
   imgBase64: string;
   image = new Image();
+  idPhoto = null;
 
   videoWidth = 0;
   videoHeight = 0;
@@ -57,14 +58,14 @@ export class UserEditComponent {
     private renderer: Renderer2) {
 
     this.userService.get(id).pipe(first()).subscribe(result => {
-      this.userData= result.result;
+      this.userData = result;
       this.userEditForm.controls['id'].setValue(this.userData.id);
       this.userEditForm.controls['firstName'].setValue(this.userData.firstName);
       this.userEditForm.controls['lastName'].setValue(this.userData.lastName);
       this.userEditForm.controls['email'].setValue(this.userData.email);
       this.userEditForm.controls['username'].setValue(this.userData.username);
       this.rolSelected.setValue(this.userData.roles[0].id);
-      this.image.src = this.userData.photos == null ? "../../../assets/img/no-img-perfil.png" : (this.userData.photos == null ? "../../../assets/img/no-img-perfil.png" : `data:image/jpeg;base64,${this.userData.photos[0].photo}`);
+      this.image.src = this.getUserImage();
     });
 
     this.userEditForm = new FormGroup({
@@ -178,7 +179,8 @@ export class UserEditComponent {
     user.email = this.userEditForm.controls['email'].value;
     roles.push({ id: this.rolSelected.value, name: "" });
     user.roles = roles;
-    user.photos.push({ id: user.id, photo: this.convertDataURIToBinary(this.canvasHidden.nativeElement.toDataURL()) });
+    photos.push({ id: this.idPhoto, persons: null, users: null ,photo: this.convertDataURIToBinary(this.canvasHidden.nativeElement.toDataURL()) });
+    user.photos = photos;
     return user;
   }
 
@@ -195,6 +197,21 @@ export class UserEditComponent {
     }
     var array2 = Array.from(array)
     return array2;
+  }
+
+  private getUserImage(): string {
+    let NO_PERFIL_IMG = "../../../assets/img/no-img-perfil.png";
+    if (this.userData.photos == null)
+      return NO_PERFIL_IMG;
+    else
+      if (this.userData.photos.length <= 0)
+        return NO_PERFIL_IMG;
+      else{
+        this.idPhoto = this.userData.photos[0].id;
+        return `data:image/jpeg;base64,${this.userData.photos[0].photo}`;
+      }
+        
+
   }
   //#endregion
 }
