@@ -2,41 +2,26 @@
     <div class="row h-100 w-100 mx-auto mb-2">
         <div class="col-md-12 col-lg-6 text-center">
             <mat-card class="mat-elevation-z0">
-                <img mat-card-image src="../../../assets/img/no-img-perfil.png" alt="Foto de perfil"
+                <img mat-card-image [src]="showPhoto(this.data.photo)" alt="Foto de perfil"
                     class="show-user-img-perfil">
             </mat-card>
         </div>
         <div class="col-md-12 col-lg-6 text-center">
             <div><mat-icon>person_outline</mat-icon></div>  
             <div><b>Datos personales</b></div>
-            <div>Nombre: Juan Jose</div>
-            <div>Apellido: Perez</div>
+            <div>Nombre: {{this.data.firstName}}</div>
+            <div>Apellido: {{this.data.lastName}}</div>
             <mat-divider class="mt-2 mb-2"></mat-divider>
             <div><mat-icon>perm_contact_calendar</mat-icon></div>  
             <div><b>Datos de contacto</b></div>
-            <div>Email: jperez@gmail.com</div>
-            <div>Teléfono: +5493814577748</div>
+            <div>Email: {{this.data.email}}</div>
+            <mat-divider class="mt-2 mb-2"></mat-divider>
+            <div><mat-icon>build</mat-icon></div>  
+            <div><b>Datos del sistema</b></div>
+            <div>Usuario: {{this.data.username}}</div>
+            <div>Roles: {{showRoles(this.data.roles)}}</div>
         </div>
     </div>
-    <mat-divider></mat-divider>
-    <div class="row h-100 w-100 mx-auto mt-2">
-       <div class="col-md-12 col-lg-6 text-center">
-        <div><mat-icon>home</mat-icon></div>  
-        <div><b>Ubicación</b></div>
-        <div>Dirección: Av. San Martin 784 7mo D</div>
-        <div>Cuidad: C.A.B.A.</div>
-        <div>Provincia: Buenos Aires</div>
-        <div>CP: 1407</div>
-       </div>
-       <div class="col-md-12 col-lg-6 text-center">
-        <mat-divider class="d-block d-md-none mt-2 mb-2"></mat-divider>
-        <div><mat-icon>work_outline</mat-icon></div>  
-        <div><b>Más información</b></div>
-        <div>Puesto: Guardia</div>
-        <div>Supervisor: Jose Gonzalez</div>
-       </div>
-    </div>
-
 </div>
 <mat-dialog-actions align="end">
     <button mat-stroked-button (click)="onNoClick()">Aceptar</button>

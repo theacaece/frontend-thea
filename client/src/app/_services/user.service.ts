@@ -22,4 +22,18 @@ export class UserService {
         return userData;
       }));
   }
+
+  get(id: number){
+    return this.http.get<any>(`${environment.apiUrl}/users/edit/${id}`)
+      .pipe(map(result => {
+        return result;
+      }));
+  }
+
+  delete(id: number){
+    return this.http.delete<any>(`${environment.apiUrl}/users/delete/${id}`)
+      .pipe(map(result => {
+        return result;
+      }));
+  }
 }

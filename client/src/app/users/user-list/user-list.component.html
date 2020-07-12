@@ -45,7 +45,7 @@
           <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disabled> Editar </th>
             <td mat-cell *matCellDef="let row"> <button mat-icon-button color="primary" aria-label="Editar"
-                (click)="openDialogEditar(row.id, row.firstName, row.lastName, row.username, row.email, row.roles)">
+                (click)="openDialogEditar(row.id)">
                 <mat-icon>edit</mat-icon>
               </button> </td>
           </ng-container>
@@ -54,7 +54,7 @@
           <ng-container matColumnDef="show">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disabled> Ver </th>
             <td mat-cell *matCellDef="let row"> <button mat-icon-button color="accent" aria-label="Ver"
-                (click)="openDialogShow()">
+                (click)="openDialogShow(row.id)">
                 <mat-icon>remove_red_eye</mat-icon>
               </button> </td>
           </ng-container>
@@ -63,7 +63,7 @@
           <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disabled> Eliminar </th>
             <td mat-cell *matCellDef="let row"> <button mat-icon-button color="warn" aria-label="Ver"
-                (click)="openDialogDelete()">
+                (click)="openDialogDelete(row.id)">
                 <mat-icon>delete</mat-icon>
               </button> </td>
           </ng-container>

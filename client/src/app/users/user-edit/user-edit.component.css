@@ -1,21 +1,25 @@
 .user-edit-form {
-    width: 100%;
-  }
-  
-  .user-edit-full-width {
-    width: 100%;
-  }
+  width: 100%;
+}
 
-  .edit-user-img-perfil{
-      width: 180px;
-      height: 150px;
-  }
+.user-edit-full-width {
+  width: 100%;
+}
 
-  hr{
-    border-top: 1.5px solid var(--primary);
-  }
+.edit-user-img-perfil {
+  width: 180px;
+  height: 150px;
+}
 
-  .vid {
-    width: 180px;
-    height: 150px;
+hr {
+  border-top: 1.5px solid var(--primary);
+}
+
+.vid {
+  width: 180px;
+  height: 150px;
+}
+
+.display-video-stated{
+  display: none;
 }

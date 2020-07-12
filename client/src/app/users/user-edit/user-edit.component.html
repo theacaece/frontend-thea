@@ -1,26 +1,28 @@
 <div mat-dialog-content>
+    <div class="alert alert-danger text-center" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div class="alert alert-success text-center" role="alert" *ngIf="successMessage">
+        {{successMessage}}
+    </div>
     <!--formulario para editar usuario-->
     <form class="user-edit-form" [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
         <div class="row mt-4 mx-auto">
             <div class="col-md-12 col-lg-5 text-center">
-              <!--  <mat-card class="mat-elevation-z0">
-                    <img mat-card-image [src]="imgBase64" alt="Foto de perfil"
-                        class="edit-user-img-perfil">                       
-                    <mat-card-actions>
-                        <input type="file" accept='image/*' (change)="onFileChange($event)">
-                    </mat-card-actions>
-                </mat-card>-->
-
                 <div class="container">
                     <div class="d-flex flex-column align-items-center">
-                       <div class="p-1">
-                          <video #video class="vid" autoplay></video>
+                       <div class="p-1" [class.display-video-stated]="!videoStarted">
+                          <video #video width="180" height="150" autoplay></video>
                        </div>
-                       <div class="pb-2">
-                          <a mat-stroked-button color="primary" (click)="capture()">Guardar foto</a>
+                       <div class="pb-2" [class.display-video-stated]="videoStarted">
+                        <a mat-stroked-button color="primary" (click)="startCamera()">Habilitar camara</a>
+                      </div>
+                       <div class="pb-2" [class.display-video-stated]="!videoStarted"> 
+                          <a mat-stroked-button color="primary" (click)="capture()">Tomar foto</a>
                        </div>
                        <div class="p-1">
                           <canvas #canvas class="vid"></canvas>
+                          <canvas #canvasHidden style="display: none;"></canvas>
                        </div>
                     </div>
                  </div>
@@ -52,12 +54,6 @@
             </div>
         </div>
     </form>
-    <div class="alert alert-danger text-center" role="alert" *ngIf="errorMessage">
-        {{errorMessage}}
-    </div>
-    <div class="alert alert-success text-center" role="alert" *ngIf="successMessage">
-        {{successMessage}}
-    </div>
 </div>
 
 <mat-dialog-actions align="end">

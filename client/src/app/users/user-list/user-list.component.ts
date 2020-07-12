@@ -4,7 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/_services/user.service';
 import { first } from 'rxjs/operators';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { UserShowComponent } from '../user-show/user-show.component';
 import { UserData } from 'src/app/_models/user-data';
 import { Role } from 'src/app/_models/role';
@@ -18,7 +18,7 @@ import { Role } from 'src/app/_models/role';
 export class UserListComponent implements OnInit {
   loading = false;
   users: UserData[];
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'username','email', 'edit', 'show', 'delete'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'username', 'email', 'edit', 'show', 'delete'];
   //displayedColumns: string[] = ['lastName', 'lastName', 'lastName', 'lastName','lastName'];
   dataSource: MatTableDataSource<UserData>;
   roles: Role[];
@@ -51,10 +51,10 @@ export class UserListComponent implements OnInit {
   }
 
   //para editar un usuario
-  openDialogEditar(id: number, firstName: string, lastName: string, username: string, email: string, roles: any): void {
+  openDialogEditar(id: number): void {
     const dialogRef = this.dialog.open(UserEditComponent, {
       width: "80%",
-      data: {id: id, firstName: firstName, lastName: lastName, username: username, email: email, roles: roles },
+      data: id,
       disableClose: true,
     });
 
@@ -66,21 +66,23 @@ export class UserListComponent implements OnInit {
   }
 
   //para ver un usuario
-  openDialogShow(): void {
+  openDialogShow(id: number): void {
     const dialogRef = this.dialog.open(UserShowComponent, {
-      width: "60%"
+      width: "60%",
+      data: id,
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
-  
+
 
   //para Eliminar un usuario
-  openDialogDelete(): void {
+  openDialogDelete(id: number): void {
     const dialogRef = this.dialog.open(UserDeleteComponent, {
       width: "60%",
+      data: id
     });
 
     dialogRef.afterClosed().subscribe(result => {

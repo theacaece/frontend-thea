@@ -1,15 +1,24 @@
 <div mat-dialog-content>
-    <div class="row h-100 w-100 mx-auto mb-2">
-        <div class="col-md-12 col-lg-12 text-center">
-            <div class="mt-4"><img mat-card-image src="../../../assets/img/iconos/info.svg"
-                 class="delete-user-info"></div>  
-            <div><b>¿Está seguro que quiere eliminar el usuario?</b></div>
-            <div>Nombre: Juan Jose</div>
-            <div>Apellido: Perez</div>
-        </div>
+    <div class="alert alert-danger text-center" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
     </div>
+    <div class="alert alert-success text-center" role="alert" *ngIf="successMessage">
+        {{successMessage}}
+    </div>
+    <!--formulario para eliminar usuario-->
+    <form class="user-edit-form" [formGroup]="userDeleteForm" (ngSubmit)="onSubmit()">
+        <input matInput hidden formControlName="id">
+        <div class="row h-100 w-100 mx-auto mb-2">
+            <div class="col-md-12 col-lg-12 text-center">
+                <div class="mt-4"><img mat-card-image src="../../../assets/img/iconos/info.svg"
+                     class="delete-user-info"></div>  
+                <div><b>¿Está seguro que quiere eliminar el usuario?</b></div>
+            </div>
+        </div>
+    </form>
 </div>
 <mat-dialog-actions align="end">
     <button mat-stroked-button (click)="onNoClick()">Cancelar</button>
-    <button mat-stroked-button (click)="onNoClick()" color="primary">Eliminar</button>
+    <button mat-stroked-button color="primary" cdkFocusInitial (click)="onSubmit()" [class.spinner]="loading"
+    [disabled]="loading">Eliminar</button>
 </mat-dialog-actions>

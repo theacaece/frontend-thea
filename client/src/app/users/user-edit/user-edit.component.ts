@@ -21,10 +21,14 @@ import { UserPhoto } from 'src/app/_models/user-photo';
 export class UserEditComponent {
   @ViewChild('video', { static: true }) videoElement: ElementRef;
   @ViewChild('canvas', { static: true }) canvas: ElementRef;
+  @ViewChild('canvasHidden', { static: true }) canvasHidden: ElementRef;
+
   rolSelected: FormControl;
   userEditForm: FormGroup;
+  userData: UserData;
   submitted = false;
   loading = false;
+  videoStarted = false;
   errorMessage: string;
   successMessage: string;
   imgBase64: string;
@@ -47,24 +51,35 @@ export class UserEditComponent {
 
   constructor(
     public dialogRef: MatDialogRef<UserEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public userData: UserData,
+    @Inject(MAT_DIALOG_DATA) public id: number,
     private formBuilder: FormBuilder,
     private userService: UserService,
     private renderer: Renderer2) {
-    this.userEditForm = new FormGroup({
-      'id': new FormControl({ value: this.userData.id, type: 'hidden' }),
-      'firstName': new FormControl(userData.firstName, [Validators.required]),
-      'lastName': new FormControl(userData.lastName, [Validators.required]),
-      'email': new FormControl(userData.email, [Validators.required, Validators.email]),
-      'username': new FormControl({ value: userData.username, disabled: true }, [Validators.required]),
-    });
-    this.rolSelected = new FormControl(userData.roles[0].id, [Validators.required]);
 
+    this.userService.get(id).pipe(first()).subscribe(result => {
+      this.userData= result.result;
+      this.userEditForm.controls['id'].setValue(this.userData.id);
+      this.userEditForm.controls['firstName'].setValue(this.userData.firstName);
+      this.userEditForm.controls['lastName'].setValue(this.userData.lastName);
+      this.userEditForm.controls['email'].setValue(this.userData.email);
+      this.userEditForm.controls['username'].setValue(this.userData.username);
+      this.rolSelected.setValue(this.userData.roles[0].id);
+      this.image.src = this.userData.photo == null ? "../../../assets/img/no-img-perfil.png" : (this.userData.photo.photo == null ? "../../../assets/img/no-img-perfil.png" : `data:image/jpeg;base64,${this.userData.photo.photo}`);
+    });
+
+    this.userEditForm = new FormGroup({
+      'id': new FormControl({ value: '', type: 'hidden' }),
+      'firstName': new FormControl('', [Validators.required]),
+      'lastName': new FormControl('', [Validators.required]),
+      'email': new FormControl('', [Validators.required, Validators.email]),
+      'username': new FormControl({ value: '', disabled: true }, [Validators.required]),
+    });
+
+    this.rolSelected = new FormControl('', [Validators.required]);
     this.image.onload = (_event) => {
       this.canvas.nativeElement.getContext('2d').drawImage(this.image, 0, 0, 300, 150);
     };
-    this.image.src = "../../../assets/img/no-img-perfil.png";
-    this.startCamera();
+    //this.startCamera();
   }
 
   onNoClick(): void {
@@ -88,7 +103,7 @@ export class UserEditComponent {
       .pipe(first())
       .subscribe(
         data => {
-          this.userData = data;
+          this.userData = data.result;
           this.loading = false;
           this.successMessage = "El usurio fue guardado con éxito";
           this.userEditForm.enable();
@@ -121,6 +136,7 @@ export class UserEditComponent {
 
   //#region Manejo de la camara
   startCamera() {
+    this.videoStarted = true;
     if (!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
       navigator.mediaDevices.getUserMedia(this.constraints).then(this.attachVideo.bind(this)).catch(this.handleError);
     } else {
@@ -140,6 +156,7 @@ export class UserEditComponent {
     this.renderer.setProperty(this.canvas.nativeElement, 'width', this.videoWidth);
     this.renderer.setProperty(this.canvas.nativeElement, 'height', this.videoHeight);
     this.canvas.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0);
+    this.canvasHidden.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0, 300, 150);
     this.imgBase64 = this.canvas.nativeElement.toDataURL();
   }
 
@@ -154,43 +171,30 @@ export class UserEditComponent {
     let roles = new Array<Role>();
     let photos = new Array<UserPhoto>();
 
-    user.id = this.userEditForm.controls['id'].value.value;
+    user.id = this.userEditForm.controls['id'].value;
     user.firstName = this.userEditForm.controls['firstName'].value;
     user.lastName = this.userEditForm.controls['lastName'].value;
     user.username = this.userEditForm.controls['username'].value;
     user.email = this.userEditForm.controls['email'].value;
     roles.push({ id: this.rolSelected.value, name: "" });
-    photos.push({ id: { userId: 1, photoId: null }, photo: this.convertDataURIToBinary(this.imgBase64) });
     user.roles = roles;
-    user.photos = photos;
+    user.photo = { userId: user.id, photo: this.convertDataURIToBinary(this.canvasHidden.nativeElement.toDataURL()) };
     return user;
   }
 
-  private createImgInical(): void {
-
-  }
-
-  // private base64ToArrayBuffer(base64) {
-  //   let b64Data = base64.split(',', 2)[1];
-  //   //var byteArray = new Buffer(b64Data, 'base64');
-  //   var byteArray = Buffer.from(b64Data);
-  //   var blob = new Blob([byteArray], { type: 'application/pdf' });
-  // }
-
-   convertDataURIToBinary(dataURI) {
+  private convertDataURIToBinary(dataURI) {
     var BASE64_MARKER = ';base64,';
     var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
     var base64 = dataURI.substring(base64Index);
     var raw = window.atob(base64);
     var rawLength = raw.length;
     var array = new Uint8Array(new ArrayBuffer(rawLength));
-  
-    for(var i = 0; i < rawLength; i++) {
+
+    for (var i = 0; i < rawLength; i++) {
       array[i] = raw.charCodeAt(i);
     }
     var array2 = Array.from(array)
     return array2;
   }
-
   //#endregion
 }
